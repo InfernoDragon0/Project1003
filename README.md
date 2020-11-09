@@ -24,6 +24,9 @@
 - [ ] Tamago have rarity
 - [ ] Higher rarity = more energy and more gold per game etc
 - [ ] Rarity comes in common/uncommon/rare/epic/legendary
+- [ ] Gear level from 3 - 15
+- [ ] Gear score for parts common: 1, uncommon: 2, rare: 3, epic: 4, legendary: 5
+- [ ] Tamago is made up of TOP + MIDDLE + BOTTOM parts
 
 ## Side Games
 - [ ] Run (platformer style): just run and jump, dodge obstacles, don't fall in holes, collect coins. Every 10m run will give 1G, 20 coins will give 5G
@@ -39,6 +42,11 @@
   - full energy refill (1 part) *note the numbers will be randomly generated
 - [ ] Mini game 3 (minesweeper style): 30 spots to dig, 5-10 bombs per game. If you get bombed you lose an extra energy bar, for every spot digged you will get 5G
 - [ ] Energy Factory (rhythm style): this game is free to play. You gain energy bars by collecting dropping energy droplets, if you miss more than 3 drops or get hit by filling rocks 3 times, The game ends. Collect 10 for 1 bar.  The game follows a rhythm game with obstacles (press buttons at the correct time to collect energy)
-- [ ] Mini game 5 
+- [ ] Procedural Dungeon (Main mini game):
+  - Dungeons will be created with randomized data (1-2 lootboxes, 1 boss, 5-10 mobs)
+  - Dungeon can be a simple 5x5 map
+  - Mob damage and health are randomized based on tamago gear level
+  - Using your tamago, defeat enemies by attacking turn by turn
+  - Health and damage of tamago is based on current gear level
 
 ## Other things
