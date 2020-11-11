@@ -223,10 +223,11 @@ void gameMenu(uint8_t selection) { //game menu function
   if (menu_debug_print)SerialMonitorInterface.println(selection);
   if (selection == 0) { //Main Game: Tamago
     display.clearWindow(0, 12, 96, 64);
-    drawBitmap();
+    loop1();
   }
   if (selection == 1){ //Side Game: Tamago: Run
     display.clearWindow(0, 12, 96, 64);
+    loop2();
   }
   if (selection == 2){ //Side Game: Tamago: Dungeons
     display.clearWindow(0, 12, 96, 64);

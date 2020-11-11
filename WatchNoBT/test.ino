@@ -28,5 +28,24 @@ void drawBitmap(){
   display.writeBuffer(flappyBirdBitmap,17*12);
   display.endTransfer();
   delay(1000);
-  
+}
+
+void loop1() {
+  while(1){ //IDK this loop by right simulates void loop();
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      initHomeScreen();
+      break;
+    }
+    drawBitmap(); //Put whatever game function you have here
+  }
+}
+
+void loop2(){
+  while(1){
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      initHomeScreen();
+      break;
+    }
+    drawBitmap();
+  }
 }
