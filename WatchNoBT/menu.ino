@@ -41,24 +41,41 @@ void newMenu(int8_t newIndex) {
   }
 }
 
-static const char PROGMEM mainMenuStrings0[] = "Set date/time";
-static const char PROGMEM mainMenuStrings1[] = "Set auto off";
-static const char PROGMEM mainMenuStrings2[] = "Set brightness";
+static const char PROGMEM mainMenuStrings0[] = "Play Tamago!";
+static const char PROGMEM mainMenuStrings1[] = "Set Date/Time";
+static const char PROGMEM mainMenuStrings2[] = "Set Brightness";
+static const char PROGMEM mainMenuStrings3[] = "Set Sleep";
 
 static const char* const PROGMEM mainMenuStrings[] =
 {
   mainMenuStrings0,
   mainMenuStrings1,
   mainMenuStrings2,
+  mainMenuStrings3,
 };
 
 const menu_info mainMenuInfo =
 {
-  3,
+  4,
   mainMenuStrings,
   mainMenu,
 };
 
+static const char PROGMEM gameMenuStrings0[] = "Tamago!";
+static const char PROGMEM gameMenuStrings1[] = "Tamago: Run";  
+static const char PROGMEM gameMenuStrings2[] = "Tamago: Dungeons";                        
+static const char* const PROGMEM gameMenuStrings[] =
+{
+  gameMenuStrings0,
+  gameMenuStrings1,
+  gameMenuStrings2,
+};
+const menu_info gameMenuInfo =
+{
+  3,
+  gameMenuStrings,
+  gameMenu,
+};
 
 static const char PROGMEM dateTimeMenuStrings0[] = "Set Year";
 static const char PROGMEM dateTimeMenuStrings1[] = "Set Month";
@@ -84,9 +101,10 @@ const menu_info dateTimeMenuInfo =
   dateTimeMenu,
 };
 
-const menu_info menuList[] = {mainMenuInfo, dateTimeMenuInfo};
+const menu_info menuList[] = {mainMenuInfo, gameMenuInfo, dateTimeMenuInfo};
 #define mainMenuIndex 0
-#define dateTimeMenuIndex 1
+#define gameMenuIndex 1
+#define dateTimeMenuIndex 2
 
 int currentVal = 0;
 int digits[4];
@@ -114,13 +132,13 @@ uint8_t editInt(uint8_t button, int *inVal, char *intName, void (*cb)()) {
     display.setFont(font10pt);
     display.fontColor(defaultFontColor, defaultFontBG);
     display.setCursor(0, menuTextY[0]);
-    display.print(F("< back/undo"));
+    display.print(F("< Back/Undo"));
     display.setCursor(90, menuTextY[0]);
     display.print('^');
     display.setCursor(10, menuTextY[1]);
     display.print(intName);
     display.setCursor(0, menuTextY[3]);
-    display.print(F("< next/save"));
+    display.print(F("< Next/Save"));
     display.setCursor(90, menuTextY[3]);
     display.print('v');
   } else if (button == upButton) {
@@ -165,20 +183,22 @@ uint8_t editInt(uint8_t button, int *inVal, char *intName, void (*cb)()) {
 void mainMenu(uint8_t selection) {
   if (menu_debug_print)SerialMonitorInterface.println("mainMenuHandler");
   if (selection == 0) {
-    newMenu(dateTimeMenuIndex);
+    newMenu(gameMenuIndex); //This is where the game menu goes
   }
   if (selection == 1) {
-    char buffer[20];
-    strcpy_P(buffer, (PGM_P)pgm_read_word(&(menuList[mainMenuIndex].strings[selection])));
-    editInt(0, &sleepTimeout, buffer, NULL);
+    newMenu(dateTimeMenuIndex);
   }
   if (selection == 2) {
     char buffer[20];
     strcpy_P(buffer, (PGM_P)pgm_read_word(&(menuList[mainMenuIndex].strings[selection])));
     editInt(0, &brightness, buffer, NULL);
   }
+  if (selection == 3) {
+    char buffer[20];
+    strcpy_P(buffer, (PGM_P)pgm_read_word(&(menuList[mainMenuIndex].strings[selection])));
+    editInt(0, &sleepTimeout, buffer, NULL);
+  }
 }
-
 
 uint8_t dateTimeSelection = 0;
 int dateTimeVariable = 0;
@@ -198,6 +218,20 @@ void saveChangeCallback() {
   if (menu_debug_print)SerialMonitorInterface.println(dateTimeVariable);
 }
 
+void gameMenu(uint8_t selection) { //game menu function
+  if (menu_debug_print)SerialMonitorInterface.print("gameMenu ");
+  if (menu_debug_print)SerialMonitorInterface.println(selection);
+  if (selection >= 0 && selection < 1) { //Main Game: Tamago
+    display.clearWindow(0, 12, 96, 64);
+    drawBitmap();
+  }
+  if (selection >= 1 && selection < 2){ //Side Game: Tamago: Run
+    display.clearWindow(0, 12, 96, 64);
+  }
+  if (selection >= 2 && selection < 3){ //Side Game: Tamago: Dungeons
+    display.clearWindow(0, 12, 96, 64);
+  }
+}
 
 void dateTimeMenu(uint8_t selection) {
   if (menu_debug_print)SerialMonitorInterface.print("dateTimeMenu ");
@@ -240,6 +274,7 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
+      display.clearWindow(0, 12, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;
