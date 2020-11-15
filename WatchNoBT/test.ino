@@ -14,6 +14,10 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue
 };
 
+String lootRandomizer[21];
+String lootRarity[5]={"c","u","r","e","l"};
+String lootPart[3]= {"t","m","b"};
+
 void drawBitmap(){
   //set a background that matches
   display.drawRect(0, 12, 96, 64,TSRectangleFilled,TS_8b_Blue);
@@ -40,12 +44,56 @@ void loop1() {
   }
 }
 
-void loop2(){
+void loop2(){ //lootbox game
+  byte curLocation = 0;
+  
+   //try creating a random loot table unweighted
+  for (byte i = 0; i < 21; i++) {
+      lootRandomizer[i] = lootRarity[random(0,4)] + lootPart[random(0,2)];
+  }
+  
   while(1){
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       initHomeScreen();
       break;
     }
-    drawBitmap();
+
+    if (display.getButtons(TSButtonLowerLeft)) { 
+      if (curLocation < 21) {
+        curLocation += 1;
+      }
+      
+    }
+    if (display.getButtons(TSButtonUpperRight)) {
+      if (curLocation > 0) {
+        curLocation -= 1;
+      }
+    }
+
+   display.setCursor(0,10);
+   display.print("Current loot: ");
+   display.print(curLocation);
+   display.print("..");
+   display.print(lootRandomizer[curLocation]);
+
+   display.setCursor(0,20);
+   for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
+      display.setCursor(0, 20 + (y*10));
+      
+      for (byte x = y*7; x < (y*7)+7; x++) {
+        if (curLocation == (x+1)) {
+          display.print("O ");
+        }
+        else {
+          display.print("X ");
+        }      
+      }
+   }
+   
+
+
+   display.setCursor(0,50);
+   display.print("Dig with < buttons >");
+    //drawBitmap();
   }
 }
