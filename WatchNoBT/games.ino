@@ -40,7 +40,7 @@ void loop1() {
       initHomeScreen();
       break;
     }
-    drawBitmap(); //Put whatever game function you have here
+    drawBitmap(); //replace this for tamago game
   }
 }
 

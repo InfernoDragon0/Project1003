@@ -62,17 +62,19 @@ const menu_info mainMenuInfo =
 };
 
 static const char PROGMEM gameMenuStrings0[] = "Tamago!";
-static const char PROGMEM gameMenuStrings1[] = "Tamago: Run";  
-static const char PROGMEM gameMenuStrings2[] = "Tamago: Dungeons";                        
+static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";
+static const char PROGMEM gameMenuStrings2[] = "Tamago: Run";   
+static const char PROGMEM gameMenuStrings3[] = "Tamago: Dungeons";                        
 static const char* const PROGMEM gameMenuStrings[] =
 {
   gameMenuStrings0,
   gameMenuStrings1,
   gameMenuStrings2,
+  gameMenuStrings3,
 };
 const menu_info gameMenuInfo =
 {
-  3,
+  4,
   gameMenuStrings,
   gameMenu,
 };
@@ -225,11 +227,14 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop1();
   }
-  if (selection == 1){ //Side Game: Tamago: Run
+  if (selection == 1){ //Side Game: TamaGold Mine
     display.clearWindow(0, 10, 96, 64);
     loop2();
   }
-  if (selection == 2){ //Side Game: Tamago: Dungeons
+  if (selection == 2){ //Side Game: Tamago: Run
+    display.clearWindow(0, 10, 96, 64);
+  }
+  if (selection == 3){ //Side Game: Tamago: Dungeons
     display.clearWindow(0, 10, 96, 64);
   }
 }
