@@ -35,7 +35,7 @@ void buttonPress(uint8_t buttons) {
 }
 
 void initHomeScreen() {
-  display.clearWindow(0, 12, 96, 64);
+  display.clearWindow(0, 10, 96, 64);
   rewriteTime = true;
   rewriteMenu = true;
   updateMainDisplay();

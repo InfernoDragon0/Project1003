@@ -128,7 +128,7 @@ uint8_t editInt(uint8_t button, int *inVal, char *intName, void (*cb)()) {
     digits[1] = currentVal % 10; currentVal /= 10;
     digits[0] = currentVal % 10;
     currentVal = *originalVal;
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
     display.setFont(font10pt);
     display.fontColor(defaultFontColor, defaultFontBG);
     display.setCursor(0, menuTextY[0]);
@@ -222,15 +222,15 @@ void gameMenu(uint8_t selection) { //game menu function
   if (menu_debug_print)SerialMonitorInterface.print("gameMenu ");
   if (menu_debug_print)SerialMonitorInterface.println(selection);
   if (selection == 0) { //Main Game: Tamago
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
     loop1();
   }
   if (selection == 1){ //Side Game: Tamago: Run
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
     loop2();
   }
   if (selection == 2){ //Side Game: Tamago: Dungeons
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
   }
 }
 
@@ -256,7 +256,7 @@ void viewMenu(uint8_t button) {
   if (menu_debug_print)SerialMonitorInterface.println(button);
   if (!button) {
     newMenu(mainMenuIndex);
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
   } else {
     if (button == upButton) {
       if (currentSelectionLine > 0) {
@@ -275,7 +275,7 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
-      display.clearWindow(0, 12, 96, 64);
+      display.clearWindow(0, 10, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;
