@@ -70,6 +70,21 @@ void loop2(){ //lootbox game
       }
     }
 
+    if (display.getButtons(TSButtonLowerRight)) {
+       //some way to save this thing      
+      
+      display.setCursor(0,50);
+      if (lootRandomizer[curLocation] == "none") {
+        display.print("Nothing here");
+      }
+      else {
+        display.print("Found: " + lootRandomizer[curLocation]);
+        lootRandomizer[curLocation] = "none";
+      }
+      
+    }
+    
+
    display.setCursor(0,10);
    display.print("Current loot: ");
    display.print(curLocation);
@@ -85,15 +100,20 @@ void loop2(){ //lootbox game
           display.print("O ");
         }
         else {
-          display.print("X ");
+          if (lootRandomizer[curLocation] == "none") {
+            display.print("- ");
+          }
+          else {
+            display.print("X ");
+          }
+          
         }      
       }
    }
    
 
 
-   display.setCursor(0,50);
-   display.print("Dig with < buttons >");
+   
     //drawBitmap();
   }
 }
