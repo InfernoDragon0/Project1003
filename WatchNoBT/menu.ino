@@ -220,6 +220,7 @@ void saveChangeCallback() {
   if (menu_debug_print)SerialMonitorInterface.println(dateTimeVariable);
 }
 
+//Boss says 3 games :D
 void gameMenu(uint8_t selection) { //game menu function
   if (menu_debug_print)SerialMonitorInterface.print("gameMenu ");
   if (menu_debug_print)SerialMonitorInterface.println(selection);
@@ -233,9 +234,7 @@ void gameMenu(uint8_t selection) { //game menu function
   }
   if (selection == 2){ //Side Game: Tamago: Run
     display.clearWindow(0, 10, 96, 64);
-  }
-  if (selection == 3){ //Side Game: Tamago: Dungeons
-    display.clearWindow(0, 10, 96, 64);
+    loop3();
   }
 }
 

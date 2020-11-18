@@ -1,4 +1,4 @@
-//This is an example 17x12 pixel bitmap using TS library color definitions
+//This is a placeholder
 unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
@@ -13,10 +13,6 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
-
-String lootRandomizer[21];
-String lootRarity[5]={"c","u","r","e","l"};
-String lootPart[3]= {"t","m","b"};
 
 void drawBitmap(){
   //set a background that matches
@@ -34,6 +30,12 @@ void drawBitmap(){
   delay(1000);
 }
 
+//Gold mine game
+String lootRandomizer[21];
+String lootRarity[5]={"c","u","r","e","l"};
+String lootPart[3]= {"t","m","b"};
+
+//Where all loops begin
 void loop1() {
   while(1){ //IDK this loop by right simulates void loop();
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
@@ -110,10 +112,19 @@ void loop2(){ //lootbox game
         }      
       }
    }
-   
-
-
-   
-    //drawBitmap();
   }
+}
+
+//Either endless runner or dungeon game
+int highScore = 0;
+
+void loop3(){
+  while(1){ //IDK this loop by right simulates void loop();
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      initHomeScreen();
+      break;
+    }
+    if (display.getButtons(TSButtonLowerRight)) { //Jump
+      
+    }
 }
