@@ -225,12 +225,13 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop1();
   }
-  if (selection == 1){ //Side Game: Tamago: Run
+  if (selection == 1){ //Side Game: TamaGold Mine
     display.clearWindow(0, 10, 96, 64);
     loop2();
   }
-  if (selection == 2){ //Side Game: Tamago: Dungeons
+  if (selection == 2){ //Side Game: Tamago: Run
     display.clearWindow(0, 10, 96, 64);
+    loop3();
   }
 }
 

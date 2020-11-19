@@ -1,3 +1,4 @@
+// Game 1 starts here
 //This is a placeholder
 unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
@@ -14,10 +15,6 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
-String lootRandomizer[21];
-String lootRarity[5]={"c","u","r","e","l"};
-String lootPart[3]= {"t","m","b"};
-
 void drawBitmap(){
   //set a background that matches
   //display.drawRect(0, 12, 96, 64,TSRectangleFilled,TS_8b_Blue);
@@ -33,16 +30,40 @@ void drawBitmap(){
   display.endTransfer();
   delay(1000);
 }
-
+//testing code feel free to change
 void loop1() {
+  display.setCursor(0,50);
+  display.print("Meowelcome Back!");
   while(1){ //IDK this loop by right simulates void loop();
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       initHomeScreen();
       break;
     }
+    if (display.getButtons(TSButtonLowerLeft)){ //Play
+      
+    }
+    if (display.getButtons(TSButtonUpperRight)){ //Feed
+      display.clearWindow(0, 50, 96, 64);
+      display.setCursor(0,50);
+      display.print("Munch Munch~~");
+    }
+    if (display.getButtons(TSButtonLowerRight)){ //Something
+      display.clearWindow(0, 50, 96, 64);
+      display.setCursor(0,50);
+      display.print("I am sleepwy");
+    }
     drawBitmap(); //Put whatever game function you have here
+    //How does one write game ticks?
+    uint32_t startLTime = millis();
+    uint32_t endLTime = millis();
+    
   }
 }
+
+// Game 2 starts here
+String lootRandomizer[21];
+String lootRarity[5]={"c","u","r","e","l"};
+String lootPart[3]= {"t","m","b"};
 
 void loop2(){ //lootbox game
   byte curLocation = 0;
@@ -111,5 +132,16 @@ void loop2(){ //lootbox game
       }
    }
     //drawBitmap();
+  }
+}
+
+// Game 3 starts here
+void loop3() {
+  while(1){
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      initHomeScreen();
+      break;
+    }
+    //Put whatever game function you have here
   }
 }
