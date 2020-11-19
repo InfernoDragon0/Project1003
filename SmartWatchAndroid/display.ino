@@ -298,7 +298,7 @@ void displayBattery() {
   uint8_t length = 20;
   uint8_t amtActive = (result * length) / 120;
   uint8_t red, green, blue;
-  display.drawLine(x - 1, y, x - 1, y + height, 0xFF); //left boarder
+  display.drawLine(x - 1, y, x - 1, y + height, 0xFF); //left border
   display.drawLine(x - 1, y - 1, x + length, y - 1, 0xFF); //top border
   display.drawLine(x - 1, y + height + 1, x + length, y + height + 1, 0xFF); //bottom border
   display.drawLine(x + length, y - 1, x + length, y + height + 1, 0xFF); //right border
@@ -352,7 +352,7 @@ void displayBattery() {
     red = 63;
     green = 0;
   }
-  display.drawLine(x - 1, y, x - 1, y + height, 0xFF); //left boarder
+  display.drawLine(x - 1, y, x - 1, y + height, 0xFF); //left border
   display.drawLine(x - 1, y - 1, x + length, y - 1, 0xFF); //top border
   display.drawLine(x - 1, y + height + 1, x + length, y + height + 1, 0xFF); //bottom border
   display.drawLine(x + length, y - 1, x + length, y + height + 1, 0xFF); //right border
