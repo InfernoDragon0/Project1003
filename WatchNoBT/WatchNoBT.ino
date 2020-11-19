@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include <SPI.h>
+#include <STBLE.h>
 #include <TinyScreen.h>
 
 #define menu_debug_print true

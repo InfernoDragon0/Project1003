@@ -128,17 +128,17 @@ uint8_t editInt(uint8_t button, int *inVal, char *intName, void (*cb)()) {
     digits[1] = currentVal % 10; currentVal /= 10;
     digits[0] = currentVal % 10;
     currentVal = *originalVal;
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
     display.setFont(font10pt);
     display.fontColor(defaultFontColor, defaultFontBG);
     display.setCursor(0, menuTextY[0]);
-    display.print(F("< Back/Undo"));
+    display.print(F("< back/undo"));
     display.setCursor(90, menuTextY[0]);
     display.print('^');
     display.setCursor(10, menuTextY[1]);
     display.print(intName);
     display.setCursor(0, menuTextY[3]);
-    display.print(F("< Next/Save"));
+    display.print(F("< next/save"));
     display.setCursor(90, menuTextY[3]);
     display.print('v');
   } else if (button == upButton) {
@@ -275,7 +275,6 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
-      display.clearWindow(0, 12, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;
