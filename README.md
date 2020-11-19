@@ -11,7 +11,7 @@
 
 ## Main Game Loop
 - [ ] Tamago sprite (ONE), Name your tamago
-- [ ] Mini game for the sprites (Platformer + Gambler)
+- [ ] Mini game for the sprites (Platformer + Gambler + Goldsweeper)
 - [ ] Obtain Runes by purchasing [random Tamago goods 100G] (common/uncommon/rare/mythic)
 - [ ] Rune of Luck +1/2/3/4, Rune of Speed +1/2/3/4, Rune of Fortune +1/2/3/4, Rune of Agility +1/2/3/4
 - [ ] Luck rune increases TamaGOLD rare/mythic spawn chance
@@ -34,4 +34,4 @@
   - rare Rune (1 spot)
   - mythic Rune (0-1 spot) !must equip at least luck 3 rune to spawn one
   - 1000-1800G (1 part) !per fortune increase 200
-- [ ] Sweeper: 21 spots to dig, 5-10 bombs per game. If you get bombed you lose 40G, for every spot digged you will get 10G*n+1 (n is the number of spot digged)
+- [ ] Goldsweeper: 21 spots to dig, 5-10 bombs per game. If you get bombed you lose 40G, for every spot digged you will get 10G*n+1 (n is the number of spot digged)
