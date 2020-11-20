@@ -15,6 +15,9 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
+uint16_t score = 0;
+char num_buffer[12];
+
 void drawBitmap(){
   //set a background that matches
   //display.drawRect(0, 12, 96, 64,TSRectangleFilled,TS_8b_Blue);
@@ -34,12 +37,18 @@ void drawBitmap(){
 void loop1() {
   display.setCursor(0,50);
   display.print("Meowelcome Back!");
+  delay(500);
   while(1){ //IDK this loop by right simulates void loop();
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       initHomeScreen();
       break;
     }
     if (display.getButtons(TSButtonLowerLeft)){ //Play
+      score += 1;
+      display.clearWindow(0, 50, 96, 64);
+      display.setCursor(0,50);
+      snprintf(num_buffer, 12, "Score: %04d", score);
+      display.println(num_buffer);
       
     }
     if (display.getButtons(TSButtonUpperRight)){ //Feed
