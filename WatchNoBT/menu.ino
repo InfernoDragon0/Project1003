@@ -275,7 +275,7 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
-      display.clearWindow(0, 12, 96, 64);
+      display.clearWindow(0, 10, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;
