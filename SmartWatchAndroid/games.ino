@@ -15,8 +15,24 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
-uint16_t score = 0;
-char num_buffer[12];
+uint16_t gold = 0;
+char gold_buffer[11];
+
+uint16_t hp = 100;
+char hp_buffer[8];
+
+// Control HP
+void modifyHP(uint16_t mod_hp){
+  if(hp + mod_hp >= 100){
+    hp = 100;
+  }
+  else if(hp + mod_hp < 0){
+    hp = 0;
+  }
+  else{
+    hp = hp + mod_hp;
+  }
+}
 
 void drawBitmap(){
   //set a background that matches
@@ -35,6 +51,12 @@ void drawBitmap(){
 }
 //testing code feel free to change
 void loop1() {
+  display.setCursor(0,10);
+  snprintf(hp_buffer, 8, "HP:%03d", hp);
+  display.println(hp_buffer);
+  display.setCursor(45,10);
+  snprintf(gold_buffer, 11, "Gold:%04d", gold);
+  display.println(gold_buffer);
   display.setCursor(0,50);
   display.print("Meowelcome Back!");
   delay(500);
@@ -44,22 +66,34 @@ void loop1() {
       break;
     }
     if (display.getButtons(TSButtonLowerLeft)){ //Play
-      score += 1;
-      display.clearWindow(0, 50, 96, 64);
+      //score += 1;
+      display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
-      snprintf(num_buffer, 12, "Score: %04d", score);
-      display.println(num_buffer);
+      display.print("I'M WALKING HERE!");
+      //snprintf(num_buffer, 12, "Score: %04d", score);
+      //display.println(num_buffer);
       
     }
     if (display.getButtons(TSButtonUpperRight)){ //Feed
-      display.clearWindow(0, 50, 96, 64);
+      display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
       display.print("Munch Munch~~");
     }
-    if (display.getButtons(TSButtonLowerRight)){ //Something
-      display.clearWindow(0, 50, 96, 64);
+    if (display.getButtons(TSButtonLowerRight)){ //Sleep?
+      display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
-      display.print("I am sleepwy");
+      display.print("I am sleepwy...");
+      delay(1000);
+      for (uint8_t i = 0; i < 10; i++){
+        delay(1000);
+        display.clearWindow(0, 50, 96, 64);
+        display.setCursor(0,50);
+        delay(1000);
+        display.print("Zzzzzz....");
+      }
+      display.clearWindow(0, 40, 96, 64);
+      display.setCursor(0,50);
+      display.print("Hello!");
     }
     drawBitmap(); //Put whatever game function you have here
     //How does one write game ticks?
