@@ -273,12 +273,15 @@ void loop3() {
         display.print(" Gold");
         bombs[curLocation] = "X";
 
+        gold += 5*sweeped;
+
       }
       else if (bombs[curLocation] == "B") {
         display.clearWindow(0, 10, 96, 64);
     
         display.setCursor(0,30);
         display.print("Boom! you lose!");
+        hp -= 20;
         //end gamehere
         delay(2000);
         initHomeScreen();
