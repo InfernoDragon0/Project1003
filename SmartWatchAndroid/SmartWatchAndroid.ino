@@ -242,6 +242,7 @@ void loop() {
 #endif
   }
   checkButtons();
+  penalty();
 }
 
 void updateTime(uint8_t * b) {
@@ -283,4 +284,23 @@ void checkButtons() {
   if (!buttonReleased && !(buttons & 0x0F)) {
     buttonReleased = 1;
   }
+}
+
+// Real-Time Penalty BETA
+uint32_t astartLTime;
+uint32_t aendLTime;
+uint32_t deduct = 0;
+uint32_t atimeDiff;
+uint32_t atimeElapsed;
+
+uint16_t penalty(){
+  astartLTime = millis();
+  aendLTime = millis() + 1;
+  atimeDiff = aendLTime - astartLTime;
+  atimeElapsed += atimeDiff;
+  if(atimeElapsed >= 216000){
+    atimeElapsed = 0;
+    deduct += 1;
+  }
+  return deduct;
 }

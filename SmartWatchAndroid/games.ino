@@ -20,7 +20,7 @@ void retMenu(){
   mainMenu(0);
 }
 
-int16_t gold = 0;
+int16_t gold = 100;
 char gold_buffer[11];
 
 int16_t hp = 100;
@@ -33,8 +33,6 @@ void chkHP() {
   }
   else if (hp <= 0) {
     hp = 0;
-  }
-  else {
   }
 }
 
@@ -54,8 +52,6 @@ void chkGold() {
   else if (gold <= -10000) {
     gold = -9999;
   }
-  else {
-  }
 }
 
 // Update Gold Function
@@ -66,21 +62,19 @@ void updateGold() {
   display.println(gold_buffer);
 }
 
-//If dead then revive
+// If dead then revive
 void chkDead() {
   if (hp <= 0) {
     gold -= 50;
     hp += 100;
     display.setCursor(0, 55);
-    display.print("You Died. Reviving..");
-    delay(3000);
+    display.print("You Lose. Reviving..");
+    delay(1500);
     display.clearWindow(0, 60, 96, 64);
     display.setCursor(0, 55);
-    display.print("Meowelcome Back!");
+    display.print("Ressurected!");
     updateHP();
     updateGold();
-  }
-  else {
   }
 }
 
@@ -101,15 +95,42 @@ void drawBitmap() {
   delay(1000);
 }
 
-//testing code feel free to change
-void loop1() {
-  //First Run
-  chkDead();
+// All about the ticks
+uint32_t startLTime;
+uint32_t endLTime;
+uint32_t timeDiff;
+uint32_t timeElapsed = 0;
+
+void timePassed(){
+  startLTime = millis();
+  endLTime = millis() + 1;
+  timeDiff = endLTime - startLTime;
+  timeElapsed += timeDiff;
+}
+
+void RTP(){
+  hp -= deduct;
+  deduct = 0;
+  atimeElapsed = 0;
   updateHP();
+}
+
+//Health Penalty when idle
+void penaltyHP(){
+  if(timeElapsed >= 216000){
+    hp -= 1;
+    timeElapsed = 0;
+    updateHP();
+  }
+}
+
+void loop1() {
+  chkDead();
+  RTP();
   updateGold();
+  drawBitmap();
   display.setCursor(0, 55);
   display.print("Meowelcome Back!");
-  delay(500);
   while (1) { //IDK this loop by right simulates void loop();
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -131,7 +152,7 @@ void loop1() {
       updateHP();
       updateGold();
     }
-    if (display.getButtons(TSButtonLowerRight)) { //Sleep?
+    if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0, 55);
       display.print("I am sleepwy...");
@@ -141,23 +162,20 @@ void loop1() {
         display.clearWindow(0, 40, 96, 64);
         display.setCursor(0, 55);
         delay(1000);
-        display.print("Zzzzzz....");
+        display.print("Zzzzzzzzzzzzz....");
         hp += 1;
         updateHP();
       }
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0, 55);
-      display.print("A good nap!");
+      display.print("A beautiful nap!");
       updateHP();
       updateGold();
     }
     chkDead();
     updateGold();
-    drawBitmap(); //Put whatever game function you have here
-    //How does one write game ticks?
-    uint32_t startLTime = millis();
-    uint32_t endLTime = millis();
-
+    timePassed();
+    penaltyHP();
   }
 }
 
