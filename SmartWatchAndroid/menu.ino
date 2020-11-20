@@ -63,16 +63,18 @@ const menu_info mainMenuInfo =
 
 static const char PROGMEM gameMenuStrings0[] = "Tamago!";
 static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";  
-static const char PROGMEM gameMenuStrings2[] = "Tamago: Run";                        
+static const char PROGMEM gameMenuStrings2[] = "Tamago: Run";
+static const char PROGMEM gameMenuStrings3[] = "Modifiers";                      
 static const char* const PROGMEM gameMenuStrings[] =
 {
   gameMenuStrings0,
   gameMenuStrings1,
   gameMenuStrings2,
+  gameMenuStrings3,
 };
 const menu_info gameMenuInfo =
 {
-  3,
+  4,
   gameMenuStrings,
   gameMenu,
 };
@@ -233,6 +235,10 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop3();
   }
+  if (selection == 3){ //Side Game: Tamago: Run
+    display.clearWindow(0, 10, 96, 64);
+    loop4();
+  }
 }
 
 void dateTimeMenu(uint8_t selection) {
@@ -266,7 +272,7 @@ void viewMenu(uint8_t button) {
         currentMenuLine--;
       }
     } else if (button == downButton) {
-      if (currentSelectionLine < menuList[currentMenu].amtLines - 1 && currentSelectionLine < 3) {
+      if (currentSelectionLine < menuList[currentMenu].amtLines - 1 && currentSelectionLine < 4) {
         currentSelectionLine++;
       } else if (currentSelectionLine + currentMenuLine < menuList[currentMenu].amtLines - 1) {
         currentMenuLine++;

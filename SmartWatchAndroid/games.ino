@@ -188,3 +188,14 @@ void loop3() {
     //Put whatever game function you have here
   }
 }
+
+// Modifiers
+void loop4() {
+  while(1){
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      initHomeScreen();
+      break;
+    }
+    //Put whatever game function you have here
+  }
+}
