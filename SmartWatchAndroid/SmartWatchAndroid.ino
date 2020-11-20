@@ -298,7 +298,7 @@ uint16_t penalty(){
   aendLTime = millis() + 1;
   atimeDiff = aendLTime - astartLTime;
   atimeElapsed += atimeDiff;
-  if(atimeElapsed >= 216000){
+  if(atimeElapsed >= 36000){
     atimeElapsed = 0;
     deduct += 1;
   }

@@ -117,7 +117,7 @@ void RTP(){
 
 // Health penalty when idle
 void penaltyHP(){
-  if(timeElapsed >= 216000){
+  if(timeElapsed >= 36000){
     hp -= 1;
     timeElapsed = 0;
     updateHP();
@@ -139,7 +139,7 @@ void loop1() {
     if (display.getButtons(TSButtonLowerLeft)) { //Play
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0, 52);
-      display.print("I'M WALKING HERE!");
+      display.print("Computers r magick");
       hp -= 10;
       updateHP();
       updateGold();
