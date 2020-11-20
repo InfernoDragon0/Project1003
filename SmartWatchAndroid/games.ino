@@ -18,6 +18,7 @@ unsigned char flappyBirdBitmap[204]={
 uint16_t score = 0;
 char num_buffer[12];
 
+
 void drawBitmap(){
   //set a background that matches
   //display.drawRect(0, 12, 96, 64,TSRectangleFilled,TS_8b_Blue);
@@ -144,13 +145,92 @@ void loop2(){ //lootbox game
   }
 }
 
+String bombs[21];
+
+
 // Game 3 starts here
 void loop3() {
+
+  byte curLocation = 0;
+  byte sweeped = 0;
+  
+   //try creating a random loot table bomb ratio 2:3
+  for (byte i = 0; i < 21; i++) {
+      bombs[i] = random(0,5) >= 3 ? "O" : "B";
+  }
+  
   while(1){
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       initHomeScreen();
       break;
     }
     //Put whatever game function you have here
+    if (display.getButtons(TSButtonLowerLeft)) { 
+      if (curLocation < 21) {
+        curLocation += 1;
+      }
+      
+    }
+    if (display.getButtons(TSButtonUpperRight)) {
+      if (curLocation > 0) {
+        curLocation -= 1;
+      }
+    }
+    if (display.getButtons(TSButtonLowerRight)) {
+       //some way to save this thing      
+      
+      display.setCursor(0,50);
+      if (bombs[curLocation] == "O") {
+        display.print("You gained ");
+        sweeped++;
+        display.print(5*sweeped);
+        display.print(" Gold");
+        bombs[curLocation] = "X";
+
+      }
+      else if (bombs[curLocation] == "B") {
+        display.clearWindow(0, 10, 96, 64);
+    
+        display.setCursor(0,30);
+        display.print("Boom! you lose!");
+        //end gamehere
+        delay(2000);
+        initHomeScreen();
+        break;
+        
+      }
+      else {
+        display.print("Found: Nothing here");
+      }
+
+    }
+
+    display.setCursor(0,10);
+   display.print("Debug loot: ");
+   display.print(curLocation);
+   display.print("..");
+   display.print(bombs[curLocation]);
+
+    display.setCursor(0,20);
+     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
+        display.setCursor(0, 20 + (y*10));
+        
+        for (byte x = y*7; x < (y*7)+7; x++) {
+          if (curLocation == (x+1)) {
+            display.print("O ");
+          }
+          else {
+             if (bombs[x+1] == "X") {
+            display.print("- ");
+          }
+          else {
+              display.print("X ");
+            
+            
+          }
+          }
+               
+        }
+     }
   }
 }
