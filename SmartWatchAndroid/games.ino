@@ -95,7 +95,7 @@ void drawBitmap() {
   delay(1000);
 }
 
-// All about the ticks
+// Its all about the ticks
 uint32_t startLTime;
 uint32_t endLTime;
 uint32_t timeDiff;
@@ -115,7 +115,7 @@ void RTP(){
   updateHP();
 }
 
-//Health Penalty when idle
+// Health penalty when idle
 void penaltyHP(){
   if(timeElapsed >= 216000){
     hp -= 1;
@@ -129,16 +129,16 @@ void loop1() {
   RTP();
   updateGold();
   drawBitmap();
-  display.setCursor(0, 55);
+  display.setCursor(0, 52);
   display.print("Meowelcome Back!");
-  while (1) { //IDK this loop by right simulates void loop();
+  while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
     if (display.getButtons(TSButtonLowerLeft)) { //Play
       display.clearWindow(0, 40, 96, 64);
-      display.setCursor(0, 55);
+      display.setCursor(0, 52);
       display.print("I'M WALKING HERE!");
       hp -= 10;
       updateHP();
@@ -146,7 +146,7 @@ void loop1() {
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       display.clearWindow(0, 40, 96, 64);
-      display.setCursor(0, 55);
+      display.setCursor(0, 52);
       display.print("Munch Munch~~");
       hp += 2;
       updateHP();
@@ -154,21 +154,21 @@ void loop1() {
     }
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 40, 96, 64);
-      display.setCursor(0, 55);
+      display.setCursor(0, 52);
       display.print("I am sleepwy...");
       delay(1000);
       for (uint8_t i = 0; i < 10; i++) {
         delay(1000);
         display.clearWindow(0, 40, 96, 64);
-        display.setCursor(0, 55);
+        display.setCursor(0, 52);
         delay(1000);
         display.print("Zzzzzzzzzzzzz....");
         hp += 1;
         updateHP();
       }
       display.clearWindow(0, 40, 96, 64);
-      display.setCursor(0, 55);
-      display.print("A beautiful nap!");
+      display.setCursor(0, 52);
+      display.print("Ahh~! A good nap!");
       updateHP();
       updateGold();
     }
@@ -307,7 +307,7 @@ void loop3() {
         hp -= 20;
         //end gamehere
         delay(2000);
-        initHomeScreen();
+        retMenu();
         break;
 
       }
@@ -362,7 +362,7 @@ void loop4() {
 void loop5() {
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
-      initHomeScreen();
+      retMenu();
       break;
     }
     //Put whatever game function you have here
