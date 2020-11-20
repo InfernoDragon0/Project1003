@@ -15,22 +15,67 @@ unsigned char flappyBirdBitmap[204]={
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
-uint16_t gold = 0;
+int16_t gold = 0;
 char gold_buffer[11];
 
-uint16_t hp = 100;
+int16_t hp = 100;
 char hp_buffer[8];
 
 // Control HP
-void modifyHP(uint16_t mod_hp){
-  if(hp + mod_hp >= 100){
+void chkHP(){
+  if(hp >= 100){
     hp = 100;
   }
-  else if(hp + mod_hp < 0){
+  else if(hp <= 0){
     hp = 0;
   }
   else{
-    hp = hp + mod_hp;
+  }
+}
+
+// Update HP Function
+void updateHP(){
+  chkHP();
+  display.setCursor(0,10);
+  snprintf(hp_buffer, 8, "HP:%03d", hp);
+  display.println(hp_buffer);
+}
+
+// Control Gold
+void chkGold(){
+  if(gold >= 10000){
+    gold = 9999;
+  }
+  else if(gold <= -10000){
+    gold = -9999;
+  }
+  else{
+  }
+}
+
+// Update Gold Function
+void updateGold(){
+  chkGold();
+  display.setCursor(45,10);
+  snprintf(gold_buffer, 11, "Gold:%04d", gold);
+  display.println(gold_buffer);
+}
+
+//If dead then revive
+void chkDead(){
+  if(hp <= 0){
+    gold -= 50;
+    hp += 100;
+    display.setCursor(0,50);
+    display.print("You Died. Reviving..");
+    delay(500);
+    display.clearWindow(0, 40, 96, 64);
+    display.setCursor(0,50);
+    display.print("Meowelcome Back!");
+    updateHP();
+    updateGold();
+  }
+  else{
   }
 }
 
@@ -49,14 +94,13 @@ void drawBitmap(){
   display.endTransfer();
   delay(1000);
 }
+
 //testing code feel free to change
 void loop1() {
-  display.setCursor(0,10);
-  snprintf(hp_buffer, 8, "HP:%03d", hp);
-  display.println(hp_buffer);
-  display.setCursor(45,10);
-  snprintf(gold_buffer, 11, "Gold:%04d", gold);
-  display.println(gold_buffer);
+  //First Run
+  chkDead();
+  updateHP();
+  updateGold();
   display.setCursor(0,50);
   display.print("Meowelcome Back!");
   delay(500);
@@ -66,18 +110,20 @@ void loop1() {
       break;
     }
     if (display.getButtons(TSButtonLowerLeft)){ //Play
-      //score += 1;
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
       display.print("I'M WALKING HERE!");
-      //snprintf(num_buffer, 12, "Score: %04d", score);
-      //display.println(num_buffer);
-      
+      hp -= 10;
+      updateHP();
+      updateGold();
     }
     if (display.getButtons(TSButtonUpperRight)){ //Feed
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
       display.print("Munch Munch~~");
+      hp += 2;
+      updateHP();
+      updateGold();
     }
     if (display.getButtons(TSButtonLowerRight)){ //Sleep?
       display.clearWindow(0, 40, 96, 64);
@@ -90,11 +136,17 @@ void loop1() {
         display.setCursor(0,50);
         delay(1000);
         display.print("Zzzzzz....");
+        hp += 1;
+        updateHP();
       }
       display.clearWindow(0, 40, 96, 64);
       display.setCursor(0,50);
       display.print("Hello!");
+      updateHP();
+      updateGold();
     }
+    chkDead();
+    updateGold();
     drawBitmap(); //Put whatever game function you have here
     //How does one write game ticks?
     uint32_t startLTime = millis();
