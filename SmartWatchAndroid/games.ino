@@ -147,7 +147,6 @@ void drawBitmap() {
   //writeBuffer(buffer,count);//optimized write of a large buffer of 8 bit data.
   display.writeBuffer(flappyBirdBitmap, 17 * 12);
   display.endTransfer();
-  delay(100);
 }
 void drawHeart() {
   display.setX(10, 10 + 5 - 1);
@@ -155,7 +154,6 @@ void drawHeart() {
   display.startData();
   display.writeBuffer(heart, 5 * 8);
   display.endTransfer();
-  delay(100);
 }
 void drawLightning() {
   display.setX(20, 20 + 5 - 1);
@@ -163,7 +161,6 @@ void drawLightning() {
   display.startData();
   display.writeBuffer(lightning, 5 * 8);
   display.endTransfer();
-  delay(100);
 }
 void drawSeven() {
   display.setX(76, 76 + 5 - 1);
@@ -171,7 +168,6 @@ void drawSeven() {
   display.startData();
   display.writeBuffer(seven, 5 * 8);
   display.endTransfer();
-  delay(100);
 }
 void drawMoney() {
   display.setX(86, 86 + 5 - 1);
@@ -179,7 +175,6 @@ void drawMoney() {
   display.startData();
   display.writeBuffer(money, 5 * 8);
   display.endTransfer();
-  delay(100);
 }
 
 // Its all about the ticks
@@ -215,6 +210,7 @@ void loop1() {
   chkDead();
   RTP();
   updateGold();
+  display.clearWindow(0, 45, 96, 64);
   drawBitmap();
   display.setCursor(0, 52);
   display.print("Meowelcome Back!");
@@ -222,6 +218,7 @@ void loop1() {
   drawLightning(); //remove before prod
   drawSeven(); //remove before prod
   drawMoney(); //remove before prod
+  delay(1000);
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -234,6 +231,7 @@ void loop1() {
       hp -= 10;
       updateHP();
       updateGold();
+      delay(1000);
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       display.clearWindow(0, 52, 96, 64);
@@ -242,6 +240,7 @@ void loop1() {
       hp += 2;
       updateHP();
       updateGold();
+      delay(1000);
     }
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 52, 96, 64);
