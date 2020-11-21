@@ -15,6 +15,7 @@ unsigned char flappyBirdBitmap[204] = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
+// Modifier icons
 unsigned char heart[40] = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Black,
@@ -24,6 +25,39 @@ unsigned char heart[40] = {
   TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
+};
+
+unsigned char lightning[40] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+};
+
+unsigned char seven[40] = {
+  TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,
+  TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,
+  TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Green,TS_8b_Green,
+  TS_8b_Black,TS_8b_Black,TS_8b_Green,TS_8b_Green,TS_8b_Black,
+  TS_8b_Black,TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,
+  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black
+};
+
+unsigned char money[40] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black
 };
 
 void retMenu(){
@@ -117,10 +151,34 @@ void drawBitmap() {
   delay(100);
 }
 void drawHeart() {
-  display.setX(20, 20 + 5 - 1);
+  display.setX(10, 10 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
   display.startData();
   display.writeBuffer(heart, 5 * 8);
+  display.endTransfer();
+  delay(100);
+}
+void drawLightning() {
+  display.setX(20, 20 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(lightning, 5 * 8);
+  display.endTransfer();
+  delay(100);
+}
+void drawSeven() {
+  display.setX(76, 76 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(seven, 5 * 8);
+  display.endTransfer();
+  delay(100);
+}
+void drawMoney() {
+  display.setX(86, 86 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(money, 5 * 8);
   display.endTransfer();
   delay(100);
 }
@@ -162,6 +220,9 @@ void loop1() {
   display.setCursor(0, 52);
   display.print("Meowelcome Back!");
   drawHeart(); //remove before prod
+  drawLightning(); //remove before prod
+  drawSeven(); //remove before prod
+  drawMoney(); //remove before prod
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
