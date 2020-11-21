@@ -15,10 +15,24 @@ unsigned char flappyBirdBitmap[204] = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
+unsigned char heart[40] = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Black,
+  TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red,
+  TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red,
+  TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red,
+  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
+};
+
 void retMenu(){
   display.clearWindow(0, 10, 96, 64);
   mainMenu(0);
 }
+
+// Modifiers variables
+bool modHP = false;
 
 int16_t gold = 100;
 char gold_buffer[11];
@@ -28,7 +42,15 @@ char hp_buffer[8];
 
 // Control HP
 void chkHP() {
-  if (hp >= 100) {
+  if (modHP == true) {
+    if (hp >= 150){
+      hp = 150;
+    }
+    else if (hp <= 0) {
+      hp = 0;
+    }
+  }
+  else if (hp >= 100) {
     hp = 100;
   }
   else if (hp <= 0) {
@@ -92,7 +114,15 @@ void drawBitmap() {
   //writeBuffer(buffer,count);//optimized write of a large buffer of 8 bit data.
   display.writeBuffer(flappyBirdBitmap, 17 * 12);
   display.endTransfer();
-  delay(500);
+  delay(100);
+}
+void drawHeart() {
+  display.setX(20, 20 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(heart, 5 * 8);
+  display.endTransfer();
+  delay(100);
 }
 
 // Its all about the ticks
@@ -131,6 +161,7 @@ void loop1() {
   drawBitmap();
   display.setCursor(0, 52);
   display.print("Meowelcome Back!");
+  drawHeart(); //remove before prod
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -358,7 +389,7 @@ void loop4() {
   }
 }
 
-//Modifier
+// Modifiers, variables must be global ^
 void loop5() {
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
