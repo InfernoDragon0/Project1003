@@ -123,17 +123,16 @@ void chkDead() {
   if (hp <= 0) {
     gold -= 50;
     hp += 100;
-    display.setCursor(0, 55);
+    display.setCursor(0, 52);
     display.print("You Lose. Reviving..");
     delay(1500);
-    display.clearWindow(0, 60, 96, 64);
-    display.setCursor(0, 55);
+    display.clearWindow(0, 52, 96, 64);
+    display.setCursor(0, 52);
     display.print("Ressurected!");
     updateHP();
     updateGold();
   }
 }
-
 
 void drawBitmap() {
   //set a background that matches
@@ -229,7 +228,7 @@ void loop1() {
       break;
     }
     if (display.getButtons(TSButtonLowerLeft)) { //Play
-      display.clearWindow(0, 40, 96, 64);
+      display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("Computers r magick");
       hp -= 10;
@@ -237,7 +236,7 @@ void loop1() {
       updateGold();
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
-      display.clearWindow(0, 40, 96, 64);
+      display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("Munch Munch~~");
       hp += 2;
@@ -245,20 +244,20 @@ void loop1() {
       updateGold();
     }
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
-      display.clearWindow(0, 40, 96, 64);
+      display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("I am sleepwy...");
       delay(1000);
       for (uint8_t i = 0; i < 10; i++) {
         delay(1000);
-        display.clearWindow(0, 40, 96, 64);
+        display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         delay(1000);
         display.print("Zzzzzzzzzzzzz....");
         hp += 1;
         updateHP();
       }
-      display.clearWindow(0, 40, 96, 64);
+      display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("Ahh~! A good nap!");
       updateHP();
