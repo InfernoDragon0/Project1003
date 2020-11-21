@@ -92,13 +92,13 @@ void drawBitmap() {
   //writeBuffer(buffer,count);//optimized write of a large buffer of 8 bit data.
   display.writeBuffer(flappyBirdBitmap, 17 * 12);
   display.endTransfer();
-  delay(1000);
+  delay(500);
 }
 
 // Its all about the ticks
-uint32_t startLTime;
-uint32_t endLTime;
-uint32_t timeDiff;
+uint32_t startLTime = 0;
+uint32_t endLTime = 0;
+uint32_t timeDiff = 0;
 uint32_t timeElapsed = 0;
 
 void timePassed(){
@@ -117,7 +117,7 @@ void RTP(){
 
 // Health penalty when idle
 void penaltyHP(){
-  if(timeElapsed >= 36000){
+  if(timeElapsed >= 16200){
     hp -= 1;
     timeElapsed = 0;
     updateHP();

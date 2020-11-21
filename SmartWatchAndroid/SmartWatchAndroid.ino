@@ -287,18 +287,18 @@ void checkButtons() {
 }
 
 // Real-Time Penalty BETA
-uint32_t astartLTime;
-uint32_t aendLTime;
+uint32_t astartLTime = 0;
+uint32_t aendLTime = 0;
 uint32_t deduct = 0;
-uint32_t atimeDiff;
-uint32_t atimeElapsed;
+uint32_t atimeDiff = 0;
+uint32_t atimeElapsed = 0;
 
 uint16_t penalty(){
   astartLTime = millis();
   aendLTime = millis() + 1;
   atimeDiff = aendLTime - astartLTime;
   atimeElapsed += atimeDiff;
-  if(atimeElapsed >= 36000){
+  if(atimeElapsed >= 864000){
     atimeElapsed = 0;
     deduct += 1;
   }
