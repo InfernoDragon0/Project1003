@@ -21,7 +21,7 @@
 - [ ] Up to 10 Runes can be stored, but you can only have 2 equipped
 - [ ] RUN! is free to play: Mini game rewards gold
 - [ ] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
-- [ ] Goldsweeper is free to play, gold lost per bomb and gold gain per spot digged
+- [X] TamaBOOM is free to play, Health loss per bomb and gold gain per spot digged
 
 ## Side Games
 - [ ] RUN!: just run and jump, dodge obstacles, don't fall in holes, collect coins. Every 10m run will give 2G, 1 coin will give 1G +1 per fortune 
@@ -34,4 +34,5 @@
   - rare Rune (1 spot)
   - mythic Rune (0-1 spot) !must equip at least luck 3 rune to spawn one
   - 1000-1800G (1 part) !per fortune increase 200
-- [ ] Goldsweeper: 21 spots to dig, 5-10 bombs per game. If you get bombed you lose 40G, for every spot digged you will get 10G*n+1 (n is the number of spot digged)
+- [X] TamaBOOM: 21 spots to dig, Ratio of bombs to gold is 3:2. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
+- [X] TamaBOOM: You win an additional 100 gold if you manage to dig every spot filled with gold
