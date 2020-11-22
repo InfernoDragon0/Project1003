@@ -34,5 +34,5 @@
   - rare Rune (1 spot)
   - mythic Rune (0-1 spot) !must equip at least luck 3 rune to spawn one
   - 1000-1800G (1 part) !per fortune increase 200
-- [X] TamaBOOM: 21 spots to dig, Ratio of bombs to gold is 3:2. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
+- [X] TamaBOOM: 21 spots to dig, Ratio of bombs to gold is 3:2, randomized. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
 - [X] TamaBOOM: You win an additional 100 gold if you manage to dig every spot filled with gold
