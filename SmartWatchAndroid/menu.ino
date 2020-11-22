@@ -65,7 +65,7 @@ static const char PROGMEM gameMenuStrings0[] = "Tamago!";
 static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";
 static const char PROGMEM gameMenuStrings2[] = "TamaBoom";   
 static const char PROGMEM gameMenuStrings3[] = "Tamago: Run";
-static const char PROGMEM gameMenuStrings4[] = "Modifiers";                      
+static const char PROGMEM gameMenuStrings4[] = "Inventory";                      
 static const char* const PROGMEM gameMenuStrings[] =
 {
   gameMenuStrings0,
@@ -241,7 +241,7 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop4();
   }
-  if (selection == 4) { // Modifier
+  if (selection == 4) { // Inventory
     display.clearWindow(0, 10, 96, 64);
     loop5();
   }
