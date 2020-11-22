@@ -207,6 +207,7 @@ void drawDead() {
   display.writeBuffer(deadchar, 12 * 20);
   display.endTransfer();
 }
+
 void drawHeart() { //blood rune
   display.setX(10, 10 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
@@ -766,14 +767,52 @@ void loop3() {
   }
 }
 
-// Run
+byte osGhostY = 20;
+void runGhost() {
+  //clear previous ghost
+  display.clearWindow(0,osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 19 - 1, 19-1);
+  
+  display.setX(10, 10 + 19 - 1);
+  display.setY(osGhostY, osGhostY + 19 - 1);
+  display.startData();
+  display.writeBuffer(ghost, 19 * 19);
+  display.endTransfer();
+}
+
+byte osObstacleX = 60; //60, 40, 20, 0
+byte osObstacleY = 20; //20 or 40
+void obstacle() { //this only allows one obstacle rite now
+  //clear previous obstacle
+  display.clearWindow(osObstacleX,osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 19 - 1, 19-1);
+  
+  display.setX(10, 10 + 19 - 1);
+  display.setY(osGhostY, osGhostY + 19 - 1);
+  display.startData();
+  display.writeBuffer(ghost, 19 * 19);
+  display.endTransfer();
+}
+
+// Run .. Ghost always will hug left corner only
 void loop4() {
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
+    if (display.getButtons(TSButtonLowerLeft)) { //go down
+      if (osGhostY < 40) {
+        osGhostY += 20;
+      }
+
+    }
+    if (display.getButtons(TSButtonLowerRight)) { //go up
+      if (osGhostY > 20) {
+        osGhostY -= 20;
+      }
+
+    }
     //Put whatever game function you have here
+    runGhost();
   }
 }
 
