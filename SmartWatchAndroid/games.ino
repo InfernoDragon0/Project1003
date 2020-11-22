@@ -332,9 +332,9 @@ void loop1() {
   RTP();
   updateGold();
   display.clearWindow(0, 45, 96, 64);
-  drawDead();
+  drawDef();
   display.setCursor(0, 52);
-  display.print("Meowelcome Back!");
+  display.print("MeoWelcome Back~!");
 
   for (byte rs = 0; rs < 2; rs++) {
       if (runeSlots[rs] != "Empty") { //lbfa
@@ -363,7 +363,7 @@ void loop1() {
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("Computers r magick");
-      hp -= 10;
+      hp -= 10; //for debugging purposes
       updateHP();
       updateGold();
       delay(1000);
@@ -394,6 +394,8 @@ void loop1() {
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("Ahh~! A good nap!");
+      display.clearWindow(40, 25, 12, 20);
+      drawDef();
       updateHP();
       updateGold();
     }
