@@ -1,71 +1,72 @@
-unsigned char defchar[240] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+// All the sprites
+unsigned char defchar[240] PROGMEM = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
-unsigned char slpchar[240] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+unsigned char slpchar[240] PROGMEM = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Gray, TS_8b_Gray, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
-unsigned char deadchar[240] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Red,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Red,TS_8b_White,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+unsigned char deadchar[240] PROGMEM = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_Red, TS_8b_White, TS_8b_Red, TS_8b_Gray, TS_8b_Gray, TS_8b_Red, TS_8b_White, TS_8b_Red, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_White, TS_8b_Red, TS_8b_White, TS_8b_Gray, TS_8b_Gray, TS_8b_White, TS_8b_Red, TS_8b_White, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Gray, TS_8b_Red, TS_8b_White, TS_8b_Red, TS_8b_Gray, TS_8b_Gray, TS_8b_Red, TS_8b_White, TS_8b_Red, TS_8b_Gray, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Gray, TS_8b_Gray, TS_8b_Gray, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Red, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Blue, TS_8b_Yellow, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Blue, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 // Modifier icons
-unsigned char heart[40] = {
+unsigned char heart[40]PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Black,
   TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red,
@@ -76,37 +77,37 @@ unsigned char heart[40] = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
-unsigned char lightning[40] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+unsigned char lightning[40] PROGMEM = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
-unsigned char seven[40] = {
-  TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,
-  TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,TS_8b_Green,
-  TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Green,TS_8b_Green,
-  TS_8b_Black,TS_8b_Black,TS_8b_Green,TS_8b_Green,TS_8b_Black,
-  TS_8b_Black,TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,
-  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Green,TS_8b_Green,TS_8b_Black,TS_8b_Black,TS_8b_Black
+unsigned char seven[40] PROGMEM = {
+  TS_8b_Green, TS_8b_Green, TS_8b_Green, TS_8b_Green, TS_8b_Green,
+  TS_8b_Green, TS_8b_Green, TS_8b_Green, TS_8b_Green, TS_8b_Green,
+  TS_8b_Green, TS_8b_Black, TS_8b_Black, TS_8b_Green, TS_8b_Green,
+  TS_8b_Black, TS_8b_Black, TS_8b_Green, TS_8b_Green, TS_8b_Black,
+  TS_8b_Black, TS_8b_Green, TS_8b_Green, TS_8b_Black, TS_8b_Black,
+  TS_8b_Green, TS_8b_Green, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Green, TS_8b_Green, TS_8b_Black, TS_8b_Black, TS_8b_Black,
+  TS_8b_Green, TS_8b_Green, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
-unsigned char money[40] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
-  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black
+unsigned char money[40] PROGMEM = {
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black,
+  TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow,
+  TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black,
+  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black
 };
 
 void drawDef() {
@@ -160,7 +161,7 @@ void drawMoney() { //fortune rune
   display.endTransfer();
 }
 
-void retMenu(){
+void retMenu() {
   display.clearWindow(0, 10, 96, 64);
   mainMenu(0);
 }
@@ -171,13 +172,13 @@ bool modHP = false;
 int16_t gold = 100;
 char gold_buffer[11];
 
-int16_t hp = 100;
+byte hp = 100;
 char hp_buffer[8];
 
 // Control HP
 void chkHP() {
   if (modHP == true) {
-    if (hp >= 150){
+    if (hp >= 150) {
       hp = 150;
     }
     else if (hp <= 0) {
@@ -226,11 +227,11 @@ void chkDead() {
     gold -= 50;
     hp += 100;
     display.setCursor(0, 52);
-    display.print("You Lose. Reviving..");
+    display.print(F("You Lose. Reviving.."));
     delay(1500);
     display.clearWindow(0, 52, 96, 64);
     display.setCursor(0, 52);
-    display.print("Ressurected!");
+    display.print(F("Ressurected!"));
     updateHP();
     updateGold();
     display.clearWindow(40, 25, 12, 20);
@@ -244,14 +245,14 @@ uint32_t endLTime = 0;
 uint16_t timeDiff = 0;
 uint16_t timeElapsed = 0;
 
-void timePassed(){
+void timePassed() {
   startLTime = millis();
   endLTime = millis() + 1;
   timeDiff = endLTime - startLTime;
   timeElapsed += timeDiff;
 }
 
-void RTP(){
+void RTP() {
   hp -= deduct;
   deduct = 0;
   atimeElapsed = 0;
@@ -259,21 +260,46 @@ void RTP(){
 }
 
 // Health penalty when idle
-void penaltyHP(){
-  if(timeElapsed >= 16200){
+void penaltyHP() {
+  if (timeElapsed >= 16200) {
     hp -= 1;
     timeElapsed = 0;
     updateHP();
   }
 }
 
+// Quotes to display when "playing"
+const char * quotes[] PROGMEM = { //Progmem all the things
+  "Visit me often!",
+  "I might be hungry",
+  "Let's play games!",
+  "I could do a nap!",
+  "I lub you!",
+  "Gib food~~~",
+  "Bananaaaaaa",
+  "Food for thoughts",
+  "Don't neglect me",
+  "Study hard!",
+  "Medicines bad",
+  "Take care!"
+};
+char quote_buffer[17];
+
+void printQuote() {
+  byte randnum = random(13);
+  display.clearWindow(0, 45, 96, 64);
+  display.setCursor(1, 52);
+  strcpy_P(quote_buffer, (char *)pgm_read_word(&(quotes[randnum])));
+  display.println(quote_buffer);
+}
+
 //Inventory management
 String inventory[10] = { //note, m to find mythic may clash
-  "Empty","Empty", 
-  "Empty","Empty", 
-  "Empty","Empty", 
-  "Empty","Empty", 
-  "Empty","Empty"
+  "Empty", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty"
 };
 
 String runeSlots[2] = {"Empty", "Empty"}; //edit here to cheat in runes like mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
@@ -334,36 +360,32 @@ void loop1() {
   display.clearWindow(0, 45, 96, 64);
   drawDef();
   display.setCursor(0, 52);
-  display.print("MeoWelcome Back~!");
-
+  display.print(F("MeoWelcome Back~!"));
   for (byte rs = 0; rs < 2; rs++) {
-      if (runeSlots[rs] != "Empty") { //lbfa
-        if (runeSlots[rs].indexOf('b') > 0) { //blod rune
-          drawHeart();
-        }
-        if (runeSlots[rs].indexOf('l') > 0) { //luck rune
-          drawSeven();
-        }
-        if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-          drawMoney();
-        }
-        if (runeSlots[rs].indexOf('a') > 0) { //agility rune
-          drawLightning();
-        }     
+    if (runeSlots[rs] != "Empty") { //lbfa
+      if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+        drawHeart();
       }
+      if (runeSlots[rs].indexOf('l') > 0) { //luck rune
+        drawSeven();
+      }
+      if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+        drawMoney();
+      }
+      if (runeSlots[rs].indexOf('a') > 0) { //agility rune
+        drawLightning();
+      }
+    }
   }
-  
   delay(1000);
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
-    if (display.getButtons(TSButtonLowerLeft)) { //Play
+    if (display.getButtons(TSButtonLowerLeft)) { //Play/Quotes
       display.clearWindow(0, 52, 96, 64);
-      display.setCursor(0, 52);
-      display.print("Computers r magick");
-      hp -= 10; //for debugging purposes
+      printQuote();
       updateHP();
       updateGold();
       delay(1000);
@@ -371,7 +393,7 @@ void loop1() {
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
-      display.print("Munch Munch~~");
+      display.print(F("Munch Munch~~"));
       hp += 2;
       updateHP();
       updateGold();
@@ -380,7 +402,7 @@ void loop1() {
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
-      display.print("I am sleepwy...");
+      display.print(F("I am sleepwy..."));
       display.clearWindow(40, 25, 12, 20);
       drawSlp();
       delay(1000);
@@ -389,13 +411,13 @@ void loop1() {
         display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         delay(1000);
-        display.print("Zzzzzzzzzzzzz....");
+        display.print(F("Zzzzzzzzzzzzz...."));
         hp += 1;
         updateHP();
       }
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
-      display.print("Ahh~! A good nap!");
+      display.print(F("Ahh~! A good nap!"));
       display.clearWindow(40, 25, 12, 20);
       drawDef();
       updateHP();
@@ -426,76 +448,76 @@ void loop2() { //lootbox game
   byte curDigged = 0;
   short jackpot = 1000;
   byte coinGain = 20;
-  
+
   byte baseChances[7] = {10, 6, 3, 3, 1, 0, 1};
 
   //check runes
   for (byte rs = 0; rs < 2; rs++) {
-      if (runeSlots[rs] != "Empty") { //lbfa
-        if (runeSlots[rs].indexOf('l') > 0) { //luck rune, mod baseChances, chances stack
-          baseChances[0] = baseChances[0]-1;
-          baseChances[2] = baseChances[2] + 1;
-          switch(getRuneRarity(rs)) {
-            case 'u':
-              baseChances[0] = baseChances[0]-1;
-              baseChances[4] = baseChances[4]+1;
-              break;
-            case 'r':
-              baseChances[0] = baseChances[0]-2;
-              baseChances[4] = baseChances[4]+1;
-              baseChances[5] = baseChances[5]+1;
-              break;
-            case 'm':
-              baseChances[0] = baseChances[0]-3;
-              baseChances[4] = baseChances[4]+1;
-              baseChances[5] = baseChances[5]+1;
-              baseChances[6] = baseChances[6]+1;
-              break;
-          }
-          
+    if (runeSlots[rs] != "Empty") { //lbfa
+      if (runeSlots[rs].indexOf('l') > 0) { //luck rune, mod baseChances, chances stack
+        baseChances[0] = baseChances[0] - 1;
+        baseChances[2] = baseChances[2] + 1;
+        switch (getRuneRarity(rs)) {
+          case 'u':
+            baseChances[0] = baseChances[0] - 1;
+            baseChances[4] = baseChances[4] + 1;
+            break;
+          case 'r':
+            baseChances[0] = baseChances[0] - 2;
+            baseChances[4] = baseChances[4] + 1;
+            baseChances[5] = baseChances[5] + 1;
+            break;
+          case 'm':
+            baseChances[0] = baseChances[0] - 3;
+            baseChances[4] = baseChances[4] + 1;
+            baseChances[5] = baseChances[5] + 1;
+            baseChances[6] = baseChances[6] + 1;
+            break;
         }
-        if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+
+      }
+      if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+        jackpot += 200;
+        coinGain += 10;
+        switch (getRuneRarity(rs)) {
+          case 'u':
             jackpot += 200;
             coinGain += 10;
-            switch(getRuneRarity(rs)) {
-            case 'u':
-              jackpot += 200;
-              coinGain += 10;
-              break;
-            case 'r':
-              jackpot += 400;
-              coinGain += 20;
-              break;
-            case 'm':
-              jackpot += 600;
-              coinGain += 30;
-              break;
-          }
+            break;
+          case 'r':
+            jackpot += 400;
+            coinGain += 20;
+            break;
+          case 'm':
+            jackpot += 600;
+            coinGain += 30;
+            break;
         }
       }
+    }
   }
 
   byte rd = 0;
   byte digTime = 0; //10G*n to play
   while (rd < 21) { //the random is exclusive so is 0 to 6
     //using a while loop for a controlled looper, there may be slightly more than 21 iterations due to a 0 chance at mythics
-    byte rType = random(0,7);
-    byte rChance = random(0,11);
-    byte lType = random(0,4);
-    
+    byte rType = random(0, 7);
+    byte rChance = random(0, 11);
+    byte lType = random(0, 4);
+
 
     if (baseChances[rType] == 0) { //skip, do not increment
       continue;
-    } 
+    }
 
     if (baseChances[rType] >= rChance) { //success roll
-      switch(rType) { //breaking is in the switch not breaking the for loop
+      switch (rType) { //breaking is in the switch not breaking the for loop
         case 0: //empty!
         case 3: //gold!
         case 6: //jackpot!
           lootRandomizer[rd] = lootRarity[rType];
           break;
-          
+
         case 1://common!
         case 2://uncommon!
         case 4://rare!
@@ -512,7 +534,7 @@ void loop2() { //lootbox game
     //Serial.print("rd");
     //Serial.print(lootRandomizer[rd]);
   }
-  
+
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -527,7 +549,7 @@ void loop2() { //lootbox game
         display.setCursor(0, 50);
         display.print("                          "); //clear display line
         display.setCursor(0, 50);
-        display.print(10*(digTime+1));
+        display.print(10 * (digTime + 1));
         display.print(" Gold to dig");
       }
 
@@ -540,7 +562,7 @@ void loop2() { //lootbox game
         display.setCursor(0, 50);
         display.print("                          "); //clear display line
         display.setCursor(0, 50);
-        display.print(10*(digTime+1));
+        display.print(10 * (digTime + 1));
         display.print(" Gold to dig");
       }
     }
@@ -552,45 +574,45 @@ void loop2() { //lootbox game
       display.print("                          "); //clear display line
 
       display.setCursor(0, 50);
-      
-      if (lootRandomizer[curLocation-1] == "none") {
+
+      if (lootRandomizer[curLocation - 1] == "none") {
         display.print("Nothing here");
       }
-      else if (gold < 10*(digTime+1)) {
+      else if (gold < 10 * (digTime + 1)) {
         display.print("Not enough Gold.");
       }
       else {
-        if (lootRandomizer[curLocation-1] == "E") {
+        if (lootRandomizer[curLocation - 1] == "E") {
           display.print("Oops! Empty here");
-          lootRandomizer[curLocation-1] = "none";
+          lootRandomizer[curLocation - 1] = "none";
           digTime++;
-          gold -= 10*digTime;
+          gold -= 10 * digTime;
         }
-        else if (lootRandomizer[curLocation-1] == "G") {
+        else if (lootRandomizer[curLocation - 1] == "G") {
           display.print("+");
           display.print(coinGain);
           display.print(" Gold");
-          lootRandomizer[curLocation-1] = "none";
+          lootRandomizer[curLocation - 1] = "none";
           digTime++;
           gold += coinGain;
         }
-        else if (lootRandomizer[curLocation-1] == "J") {
+        else if (lootRandomizer[curLocation - 1] == "J") {
           display.print("+");
           display.print(jackpot);
           display.print(" Jackpot!");
-          lootRandomizer[curLocation-1] = "none";
+          lootRandomizer[curLocation - 1] = "none";
           digTime++;
           gold += jackpot;
         }
         else {
-          if (receiveLoot(lootRandomizer[curLocation-1]) == 1) {
+          if (receiveLoot(lootRandomizer[curLocation - 1]) == 1) {
             String dprint = "";
-            switch(lootRandomizer[curLocation-1][0]) {
+            switch (lootRandomizer[curLocation - 1][0]) {
               case 'c':
                 dprint = "Common";
                 break;
               case 'u':
-               dprint = "Uncommon";
+                dprint = "Uncommon";
                 break;
               case 'r':
                 dprint = "Rare";
@@ -600,9 +622,9 @@ void loop2() { //lootbox game
                 break;
             }
             display.print("+" + dprint + " Item!");
-            lootRandomizer[curLocation-1] = "none";
+            lootRandomizer[curLocation - 1] = "none";
             digTime++;
-            gold -= 10*digTime;
+            gold -= 10 * digTime;
           }
           else  {
             display.print("Inventory Full!");
@@ -611,12 +633,12 @@ void loop2() { //lootbox game
       }
     }
 
-    
+
     display.setCursor(0, 10);
     display.print("debug loot: ");
     display.print(curLocation);
     display.print("..");
-    display.print(lootRandomizer[curLocation-1]);
+    display.print(lootRandomizer[curLocation - 1]);
 
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
@@ -685,7 +707,7 @@ void loop3() {
       //some way to save this thing
 
       display.setCursor(0, 50);
-      if (bombs[curLocation-1] == "O") {
+      if (bombs[curLocation - 1] == "O") {
         display.print("+");
         sweeped++;
         all--;
@@ -693,7 +715,7 @@ void loop3() {
         display.print(" Gold, ");
         display.print(all);
         display.print(" left");
-        bombs[curLocation-1] = "X";
+        bombs[curLocation - 1] = "X";
 
         gold += 5 * sweeped;
 
@@ -705,15 +727,15 @@ void loop3() {
           display.print("+100 Gold Extra!");
           gold += 100;
           delay(2000);
-           //end gamehere
+          //end gamehere
 
           retMenu();
           break;
         }
 
       }
-     
-      else if (bombs[curLocation-1] == "B") { //no longer loses on one bomb, but when out of health
+
+      else if (bombs[curLocation - 1] == "B") { //no longer loses on one bomb, but when out of health
         hp -= 20;
         updateHP();
 
@@ -722,14 +744,14 @@ void loop3() {
           display.setCursor(0, 30);
           display.print("Boom! you lose!");
           delay(2000);
-           //end gamehere
+          //end gamehere
 
           retMenu();
           break;
         }
-        
+
         display.setCursor(0, 50);
-        bombs[curLocation-1] = "X";
+        bombs[curLocation - 1] = "X";
         display.print("Ow! HP Left: ");
         display.print(hp);
 
@@ -744,7 +766,7 @@ void loop3() {
     display.print("Debug loot: ");
     display.print(curLocation);
     display.print("..");
-    display.print(bombs[curLocation-1]);
+    display.print(bombs[curLocation - 1]);
 
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
@@ -773,12 +795,12 @@ void loop3() {
 byte osGhostY = 20;
 void runGhost() {
   //clear previous ghost
-  display.clearWindow(0,osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20-1);
-  
+  display.clearWindow(0, osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
+
   display.setX(10, 10 + 12 - 1);
   display.setY(osGhostY, osGhostY + 20 - 1);
   display.startData();
-  display.writeBuffer(defchar, 12*20);
+  display.writeBuffer(defchar, 12 * 20);
   display.endTransfer();
 }
 
@@ -786,7 +808,7 @@ byte osObstacleX = 60; //60, 40, 20, 0
 byte osObstacleY = 20; //20 or 40
 void obstacle() { //this only allows one obstacle rite now
   //clear previous obstacle
-  display.clearWindow(osObstacleX,osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20-1);
+  display.clearWindow(osObstacleX, osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
 
   display.setX(10, 10 + 12 - 1);
   display.setY(osGhostY, osGhostY + 20 - 1);
