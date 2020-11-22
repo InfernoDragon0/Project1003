@@ -371,7 +371,7 @@ String bombs[21];
 // Tamaboom here
 void loop3() {
 
-  byte curLocation = 0;
+  byte curLocation = 1;
   byte sweeped = 0;
   byte all = 0;
 
@@ -401,7 +401,7 @@ void loop3() {
 
     }
     if (display.getButtons(TSButtonUpperRight)) { //select location previous
-      if (curLocation > 0) {
+      if (curLocation > 1) {
         curLocation -= 1;
       }
     }
@@ -409,7 +409,7 @@ void loop3() {
       //some way to save this thing
 
       display.setCursor(0, 50);
-      if (bombs[curLocation] == "O") {
+      if (bombs[curLocation-1] == "O") {
         display.print("+");
         sweeped++;
         all--;
@@ -417,7 +417,7 @@ void loop3() {
         display.print(" Gold, ");
         display.print(all);
         display.print(" left");
-        bombs[curLocation] = "X";
+        bombs[curLocation-1] = "X";
 
         gold += 5 * sweeped;
 
@@ -437,9 +437,7 @@ void loop3() {
 
       }
      
-      else if (bombs[curLocation] == "B") { //no longer loses on one bomb, but when out of health
-        
-        
+      else if (bombs[curLocation-1] == "B") { //no longer loses on one bomb, but when out of health
         hp -= 20;
         updateHP();
 
@@ -455,8 +453,8 @@ void loop3() {
         }
         
         display.setCursor(0, 50);
-        bombs[curLocation] = "X";
-        display.print("Ouch! HP Left: ");
+        bombs[curLocation-1] = "X";
+        display.print("Ow! HP Left: ");
         display.print(hp);
 
       }
@@ -470,7 +468,7 @@ void loop3() {
     display.print("Debug loot: ");
     display.print(curLocation);
     display.print("..");
-    display.print(bombs[curLocation]);
+    display.print(bombs[curLocation-1]);
 
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
@@ -481,7 +479,7 @@ void loop3() {
           display.print("O ");
         }
         else {
-          if (bombs[x + 1] == "X") {
+          if (bombs[x] == "X") {
             display.print("- ");
           }
           else {
