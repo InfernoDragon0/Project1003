@@ -238,7 +238,7 @@ String inventory[10] = { //note, m to find mythic may clash
   "Empty","Empty"
 };
 
-String runeSlots[2] = {"Empty", "Empty"};
+String runeSlots[2] = {"Empty", "Empty"}; //edit here to cheat in runes like mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
 
 byte invSpace() {
   byte space = 0;
@@ -285,6 +285,9 @@ byte unequipRune(byte slot) {
   return 1;
 }
 
+char getRuneRarity(byte slot) {
+  return runeSlots[slot][0];
+}
 
 void loop1() {
   chkDead();
@@ -364,11 +367,9 @@ void loop1() {
 }
 
 // Tamagold here
-String lootRandomizer[21];
-String lootRarity[4] = {"c", "u", "r", "m"}; //common, uncommon, rare, mythic
+
+String lootRarity[7] = {"E", "c", "u", "G", "r", "m", "J"}; //empty, common, uncommon, Gold, rare, mythic, Jackpot
 String lootPart[4] = {"l", "b", "f", "a"}; //luck, blood, fortune, agility
-
-
 //emptyChance = 10;
 //commonChance = 5;
 //uncommonChance = 3;
@@ -377,20 +378,99 @@ String lootPart[4] = {"l", "b", "f", "a"}; //luck, blood, fortune, agility
 //mythicChance = 0;
 //jackpot = 1;
 
-
 void loop2() { //lootbox game
+  String lootRandomizer[21];
   byte curLocation = 1;
   byte curDigged = 0;
+  short jackpot = 1000;
+  byte coinGain = 20;
   
-  byte baseChances[7] = {10, 5, 3, 3, 1, 0, 1};
+  byte baseChances[7] = {10, 6, 3, 3, 1, 0, 1};
 
-  //check for runes equipped
-  
-  //try creating a random loot table unweighted
-  for (byte i = 0; i < 21; i++) {
-    lootRandomizer[i] = lootRarity[random(0, 4)] + lootPart[random(0, 2)];
+  //check runes
+  for (byte rs = 0; rs < 2; rs++) {
+      if (runeSlots[rs] != "Empty") { //lbfa
+        if (runeSlots[rs].indexOf('l') > 0) { //luck rune, mod baseChances, chances stack
+          baseChances[0] = baseChances[0]-1;
+          baseChances[2] = baseChances[2] + 1;
+          switch(getRuneRarity(rs)) {
+            case 'u':
+              baseChances[0] = baseChances[0]-1;
+              baseChances[4] = baseChances[4]+1;
+              break;
+            case 'r':
+              baseChances[0] = baseChances[0]-2;
+              baseChances[4] = baseChances[4]+1;
+              baseChances[5] = baseChances[5]+1;
+              break;
+            case 'm':
+              baseChances[0] = baseChances[0]-3;
+              baseChances[4] = baseChances[4]+1;
+              baseChances[5] = baseChances[5]+1;
+              baseChances[6] = baseChances[6]+1;
+              break;
+          }
+          
+        }
+        if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+            jackpot += 200;
+            coinGain += 10;
+            switch(getRuneRarity(rs)) {
+            case 'u':
+              jackpot += 200;
+              coinGain += 10;
+              break;
+            case 'r':
+              jackpot += 400;
+              coinGain += 20;
+              break;
+            case 'm':
+              jackpot += 600;
+              coinGain += 30;
+              break;
+          }
+        }
+      }
   }
 
+  byte rd = 0;
+  byte digTime = 0; //10G*n to play
+  while (rd < 21) { //the random is exclusive so is 0 to 6
+    //using a while loop for a controlled looper, there may be slightly more than 21 iterations due to a 0 chance at mythics
+    byte rType = random(0,7);
+    byte rChance = random(0,11);
+    byte lType = random(0,4);
+    
+
+    if (baseChances[rType] == 0) { //skip, do not increment
+      continue;
+    } 
+
+    if (baseChances[rType] >= rChance) { //success roll
+      switch(rType) { //breaking is in the switch not breaking the for loop
+        case 0: //empty!
+        case 3: //gold!
+        case 6: //jackpot!
+          lootRandomizer[rd] = lootRarity[rType];
+          break;
+          
+        case 1://common!
+        case 2://uncommon!
+        case 4://rare!
+        case 5://mythic!
+          lootRandomizer[rd] = lootRarity[rType] + lootPart[lType];
+          break;
+      }
+    }
+    else {
+      continue; //skip do not increment
+    }
+    rd++;
+    //Serial.print("Round");
+    //Serial.print("rd");
+    //Serial.print(lootRandomizer[rd]);
+  }
+  
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -399,13 +479,27 @@ void loop2() { //lootbox game
 
     if (display.getButtons(TSButtonLowerLeft)) { //move next
       if (curLocation < 21) {
+        display.setCursor(0, 10);
+        display.print("                          "); //clear display line
         curLocation += 1;
+        display.setCursor(0, 50);
+        display.print("                          "); //clear display line
+        display.setCursor(0, 50);
+        display.print(10*(digTime+1));
+        display.print(" Gold to dig");
       }
 
     }
     if (display.getButtons(TSButtonUpperRight)) { //move previous
       if (curLocation > 1) {
+        display.setCursor(0, 10);
+        display.print("                          "); //clear display line
         curLocation -= 1;
+        display.setCursor(0, 50);
+        display.print("                          "); //clear display line
+        display.setCursor(0, 50);
+        display.print(10*(digTime+1));
+        display.print(" Gold to dig");
       }
     }
 
@@ -413,22 +507,74 @@ void loop2() { //lootbox game
       //some way to save this thing
 
       display.setCursor(0, 50);
-      if (lootRandomizer[curLocation] == "none") {
+      display.print("                          "); //clear display line
+
+      display.setCursor(0, 50);
+      
+      if (lootRandomizer[curLocation-1] == "none") {
         display.print("Nothing here");
       }
-      else {
-        display.print("Found: " + lootRandomizer[curLocation]);
-        lootRandomizer[curLocation] = "none";
+      else if (gold < 10*(digTime+1)) {
+        display.print("Not enough Gold.");
       }
-
+      else {
+        if (lootRandomizer[curLocation-1] == "E") {
+          display.print("Oops! Empty here");
+          lootRandomizer[curLocation-1] = "none";
+          digTime++;
+          gold -= 10*digTime;
+        }
+        else if (lootRandomizer[curLocation-1] == "G") {
+          display.print("+");
+          display.print(coinGain);
+          display.print(" Gold");
+          lootRandomizer[curLocation-1] = "none";
+          digTime++;
+          gold += coinGain;
+        }
+        else if (lootRandomizer[curLocation-1] == "J") {
+          display.print("+");
+          display.print(jackpot);
+          display.print(" Jackpot!");
+          lootRandomizer[curLocation-1] = "none";
+          digTime++;
+          gold += jackpot;
+        }
+        else {
+          if (receiveLoot(lootRandomizer[curLocation-1]) == 1) {
+            String dprint = "";
+            switch(lootRandomizer[curLocation-1][0]) {
+              case 'c':
+                dprint = "Common";
+                break;
+              case 'u':
+               dprint = "Uncommon";
+                break;
+              case 'r':
+                dprint = "Rare";
+                break;
+              case 'm':
+                dprint = "Mythic";
+                break;
+            }
+            display.print("+" + dprint + " Item!");
+            lootRandomizer[curLocation-1] = "none";
+            digTime++;
+            gold -= 10*digTime;
+          }
+          else  {
+            display.print("Inventory Full!");
+          }
+        }
+      }
     }
 
-
+    
     display.setCursor(0, 10);
-    display.print("Current loot: ");
+    display.print("debug loot: ");
     display.print(curLocation);
     display.print("..");
-    display.print(lootRandomizer[curLocation]);
+    display.print(lootRandomizer[curLocation-1]);
 
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
@@ -439,7 +585,7 @@ void loop2() { //lootbox game
           display.print("O ");
         }
         else {
-          if (lootRandomizer[curLocation] == "none") {
+          if (lootRandomizer[x] == "none") {
             display.print("- ");
           }
           else {
