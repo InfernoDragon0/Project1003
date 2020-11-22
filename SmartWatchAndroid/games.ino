@@ -368,16 +368,25 @@ void loop2() { //lootbox game
 String bombs[21];
 
 
-// Game 3 starts here
+// Tamaboom here
 void loop3() {
 
   byte curLocation = 0;
   byte sweeped = 0;
+  byte all = 0;
 
   //try creating a random loot table bomb ratio 2:3
   for (byte i = 0; i < 21; i++) {
-    bombs[i] = random(0, 5) >= 3 ? "O" : "B";
+    byte rnd = random(0, 5);
+    bombs[i] = rnd >= 3 ? "O" : "B";
+    if (rnd >= 3) {
+      all++;
+    }
   }
+
+  display.setCursor(0, 50);
+  display.print(all);
+  display.print(" Gold spots!");
 
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
@@ -385,45 +394,74 @@ void loop3() {
       break;
     }
     //Put whatever game function you have here
-    if (display.getButtons(TSButtonLowerLeft)) {
+    if (display.getButtons(TSButtonLowerLeft)) { //select location next
       if (curLocation < 21) {
         curLocation += 1;
       }
 
     }
-    if (display.getButtons(TSButtonUpperRight)) {
+    if (display.getButtons(TSButtonUpperRight)) { //select location previous
       if (curLocation > 0) {
         curLocation -= 1;
       }
     }
-    if (display.getButtons(TSButtonLowerRight)) {
+    if (display.getButtons(TSButtonLowerRight)) { //dig dig
       //some way to save this thing
 
       display.setCursor(0, 50);
       if (bombs[curLocation] == "O") {
-        display.print("You gained ");
+        display.print("+");
         sweeped++;
+        all--;
         display.print(5 * sweeped);
-        display.print(" Gold");
+        display.print(" Gold, ");
+        display.print(all);
+        display.print(" left");
         bombs[curLocation] = "X";
 
         gold += 5 * sweeped;
 
-      }
-      else if (bombs[curLocation] == "B") {
-        display.clearWindow(0, 10, 96, 64);
+        if (all == 0) {
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0, 30);
+          display.print("Yay! you win!");
+          display.setCursor(0, 40);
+          display.print("+100 Gold Extra!");
+          gold += 100;
+          delay(2000);
+           //end gamehere
 
-        display.setCursor(0, 30);
-        display.print("Boom! you lose!");
+          retMenu();
+          break;
+        }
+
+      }
+     
+      else if (bombs[curLocation] == "B") { //no longer loses on one bomb, but when out of health
+        
+        
         hp -= 20;
-        //end gamehere
-        delay(2000);
-        retMenu();
-        break;
+        updateHP();
+
+        if (hp <= 0) {
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0, 30);
+          display.print("Boom! you lose!");
+          delay(2000);
+           //end gamehere
+
+          retMenu();
+          break;
+        }
+        
+        display.setCursor(0, 50);
+        bombs[curLocation] = "X";
+        display.print("Ouch! HP Left: ");
+        display.print(hp);
 
       }
       else {
-        display.print("Found: Nothing here");
+        display.print("Nothing here!");
       }
 
     }
