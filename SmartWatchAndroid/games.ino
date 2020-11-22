@@ -381,6 +381,8 @@ void loop1() {
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
       display.print("I am sleepwy...");
+      display.clearWindow(40, 25, 12, 20);
+      drawSlp();
       delay(1000);
       for (uint8_t i = 0; i < 10; i++) {
         delay(1000);
