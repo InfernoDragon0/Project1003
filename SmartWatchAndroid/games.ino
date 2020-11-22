@@ -1,39 +1,70 @@
-// Game 1 starts here
-//This is a placeholder
-unsigned char flappyBirdBitmap[204] = {
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Yellow, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
+unsigned char defchar[240] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
-unsigned char ghost[361] = {
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Black,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
-  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black
+unsigned char slpchar[240] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
+};
+
+unsigned char deadchar[240] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_White,TS_8b_Red,TS_8b_White,TS_8b_Gray,TS_8b_Gray,TS_8b_White,TS_8b_Red,TS_8b_White,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Gray,TS_8b_Red,TS_8b_White,TS_8b_Red,TS_8b_Gray,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Gray,TS_8b_Gray,TS_8b_Gray,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Red,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
+  TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Blue,TS_8b_Yellow,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_Yellow,TS_8b_Black,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Blue,TS_8b_Black,TS_8b_Yellow,
+  TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
 
 // Modifier icons
@@ -155,18 +186,25 @@ void chkDead() {
   }
 }
 
-void drawBitmap() {
-  display.setX(40, 40 + 17 - 1);
-  display.setY(30, 30 + 12 - 1);
+void drawDef() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
   display.startData();
-  display.writeBuffer(flappyBirdBitmap, 17 * 12);
+  display.writeBuffer(defchar, 12 * 20);
   display.endTransfer();
 }
-void drawGhost() {
-  display.setX(40, 40 + 19 - 1);
-  display.setY(25, 25 + 19 - 1);
+void drawSlp() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
   display.startData();
-  display.writeBuffer(ghost, 19 * 19);
+  display.writeBuffer(slpchar, 12 * 20);
+  display.endTransfer();
+}
+void drawDead() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
+  display.startData();
+  display.writeBuffer(deadchar, 12 * 20);
   display.endTransfer();
 }
 void drawHeart() { //blood rune
@@ -294,7 +332,7 @@ void loop1() {
   RTP();
   updateGold();
   display.clearWindow(0, 45, 96, 64);
-  drawGhost();
+  drawDead();
   display.setCursor(0, 52);
   display.print("Meowelcome Back!");
 
