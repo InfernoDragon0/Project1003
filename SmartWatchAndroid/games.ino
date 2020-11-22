@@ -773,12 +773,12 @@ void loop3() {
 byte osGhostY = 20;
 void runGhost() {
   //clear previous ghost
-  display.clearWindow(0,osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 19 - 1, 19-1);
+  display.clearWindow(0,osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20-1);
   
-  display.setX(10, 10 + 19 - 1);
-  display.setY(osGhostY, osGhostY + 19 - 1);
+  display.setX(10, 10 + 12 - 1);
+  display.setY(osGhostY, osGhostY + 20 - 1);
   display.startData();
-  display.writeBuffer(ghost, 19 * 19);
+  display.writeBuffer(defchar, 12*20);
   display.endTransfer();
 }
 
@@ -786,12 +786,12 @@ byte osObstacleX = 60; //60, 40, 20, 0
 byte osObstacleY = 20; //20 or 40
 void obstacle() { //this only allows one obstacle rite now
   //clear previous obstacle
-  display.clearWindow(osObstacleX,osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 19 - 1, 19-1);
-  
-  display.setX(10, 10 + 19 - 1);
-  display.setY(osGhostY, osGhostY + 19 - 1);
+  display.clearWindow(osObstacleX,osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20-1);
+
+  display.setX(10, 10 + 12 - 1);
+  display.setY(osGhostY, osGhostY + 20 - 1);
   display.startData();
-  display.writeBuffer(ghost, 19 * 19);
+  display.writeBuffer(defchar, 12 * 20);
   display.endTransfer();
 }
 
