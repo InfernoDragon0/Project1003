@@ -20,7 +20,6 @@ unsigned char defchar[240] = {
   TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
-
 unsigned char slpchar[240] = {
   TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
   TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
@@ -43,7 +42,6 @@ unsigned char slpchar[240] = {
   TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
-
 unsigned char deadchar[240] = {
   TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,
   TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,
@@ -66,7 +64,6 @@ unsigned char deadchar[240] = {
   TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Blue,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,
   TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black
 };
-
 // Modifier icons
 unsigned char heart[40] = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
@@ -111,6 +108,57 @@ unsigned char money[40] = {
   TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,
   TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Black,TS_8b_Black
 };
+
+void drawDef() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
+  display.startData();
+  display.writeBuffer(defchar, 12 * 20);
+  display.endTransfer();
+}
+void drawSlp() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
+  display.startData();
+  display.writeBuffer(slpchar, 12 * 20);
+  display.endTransfer();
+}
+void drawDead() {
+  display.setX(40, 40 + 12 - 1);
+  display.setY(25, 25 + 20 - 1);
+  display.startData();
+  display.writeBuffer(deadchar, 12 * 20);
+  display.endTransfer();
+}
+
+void drawHeart() { //blood rune
+  display.setX(10, 10 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(heart, 5 * 8);
+  display.endTransfer();
+}
+void drawLightning() { //agility rune
+  display.setX(20, 20 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(lightning, 5 * 8);
+  display.endTransfer();
+}
+void drawSeven() { //luck rune
+  display.setX(76, 76 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(seven, 5 * 8);
+  display.endTransfer();
+}
+void drawMoney() { //fortune rune
+  display.setX(86, 86 + 5 - 1);
+  display.setY(30, 30 + 8 - 1);
+  display.startData();
+  display.writeBuffer(money, 5 * 8);
+  display.endTransfer();
+}
 
 void retMenu(){
   display.clearWindow(0, 10, 96, 64);
@@ -173,6 +221,8 @@ void updateGold() {
 // If dead then revive
 void chkDead() {
   if (hp <= 0) {
+    display.clearWindow(40, 25, 12, 20);
+    drawDead();
     gold -= 50;
     hp += 100;
     display.setCursor(0, 52);
@@ -183,67 +233,16 @@ void chkDead() {
     display.print("Ressurected!");
     updateHP();
     updateGold();
+    display.clearWindow(40, 25, 12, 20);
+    drawDef();
   }
 }
-
-void drawDef() {
-  display.setX(40, 40 + 12 - 1);
-  display.setY(25, 25 + 20 - 1);
-  display.startData();
-  display.writeBuffer(defchar, 12 * 20);
-  display.endTransfer();
-}
-void drawSlp() {
-  display.setX(40, 40 + 12 - 1);
-  display.setY(25, 25 + 20 - 1);
-  display.startData();
-  display.writeBuffer(slpchar, 12 * 20);
-  display.endTransfer();
-}
-void drawDead() {
-  display.setX(40, 40 + 12 - 1);
-  display.setY(25, 25 + 20 - 1);
-  display.startData();
-  display.writeBuffer(deadchar, 12 * 20);
-  display.endTransfer();
-}
-
-void drawHeart() { //blood rune
-  display.setX(10, 10 + 5 - 1);
-  display.setY(30, 30 + 8 - 1);
-  display.startData();
-  display.writeBuffer(heart, 5 * 8);
-  display.endTransfer();
-}
-void drawLightning() { //agility rune
-  display.setX(20, 20 + 5 - 1);
-  display.setY(30, 30 + 8 - 1);
-  display.startData();
-  display.writeBuffer(lightning, 5 * 8);
-  display.endTransfer();
-}
-void drawSeven() { //luck rune
-  display.setX(76, 76 + 5 - 1);
-  display.setY(30, 30 + 8 - 1);
-  display.startData();
-  display.writeBuffer(seven, 5 * 8);
-  display.endTransfer();
-}
-void drawMoney() { //fortune rune
-  display.setX(86, 86 + 5 - 1);
-  display.setY(30, 30 + 8 - 1);
-  display.startData();
-  display.writeBuffer(money, 5 * 8);
-  display.endTransfer();
-}
-
-
 
 // Its all about the ticks
 uint32_t startLTime = 0;
 uint32_t endLTime = 0;
-uint32_t timeDiff = 0;
-uint32_t timeElapsed = 0;
+uint16_t timeDiff = 0;
+uint16_t timeElapsed = 0;
 
 void timePassed(){
   startLTime = millis();
