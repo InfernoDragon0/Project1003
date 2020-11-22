@@ -169,34 +169,36 @@ void drawGhost() {
   display.writeBuffer(ghost, 19 * 19);
   display.endTransfer();
 }
-void drawHeart() {
+void drawHeart() { //blood rune
   display.setX(10, 10 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
   display.startData();
   display.writeBuffer(heart, 5 * 8);
   display.endTransfer();
 }
-void drawLightning() {
+void drawLightning() { //agility rune
   display.setX(20, 20 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
   display.startData();
   display.writeBuffer(lightning, 5 * 8);
   display.endTransfer();
 }
-void drawSeven() {
+void drawSeven() { //luck rune
   display.setX(76, 76 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
   display.startData();
   display.writeBuffer(seven, 5 * 8);
   display.endTransfer();
 }
-void drawMoney() {
+void drawMoney() { //fortune rune
   display.setX(86, 86 + 5 - 1);
   display.setY(30, 30 + 8 - 1);
   display.startData();
   display.writeBuffer(money, 5 * 8);
   display.endTransfer();
 }
+
+
 
 // Its all about the ticks
 uint32_t startLTime = 0;
@@ -227,6 +229,63 @@ void penaltyHP(){
   }
 }
 
+//Inventory management
+String inventory[10] = { //note, m to find mythic may clash
+  "Empty","Empty", 
+  "Empty","Empty", 
+  "Empty","Empty", 
+  "Empty","Empty", 
+  "Empty","Empty"
+};
+
+String runeSlots[2] = {"Empty", "Empty"};
+
+byte invSpace() {
+  byte space = 0;
+  for (byte x = 0; x < 9; x++) { //is there std::find?
+    if (inventory[x] == "Empty") {
+      space++;
+    }
+  }
+  return space;
+}
+
+byte receiveLoot(String item) {
+  for (byte x = 0; x < 9; x++) {
+    if (inventory[x] == "Empty") {  //is there std::find?
+      inventory[x] = item;
+      return 1; //success
+    }
+  }
+  return 0; //failed, inventory full
+}
+
+void destroyLoot(byte index) {
+  inventory[index] = "Empty";
+}
+
+byte equipRune(byte index, byte slot) {
+  String tempRune = runeSlots[slot]; //store the temp rune to exchange into the inventory
+  if (inventory[index] == "Empty") {
+    return 0; //equipping failed
+  }
+  runeSlots[slot] = inventory[index]; //equip to rune slot
+  inventory[index] = tempRune; //replace item in inventory to previous rune or empty
+  return 1;
+}
+
+byte unequipRune(byte slot) {
+  if (invSpace() < 1) {
+    return 0; //failed, no space to unequip
+  }
+  if (receiveLoot(runeSlots[slot]) != 1) {
+    return 0; //failed, no space to unequip * 2nd check
+  }
+  runeSlots[slot] = "Empty";
+  return 1;
+}
+
+
 void loop1() {
   chkDead();
   RTP();
@@ -235,10 +294,24 @@ void loop1() {
   drawGhost();
   display.setCursor(0, 52);
   display.print("Meowelcome Back!");
-  drawHeart(); //remove before prod
-  drawLightning(); //remove before prod
-  drawSeven(); //remove before prod
-  drawMoney(); //remove before prod
+
+  for (byte rs = 0; rs < 2; rs++) {
+      if (runeSlots[rs] != "Empty") { //lbfa
+        if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+          drawHeart();
+        }
+        if (runeSlots[rs].indexOf('l') > 0) { //luck rune
+          drawSeven();
+        }
+        if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+          drawMoney();
+        }
+        if (runeSlots[rs].indexOf('a') > 0) { //agility rune
+          drawLightning();
+        }     
+      }
+  }
+  
   delay(1000);
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
@@ -290,14 +363,29 @@ void loop1() {
   }
 }
 
-// Game 2 starts here
+// Tamagold here
 String lootRandomizer[21];
-String lootRarity[5] = {"c", "u", "r", "e", "l"};
-String lootPart[3] = {"t", "m", "b"};
+String lootRarity[4] = {"c", "u", "r", "m"}; //common, uncommon, rare, mythic
+String lootPart[4] = {"l", "b", "f", "a"}; //luck, blood, fortune, agility
+
+
+//emptyChance = 10;
+//commonChance = 5;
+//uncommonChance = 3;
+//goldChance = 3;
+//rareChance = 1;
+//mythicChance = 0;
+//jackpot = 1;
+
 
 void loop2() { //lootbox game
-  byte curLocation = 0;
+  byte curLocation = 1;
+  byte curDigged = 0;
+  
+  byte baseChances[7] = {10, 5, 3, 3, 1, 0, 1};
 
+  //check for runes equipped
+  
   //try creating a random loot table unweighted
   for (byte i = 0; i < 21; i++) {
     lootRandomizer[i] = lootRarity[random(0, 4)] + lootPart[random(0, 2)];
@@ -309,14 +397,14 @@ void loop2() { //lootbox game
       break;
     }
 
-    if (display.getButtons(TSButtonLowerLeft)) {
+    if (display.getButtons(TSButtonLowerLeft)) { //move next
       if (curLocation < 21) {
         curLocation += 1;
       }
 
     }
-    if (display.getButtons(TSButtonUpperRight)) {
-      if (curLocation > 0) {
+    if (display.getButtons(TSButtonUpperRight)) { //move previous
+      if (curLocation > 1) {
         curLocation -= 1;
       }
     }
@@ -368,7 +456,7 @@ void loop2() { //lootbox game
 String bombs[21];
 
 
-// Tamaboom here
+// Tamaboom here NOTE: runes have not been added yet
 void loop3() {
 
   byte curLocation = 1;
@@ -505,7 +593,10 @@ void loop4() {
   }
 }
 
-// Modifiers, variables must be global ^
+
+
+
+// inventory stuff
 void loop5() {
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
