@@ -15,11 +15,11 @@
 ## Main Game Loop
 - [X] Tamago sprite (ONE)
 - [X] Mini game for the sprites (Platformer + Gambler + Goldsweeper)
-- [X] Rune of Luck +1/2/3/4, Rune of Speed +1/2/3/4, Rune of Fortune +1/2/3/4, Rune of Agility +1/2/3/4
-- [X] Luck rune .. increases gold gen passively
-- [X] Blood rune increases your health
-- [X] Fortune rune .. decreases food cost
-- [X] Agility rune increases your health regeneration per action
+- [X] Rune of Luck/Blood/Fortune/Agility +1/2/3/4
+- [X] Luck rune .. gold gen increases to 2/3/5/10
+- [X] Blood rune increases your health to 115/135/170/210
+- [X] Fortune rune .. decreases food cost to 7/6/4/1
+- [X] Agility rune increases your health regeneration to 2/3/6/15
 - [X] Up to 10 Runes can be stored, but you can only have 2 equipped
 - [ ] RUN! is free to play: Mini game rewards gold, health loss per obstacle hit
 - [X] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
@@ -49,13 +49,13 @@
   - [X] 1000-1800G (10% drop rate) !per fortune increase 200
   - [X] Luck rune increases decreases NOTHING by 10% per rarity, +1 = +10% uncommon, +2 = +10% rare, +3 = +10% mythic, +4 = +10% jackpot
   - [ ] Blood rune .. regardless of rarity, pays half of the price using health
-  - [X] Fortune rune increases jackpot gain by 200 per rarity, gold gain by 10 per rarity
+  - [X] Fortune rune increases jackpot gain by 200/400/600/800 depending on rarity
   - [ ] Agility rune .. when digging out nothing, reduce gold loss by 10% per rarity
   
 ### Tamaboom
 - [X] 21 spots to dig, Ratio of bombs to gold is 3:2, randomized. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
 - [X] You win an additional 100 gold if you manage to dig every spot filled with gold
-- [ ] Luck rune increases the ratio of bomb:gold to 3:3, 3:4, 3:5, 3:6 depending on rarity
+- [X] Luck rune increases the ratio of bomb:gold to 3:3, 3:4, 3:5, 3:7 depending on rarity
 - [X] Blood rune increases survival rate via health
-- [ ] Fortune rune increases gold gain to 5+(1 per rarity)*n
-- [ ] Agility rune increases chance to dodge a bomb, if you get hit by a bomb, by 5% per rarity
+- [X] Fortune rune increases gold gain to 6/7/9/15 *n depending on rarity
+- [X] Agility rune increases chance to dodge a bomb by 8/17/29/55% depending on rarity, if you step on a bomb
