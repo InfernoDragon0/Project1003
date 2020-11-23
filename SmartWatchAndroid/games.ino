@@ -218,7 +218,7 @@ void chkDead() {
   if (hp <= 0) {
     display.clearWindow(40, 25, 12, 20);
     drawDead();
-    gold -= 50;
+    gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
     display.setCursor(0, 52);
     display.print(F("You Lose. Reviving.."));
@@ -348,6 +348,9 @@ char getRuneRarity(byte slot) {
 }
 
 void loop1() {
+  byte hpRegenRate = 1;
+  byte foodCost = 8;
+  
   chkDead();
   RTP();
   updateGold();
@@ -379,10 +382,34 @@ void loop1() {
         drawSeven();
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-        drawMoney();
+        drawMoney(); 
+        case 'c':
+          foodCost = 7; //health regen rate change based on runes
+          break;
+        case 'u':
+          foodCost = 6;
+          break;
+        case 'r':
+          foodCost = 4;
+          break;
+        case 'm':
+          foodCost = 1;
+          break; 
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         drawLightning();
+        case 'c':
+          hpRegenRate = 2; //health regen rate change based on runes
+          break;
+        case 'u':
+          hpRegenRate = 3;
+          break;
+        case 'r':
+          hpRegenRate = 6;
+          break;
+        case 'm':
+          hpRegenRate = 15;
+          break;
       }
     }
   }
@@ -400,13 +427,22 @@ void loop1() {
       delay(1000);
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
-      display.clearWindow(0, 52, 96, 64);
-      display.setCursor(0, 52);
-      display.print(F("Munch Munch~~"));
-      hp += 2;
-      updateHP();
-      updateGold();
-      delay(1000);
+      if (gold < foodCost) {
+        display.setCursor(0, 52);
+        display.print(F("Not enough Gold"));
+      }
+      else {
+        display.clearWindow(0, 52, 96, 64);
+        display.setCursor(0, 52);
+        display.print(F("Munch Munch~~"));
+        hp += hpRegenRate*2;
+        gold -= foodCost;
+        updateHP();
+        updateGold();
+        delay(1000);
+      }
+      
+      
     }
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 52, 96, 64);
@@ -421,7 +457,7 @@ void loop1() {
         display.setCursor(0, 52);
         delay(1000);
         display.print(F("Zzzzzzzzzzzzz...."));
-        hp += 1;
+        hp += hpRegenRate;
         updateHP();
       }
       display.clearWindow(0, 52, 96, 64);
