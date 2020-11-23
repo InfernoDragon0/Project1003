@@ -983,23 +983,270 @@ void obstacle() { //this only allows one obstacle rite now
   display.endTransfer();
 }
 
-// Run .. Ghost always will hug left corner only
+// Dungeons! You cannot exit until you die or escape successfully
 void loop4() {
-  while (1) {
-    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
-      retMenu();
-      break;
+
+  //battle data
+  byte currentTurn = 0; //1 for enemy, 2 for ally, 0 for out of combat
+  byte isInBattle = 0; //1 for is in battle
+  byte doRollEnemy = 0; //0 while the enemy still alive
+  byte willBlockEnemy = 0; //1 for defense
+  
+  //enemy data
+  byte enemyHealth = 0; //ghost: 40-60, bird: 55-95
+  byte enemyDamage = 0;
+  byte enemyType = 0; //0 is ghost, 1 is bird
+  byte enemyColor = 0; //0-15, random color, color doesnt matter
+  byte enemyPrefix = 0; //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
+  byte enemyPrefixBuff = 0;
+  byte enemySuffix = 0; //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
+  byte enemyGReward = 0;
+  String enemyItemReward = "Empty";
+
+  //ally data
+  byte escapeChance = 15;
+  byte stimPrice = 40; //stim is always more expensive than passive healing as it is a dungeon
+  byte stims = 1; //stim wont lose turns
+  byte defHealMin = 5; //defense will lose turn
+  byte attackDamage = 12;
+  byte extraTurnChance = 0; //chance when attacking to do an additional turn, there is no limit to this
+
+  for (byte rs = 0; rs < 2; rs++) {
+    if (runeSlots[rs] != "Empty") { //lbfa
+      if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+        switch (getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
+          case 'c':
+            maxHp = 115;
+            attackDamage = 14;
+            break;
+          case 'u':
+            attackDamage = 18;
+            maxHp = 135;
+            break;
+          case 'r':
+            attackDamage = 25;
+            maxHp = 170;
+            break;
+          case 'm':
+            attackDamage = 40;
+            maxHp = 210;
+            break;
+        }
+      }
+      if (runeSlots[rs].indexOf('l') > 0) { //luck rune
+        drawSeven();
+        switch (getRuneRarity(rs)) {
+          case 'c':
+            escapeChance = 25; //easier escape per rarity
+            break;
+          case 'u':
+            escapeChance = 35;
+            break;
+          case 'r':
+            escapeChance = 55;
+            break;
+          case 'm':
+            escapeChance = 100; //100% chance of escaping
+            break;
+        }
+      }
+      if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+        drawMoney();
+        switch (getRuneRarity(rs)) {
+          case 'c':
+            defHealMin = 4; //defensive healing minimum requirement lowered
+            stims = 2; //extra stims
+            break;
+          case 'u':
+            defHealMin = 3;
+            stims = 2;
+            break;
+          case 'r':
+            defHealMin = 2;
+            stims = 3;
+            break;
+          case 'm':
+            defHealMin = 0; //always heal regardless
+            stims = 4; //alot of stims
+            break;
+        }
+      }
+      if (runeSlots[rs].indexOf('a') > 0) { //agility rune
+        drawLightning();
+        switch (getRuneRarity(rs)) {
+          case 'c':
+            extraTurnChance = 7; //dodge rate
+            break;
+          case 'u':
+            extraTurnChance = 16;
+            break;
+          case 'r':
+            extraTurnChance = 30;
+            break;
+          case 'm':
+            extraTurnChance = 66;
+            break;
+        }
+      }
     }
-    if (display.getButtons(TSButtonLowerLeft)) { //go down
-      if (osGhostY < 40) {
-        osGhostY += 20;
+  }
+  
+  while (1) {
+    if (doRollEnemy == 1) {
+      //do roll random enemy
+      //top is show HP: 100 Stim:1
+      //print the ally and enemy sprite on the middle
+      //bottom is show Enemy HP: 100 on first round
+      doRollEnemy = 0;
+    }
+    
+    if (display.getButtons(TSButtonUpperLeft)) { //escape
+      display.setCursor(0,50);
+      if (currentTurn == 0 || isInBattle == 0) {
+        retMenu();
+        break;
+      }
+      else if (currentTurn != 2) {
+        display.print("Not your Turn!");
+      }
+      else {
+        byte escapeRoll = random(0, 100);
+        if (escapeChance > escapeRoll) {
+          display.clearWindow(0,10,96,64);
+          display.setCursor(0,30);
+          display.print("Escaped!"); //random quotes?
+
+          delay(2000);
+          retMenu();
+          break;
+        }
+        else {
+          currentTurn = 1;
+          display.print("Escape Failed.");
+          delay(1000);
+        }
+      }
+      
+    }
+
+    if (display.getButtons(TSButtonUpperRight)) { //stim
+      display.setCursor(0,50);
+      if (currentTurn != 2) {
+        display.print("Not your Turn!       ");
+      }
+      else if (hp >= maxHp) { //no need to stim
+        display.print("At Max Health       ");
+      }
+      else if (stims == 0) {
+        display.print("No more Stims       ");
+      }
+      else if (gold < stimPrice) {
+        display.print("Not enough Gold     ");
+      }
+      else {
+        stims--;
+        hp+= 30;
+        updateHP();
+        display.print("Healed, HP: ");
+        display.print(hp);
+        delay(1000);
       }
 
+      
+      
     }
-    if (display.getButtons(TSButtonLowerRight)) { //go up
-      if (osGhostY > 20) {
-        osGhostY -= 20;
+    if (display.getButtons(TSButtonLowerLeft)) { //attack
+      display.setCursor(0,50);
+      if (currentTurn != 2) {
+        display.print("Not your Turn!       ");
       }
+      else if (hp > 0) { //if we are not dead
+        if (enemyPrefix == 3) { //if the enemy has Hide prefix
+          byte canDodge = random(0,100);
+          if (canDodge <= 30) { //fixed at 30% cos too much rng already
+            display.print("Enemy Dodged");
+          }
+          else {
+            enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+            display.print("Enemy HP:");
+            display.print(enemyHealth);
+          }
+        }
+        else {
+          enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+          display.print("Enemy HP:");
+          display.print(enemyHealth);
+        }
+        delay(2000);        
+      }
+
+      if (enemyHealth <= 0) {
+        display.clearWindow(0,10,96,64);
+        display.setCursor(0,20);
+        display.print("Enemy Defeated");
+        
+        display.setCursor(0,30);
+        if (receiveLoot(enemyItemReward) == 1) {         
+          display.print("You got " + enemyItemReward);
+        }
+        else {
+          display.print("No Inventory Space"); //no space for loot :c
+        }
+        
+        
+        display.setCursor(0,40);
+        display.print("You earned ");
+        display.print(enemyGReward);
+        display.print(" Gold");
+        
+        gold += enemyGReward;
+        
+        delay(2000); //additional 2 seconds to view the loot
+        doRollEnemy = 1;
+      }
+      else {
+        if (extraTurnChance > 0) {
+          byte eChance = random(0,100);
+          if (extraTurnChance > eChance) { //extra turn stuff
+            currentTurn = 2;
+            display.setCursor(0,50);
+            display.print("Extra Turn!");
+          }
+          else {
+            currentTurn = 1;
+          }
+        }
+        else {
+          currentTurn = 1;
+        }
+
+      }
+      delay(2000);
+    }
+    if (display.getButtons(TSButtonLowerRight)) { //defend and heal
+      display.setCursor(0,50);
+      if (currentTurn != 2) {
+        display.print("Not your Turn!     ");
+      }
+      else {
+        willBlockEnemy = 1; //block enemy next turn
+        byte willHeal = random(11);
+  
+        if (willHeal > defHealMin) {
+          hp += willHeal;
+          updateHP();
+          display.print("Defend! HP:");
+          display.print(hp);
+        }
+        else {
+          display.print("Will Defend!     ");
+        }
+        
+        currentTurn = 1;
+        delay(1000);
+      }
+      
+      
     }
     //Put whatever game function you have here
     runGhost();
