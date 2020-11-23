@@ -67,41 +67,41 @@ unsigned char deadchar[240] PROGMEM = {
 };
 
 //bird again not in progmem for now
-unsigned char flappyBirdBitmap[204] = {
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Yellow, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
+unsigned char flappyBirdBitmap[204]={  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Yellow,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black 
 };
 
 //ghost haunting you again
 unsigned char ghost[361] = {
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Black, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black,
-  TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black
 };
 
 // Modifier icons
@@ -1026,7 +1026,7 @@ void obstacle() { //this only allows one obstacle rite now
 void loop4() {
 
   if (hp <= 0) { //not allowed to enter without health
-    display.setCursor(0, 30);
+    display.setCursor(0,30);
     display.print("Revive first");
 
     delay(1000);
@@ -1144,23 +1144,23 @@ void loop4() {
 
   while (1) {
     if (doRollEnemy == 1) {
-      display.clearWindow(0, 10, 96, 64);
-      display.setCursor(0, 20);
+      display.clearWindow(0,10,96,64);
+      display.setCursor(0,20);
       display.print("Rolling enemy..");
       //generate enemy
-      enemyType = random(0, 2); //0 is ghost, 1 is bird
-      enemyHealth = enemyType == 0 ? random(40, 61) : random(55, 96); //ghost: 40-60, bird: 55-95
-      enemyDamage = enemyType == 0 ? random(12, 19) : random(8, 13); //ghost: 12-18 dmg, bird: 8-12 dmg
-      enemyColor = random(0, 8); //0-8, random color, color doesnt matter
-      enemyPrefix = random(0, 4); //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
+      enemyType = random(0,2); //0 is ghost, 1 is bird
+      enemyHealth = enemyType == 0 ? random(40,61) : random(55,96); //ghost: 40-60, bird: 55-95
+      enemyDamage = enemyType == 0 ? random(12,19) : random(8,13); //ghost: 12-18 dmg, bird: 8-12 dmg 
+      enemyColor = random(0,8); //0-8, random color, color doesnt matter
+      enemyPrefix = random(0,4); //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
 
       switch (enemyPrefix) {
         case 0:
-          enemyPrefixBuff = random(6, 13);
+          enemyPrefixBuff = random(6,13);
           enemyDamage += enemyPrefixBuff; //just immediately add the buff here
           break;
         case 1:
-          enemyPrefixBuff = random(10, 21);
+          enemyPrefixBuff = random(10,21);
           enemyHealth += enemyPrefixBuff; //just immediately add the buff here
           break;
         case 2:
@@ -1171,41 +1171,44 @@ void loop4() {
           enemyPrefixBuff = 30; //evasion is calculated separately
           break;
       }
-
+      
 
       //weighted suffix
-      enemySuffix = random(0, 11); //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
+      enemySuffix = random(0,11); //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
 
       //if you dare enter the dungeon, you will always get uncommon - mythic runes, no less
       if (enemySuffix > 8) {
         enemySuffix = 2; //BOSS
         enemyHealth += 100; //no more rng here
         enemyDamage += 20;
-        enemyGReward = random(100, 251); //100-250 gold
+        enemyGReward = random(100,251); //100-250 gold
 
-        enemyItemReward = "m" + lootPart[random(0, 4)]; //mythic
+        enemyItemReward = "m" + lootPart[random(0,4)]; //mythic
       }
       else if (enemySuffix > 5) {
         enemySuffix = 1; //SLAVE
         enemyHealth += 25; //no more rng here
         enemyDamage += 5;
-        enemyGReward = random(40, 71); //40-70 gold
-        enemyItemReward = "r" + lootPart[random(0, 4)]; //rare
+        enemyGReward = random(40,71); //40-70 gold
+        enemyItemReward = "r" + lootPart[random(0,4)]; //rare
       }
       else {
         enemySuffix = 0; //MOB
-        enemyGReward = random(30, 61); //30-60 gold
-        enemyItemReward = "u" + lootPart[random(0, 4)]; //uncommon
+        enemyGReward = random(30,61); //30-60 gold
+        enemyItemReward = "u" + lootPart[random(0,4)]; //uncommon
       }
+      
+       
+       
 
       //warmup and show enemy name
       delay(1000); //delay for the suspense
-
-      display.clearWindow(0, 10, 96, 64);
-      display.setCursor(0, 10);
+      
+      display.clearWindow(0,10,96,64);
+      display.setCursor(0,10);
       display.print("You will Fight:");
-      display.setCursor(0, 20);
-      switch (enemyPrefix) {
+      display.setCursor(0,20);
+      switch(enemyPrefix) {
         case 0:
           display.print("Edge v");
           break;
@@ -1222,16 +1225,16 @@ void loop4() {
       display.print(enemyColor); //just print the number
       display.print("-");
       display.print(enemyType == 0 ? "Ghost" : "Bird");
-      //      switch(enemyType) {
-      //        case 0:
-      //          display.print("Ghost");
-      //          break;
-      //        case 1:
-      //          display.print("Bird");
-      //          break;
-      //      }
-      display.setCursor(0, 30);
-      switch (enemySuffix) {
+//      switch(enemyType) {
+//        case 0:
+//          display.print("Ghost");
+//          break;
+//        case 1:
+//          display.print("Bird");
+//          break;
+//      }
+      display.setCursor(0,30);
+      switch(enemySuffix) {
         case 0:
           display.print("Mob");
           break;
@@ -1242,11 +1245,11 @@ void loop4() {
           display.print("BOSS");
           break;
       }
-
+      
       delay(3000);
 
-      display.clearWindow(0, 10, 96, 64);
-
+      display.clearWindow(0,10,96,64);
+      
       currentTurn = 2;
       updateHP(); //print hp at 0,10
 
@@ -1278,41 +1281,41 @@ void loop4() {
 
 
 
-      //      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
-      //        //flappyBirdBitmap / ghost
-      //        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
-      //        //base color edit
-      //        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
-      //          switch (enemyColor) {
-      //            case 0:
-      //              enemy[i] = TS_8b_Black;
-      //              break;
-      //            case 1:
-      //              enemy[i] = TS_8b_White;
-      //              break;
-      //            case 2:
-      //              enemy[i] = TS_8b_Blue;
-      //              break;
-      //            case 3:
-      //              enemy[i] = TS_8b_Red;
-      //              break;
-      //            case 4:
-      //              enemy[i] = TS_8b_Yellow;
-      //              break;
-      //            case 5:
-      //              enemy[i] = TS_8b_Green;
-      //              break;
-      //            case 6:
-      //              enemy[i] = TS_8b_Brown;
-      //              break;
-      //            case 7:
-      //              enemy[i] = TS_8b_Gray;
-      //              break;
-      //          }
-      //        }
-      //      }
+//      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
+//        //flappyBirdBitmap / ghost
+//        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
+//        //base color edit
+//        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
+//          switch (enemyColor) {
+//            case 0:
+//              enemy[i] = TS_8b_Black;
+//              break;
+//            case 1:
+//              enemy[i] = TS_8b_White;
+//              break;
+//            case 2:
+//              enemy[i] = TS_8b_Blue;
+//              break;
+//            case 3:
+//              enemy[i] = TS_8b_Red;
+//              break;
+//            case 4:
+//              enemy[i] = TS_8b_Yellow;
+//              break;
+//            case 5:
+//              enemy[i] = TS_8b_Green;
+//              break;
+//            case 6:
+//              enemy[i] = TS_8b_Brown;
+//              break;
+//            case 7:
+//              enemy[i] = TS_8b_Gray;
+//              break;
+//          }
+//        }
+//      }
 
-
+      
       //display.writeBuffer(enemy, enemyType == 0? 361 : 204);
       //display.endTransfer();
 
@@ -1325,26 +1328,27 @@ void loop4() {
       doRollEnemy = 0;
     }
 
+<<<<<<< Updated upstream
     if (currentTurn == 1) {
       //enemy turn!
-
+      
       if (willBlockEnemy) {
         willBlockEnemy = 0; //no damage done
-        display.setCursor(0, 50);
+        display.setCursor(0,50);
         display.print("Blocked Enemy!");
       }
       else { //no rng here because too much rng already
-        hp -= (enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage); //Quicks will attack twice.. without rng
+        hp -= (enemyAttacks == 2 ? enemyDamage*2 : enemyDamage); //Quicks will attack twice.. without rng
         updateHP();
-        display.setCursor(0, 50);
+        display.setCursor(0,50);
         display.print("Taken ");
-        display.print(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage);
+        display.print(enemyAttacks == 2 ? enemyDamage*2 : enemyDamage);
         display.print(" Dmg!");
       }
 
       if (hp <= 0) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(0, 30);
+        display.clearWindow(0,10,96,64);
+        display.setCursor(0,30);
         display.print("You died.");
 
         delay(2000);
@@ -1356,238 +1360,264 @@ void loop4() {
         currentTurn = 2;
       }
     }
-
+    
     if (display.getButtons(TSButtonUpperLeft)) { //escape
-
+      
       if (currentTurn == 0) {
-        if (display.getButtons(TSButtonUpperLeft)) { //escape
-          display.setCursor(0, 50);
-          if (currentTurn == 0 || isInBattle == 0) {
-            retMenu();
-            break;
-          }
-          else if (currentTurn != 2) {
-            display.setCursor(0, 50);
-            display.print("Not your Turn!");
-          }
-          else {
-            byte escapeRoll = random(0, 100);
-            if (escapeChance > escapeRoll) {
-              display.clearWindow(0, 10, 96, 64);
-              display.setCursor(0, 30);
-              display.print("Escaped!"); //random quotes?
+=======
+    if (display.getButtons(TSButtonUpperLeft)) { //escape
+      display.setCursor(0, 50);
+      if (currentTurn == 0 || isInBattle == 0) {
+>>>>>>> Stashed changes
+        retMenu();
+        break;
+      }
+      else if (currentTurn != 2) {
+        display.setCursor(0,50);
+        display.print("Not your Turn!");
+      }
+      else {
+        byte escapeRoll = random(0, 100);
+        if (escapeChance > escapeRoll) {
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0, 30);
+          display.print("Escaped!"); //random quotes?
 
-              delay(2000);
-              retMenu();
-              break;
-            }
-            else {
-              currentTurn = 1;
-              display.setCursor(0, 50);
-              display.print("Escape Failed.");
-              delay(1000);
-            }
-          }
-
+          delay(2000);
+          retMenu();
+          break;
         }
-
-        if (display.getButtons(TSButtonUpperRight)) { //stim
-          display.setCursor(0, 50);
-          if (currentTurn != 2) {
-            display.setCursor(0, 50);
-            display.print("Not your Turn!       ");
-          }
-          else if (hp >= maxHp) { //no need to stim
-            display.setCursor(0, 50);
-            display.print("At Max Health       ");
-          }
-          else if (stims == 0) {
-            display.setCursor(0, 50);
-            display.print("No more Stims       ");
-          }
-          else if (gold < stimPrice) {
-            display.setCursor(0, 50);
-            display.print("Not enough Gold     ");
-          }
-          else {
-            stims--;
-            hp += 30;
-            updateHP();
-            display.setCursor(0, 50);
-            display.print("Stimmed! HP: ");
-            display.print(hp);
-            delay(1000);
-          }
-        }
-        if (display.getButtons(TSButtonLowerLeft)) { //attack
-          display.setCursor(0, 50);
-          if (currentTurn != 2) {
-            display.setCursor(0, 50);
-            display.print("Not your Turn!       ");
-          }
-          else if (hp > 0) { //if we are not dead
-            if (enemyPrefix == 3) { //if the enemy has Hide prefix
-              byte canDodge = random(0, 100);
-              if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
-                display.setCursor(0, 50);
-                byte canDodge = random(0, 100);
-                if (canDodge <= 30) { //fixed at 30% cos too much rng already
-                  display.print("Enemy Dodged");
-                }
-                else {
-                  enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-                  display.setCursor(0, 50);
-                  display.print("Hit! HP:");
-                  display.print(enemyHealth);
-                }
-              }
-              else {
-                enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-                display.setCursor(0, 50);
-                display.print("Hit! HP:");
-                display.print(enemyHealth);
-              }
-              delay(2000);
-            }
-
-            if (enemyHealth <= 0) {
-              display.clearWindow(0, 10, 96, 64);
-              display.setCursor(0, 20);
-              display.print("Enemy Defeated");
-
-              display.setCursor(0, 30);
-              if (receiveLoot(enemyItemReward) == 1) {
-                display.print("You got " + enemyItemReward);
-              }
-              else {
-                display.print("No Inventory Space"); //no space for loot :c
-              }
-
-
-              display.setCursor(0, 40);
-              display.print("You earned ");
-              display.print(enemyGReward);
-              display.print(" Gold");
-
-              gold += enemyGReward;
-
-              delay(2000); //additional 2 seconds to view the loot
-              doRollEnemy = 1;
-            }
-            else {
-              if (extraTurnChance > 0) {
-                byte eChance = random(0, 100);
-                if (extraTurnChance > eChance) { //extra turn stuff
-                  currentTurn = 2;
-                  display.setCursor(0, 50);
-                  display.print("Extra Turn!");
-                }
-                else {
-                  currentTurn = 1;
-                }
-              }
-              else {
-                currentTurn = 1;
-              }
-
-            }
-            delay(2000);
-          }
-          if (display.getButtons(TSButtonLowerRight)) { //defend and heal
-            display.setCursor(0, 50);
-            if (currentTurn != 2) {
-              display.setCursor(0, 50);
-              display.print("Not your Turn!     ");
-            }
-            else {
-              willBlockEnemy = 1; //block enemy next turn
-              byte willHeal = random(11);
-
-              if (willHeal > defHealMin) {
-                hp += willHeal;
-                updateHP();
-                display.setCursor(0, 50);
-                display.print("Defend! HP:");
-                display.print(hp);
-              }
-              else {
-                display.setCursor(0, 50);
-                display.print("Will Defend!     ");
-              }
-
-              currentTurn = 1;
-              delay(1000);
-            }
-
-
-          }
+        else {
+          currentTurn = 1;
+          display.setCursor(0,50);
+          display.print("Escape Failed.");
+          delay(1000);
         }
       }
 
-      //char getRarity(byte rune) {
-      //  return rarity[rune][0];
-      //}
+    }
 
-      // inventory stuff
-      void loop5() {
-        byte curLocation = 0;
+    if (display.getButtons(TSButtonUpperRight)) { //stim
+<<<<<<< Updated upstream
+      
+=======
+      display.setCursor(0, 50);
+>>>>>>> Stashed changes
+      if (currentTurn != 2) {
+        display.setCursor(0,50);
+        display.print("Not your Turn!       ");
+      }
+      else if (hp >= maxHp) { //no need to stim
+        display.setCursor(0,50);
+        display.print("At Max Health       ");
+      }
+      else if (stims == 0) {
+        display.setCursor(0,50);
+        display.print("No more Stims       ");
+      }
+      else if (gold < stimPrice) {
+        display.setCursor(0,50);
+        display.print("Not enough Gold     ");
+      }
+      else {
+        stims--;
+        hp += 30;
+        updateHP();
+        display.setCursor(0,50);
+        display.print("Stimmed! HP: ");
+        display.print(hp);
+        delay(1000);
+      }
+
+
+
+    }
+    if (display.getButtons(TSButtonLowerLeft)) { //attack
+<<<<<<< Updated upstream
+      
+=======
+      display.setCursor(0, 50);
+>>>>>>> Stashed changes
+      if (currentTurn != 2) {
+        display.setCursor(0,50);
+        display.print("Not your Turn!       ");
+      }
+      else if (hp > 0) { //if we are not dead
+        if (enemyPrefix == 3) { //if the enemy has Hide prefix
+<<<<<<< Updated upstream
+          byte canDodge = random(0,100);
+          if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
+            display.setCursor(0,50);
+=======
+          byte canDodge = random(0, 100);
+          if (canDodge <= 30) { //fixed at 30% cos too much rng already
+>>>>>>> Stashed changes
+            display.print("Enemy Dodged");
+          }
+          else {
+            enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+            display.setCursor(0,50);
+            display.print("Hit! HP:");
+            display.print(enemyHealth);
+          }
+        }
+        else {
+          enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+          display.setCursor(0,50);
+          display.print("Hit! HP:");
+          display.print(enemyHealth);
+        }
+        delay(2000);
+      }
+
+      if (enemyHealth <= 0) {
+        display.clearWindow(0, 10, 96, 64);
+        display.setCursor(0, 20);
+        display.print("Enemy Defeated");
+
+        display.setCursor(0, 30);
+        if (receiveLoot(enemyItemReward) == 1) {
+          display.print("You got " + enemyItemReward);
+        }
+        else {
+          display.print("No Inventory Space"); //no space for loot :c
+        }
+
+
+        display.setCursor(0, 40);
+        display.print("You earned ");
+        display.print(enemyGReward);
+        display.print(" Gold");
+
+        gold += enemyGReward;
+
+        delay(2000); //additional 2 seconds to view the loot
+        doRollEnemy = 1;
+      }
+      else {
+        if (extraTurnChance > 0) {
+          byte eChance = random(0, 100);
+          if (extraTurnChance > eChance) { //extra turn stuff
+            currentTurn = 2;
+            display.setCursor(0, 50);
+            display.print("Extra Turn!");
+          }
+          else {
+            currentTurn = 1;
+          }
+        }
+        else {
+          currentTurn = 1;
+        }
+
+      }
+      delay(2000);
+    }
+    if (display.getButtons(TSButtonLowerRight)) { //defend and heal
+<<<<<<< Updated upstream
+      
+=======
+      display.setCursor(0, 50);
+>>>>>>> Stashed changes
+      if (currentTurn != 2) {
+        display.setCursor(0,50);
+        display.print("Not your Turn!     ");
+      }
+      else {
+        willBlockEnemy = 1; //block enemy next turn
+        byte willHeal = random(11);
+
+        if (willHeal > defHealMin) {
+          hp += willHeal;
+          updateHP();
+          display.setCursor(0,50);
+          display.print("Defend! HP:");
+          display.print(hp);
+        }
+        else {
+          display.setCursor(0,50);
+          display.print("Will Defend!     ");
+        }
+
+        currentTurn = 1;
+        delay(1000);
+      }
+
+
+    }
+  }
+}
+
+//char getRarity(byte rune) {
+//  return rarity[rune][0];
+//}
+
+// inventory stuff
+void loop5() {
+<<<<<<< Updated upstream
+=======
+  byte curLocation = 0;
+  display.clearWindow(0, 10, 96, 64);
+  display.setCursor(32, 11);
+  display.print(curLocation+1);
+  display.print(F(" / 10"));
+  display.setCursor(90, 32);
+  display.print(F(">"));
+>>>>>>> Stashed changes
+  while (1) {
+    if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
+      retMenu();
+      break;
+    }
+<<<<<<< Updated upstream
+    //Put whatever game function you have here
+=======
+    if (display.getButtons(TSButtonLowerRight)) {
+      if (curLocation < 9) {
         display.clearWindow(0, 10, 96, 64);
         display.setCursor(32, 11);
-        display.print(curLocation + 1);
+        display.print(curLocation+1);
+        display.print(F(" / 10"));
+        if (curLocation < 8) {
+          display.setCursor(90, 32);
+          display.print(F(">"));
+        }
+        display.setCursor(6, 32);
+        display.print(F("<"));
+        curLocation += 1;
+      }
+    }
+    if (display.getButtons(TSButtonLowerLeft)) {
+      if (curLocation > 0) {
+        display.clearWindow(0, 10, 96, 64);
+        display.setCursor(32, 11);
+        display.print(curLocation);
         display.print(F(" / 10"));
         display.setCursor(90, 32);
         display.print(F(">"));
-        while (1) {
-          if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
-            retMenu();
-            break;
-          }
-          //Put whatever game function you have here
-          if (display.getButtons(TSButtonLowerRight)) {
-            if (curLocation < 9) {
-              display.clearWindow(0, 10, 96, 64);
-              display.setCursor(32, 11);
-              display.print(curLocation + 1);
-              display.print(F(" / 10"));
-              if (curLocation < 8) {
-                display.setCursor(90, 32);
-                display.print(F(">"));
-              }
-              display.setCursor(6, 32);
-              display.print(F("<"));
-              curLocation += 1;
-            }
-          }
-          if (display.getButtons(TSButtonLowerLeft)) {
-            if (curLocation > 0) {
-              display.clearWindow(0, 10, 96, 64);
-              display.setCursor(32, 11);
-              display.print(curLocation);
-              display.print(F(" / 10"));
-              display.setCursor(90, 32);
-              display.print(F(">"));
-              if (curLocation > 1) {
-                display.setCursor(6, 32);
-                display.print(F("<"));
-              }
-              curLocation -= 1;
-            }
-          }
-          if (display.getButtons(TSButtonUpperRight)) {
-            //maybe
-          }
-          //Put whatever game function you have here
-          display.setCursor(32, 11);
-          display.print(curLocation + 1);
-          display.print(F(" / 10"));
-          for (byte inv = 0; inv < 9; inv++) {
-            if (inventory[curLocation] == "Empty") {
-              display.setCursor(36, 32);
-              display.print(F("Empty"));
-            }
-            else {
-
-            }
-          }
+        if (curLocation > 1) {
+          display.setCursor(6, 32);
+          display.print(F("<"));
         }
+        curLocation -= 1;
       }
+    }
+    if (display.getButtons(TSButtonUpperRight)) {
+      //maybe
+    }
+    //Put whatever game function you have here
+    display.setCursor(32, 11);
+    display.print(curLocation+1);
+    display.print(F(" / 10"));
+    for (byte inv = 0; inv < 9; inv++) {
+      if (inventory[curLocation] == "Empty") {
+        display.setCursor(36, 32);
+        display.print(F("Empty"));
+      }
+      else{
+        
+      }
+    }
+>>>>>>> Stashed changes
+  }
+}
