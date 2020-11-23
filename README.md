@@ -41,11 +41,10 @@
   
 ### Dungeon
   - [ ] Your tamago vs random colored Ghost or Birds
-  - [ ] Lootboxes can be opened after each fight (drops 80% gold, 10% common, 4% uncommon, 6% rare)
   - [ ] Enemy Ghost have 40-60 health, 12-18 damage
   - [ ] Enemy Bird have 55-95 health, 8-12 damage
   - [ ] Randomized Prefixes (Edge: +6-12 Damage) (Tank: +10-20 hp) (Quick: +1 Attack per round) (Hide: 30% Chance dodge attack) 
-  - [ ] Randomized Suffix (Boss: +100hp, +20 Damage, +always mythic loot) (none: none)
+  - [ ] Randomized Suffix (Boss: +100hp, +20 Damage, +always mythic loot) (Slave: +25hp, +5 Damage, +always rare loot)
   - [ ] e.g. [Edge R-Ghost Boss] [Tank G-Bird] [Quick B-Ghost] [Hide Y-Bird Boss]
   - [ ] You get random common loot from non prefixed enemies + 10/20/30/40 gold from enemies
   - [ ] You get random uncommon loot from prefixed enemies + 30/40/50/60 gold from enemies
