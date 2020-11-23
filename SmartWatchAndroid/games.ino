@@ -233,7 +233,7 @@ void chkDead() {
     gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
     display.setCursor(0, 52);
-    byte rnd = random(11);
+    byte rnd = random(10);
     strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
     display.println(deathQ_buffer);
     delay(1500);
@@ -301,7 +301,7 @@ char quote_buffer[17];
 
 // Needs the buffer to prevent bombing memory
 void printQuote() {
-  byte randnum = random(13);
+  byte randnum = random(12);
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
   strcpy_P(quote_buffer, (char *)pgm_read_word(&(quotes[randnum])));
@@ -324,7 +324,7 @@ char equote_buffer[15];
 
 // Needs the buffer to prevent bombing memory
 void printeQuote() {
-  byte randnum = random(10);
+  byte randnum = random(9);
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
   strcpy_P(equote_buffer, (char *)pgm_read_word(&(eatQuotes[randnum])));
