@@ -1051,8 +1051,6 @@ void loop4() {
   byte enemyGReward = 0;
   String enemyItemReward = "Empty";
 
-  //if ghost, 361, if bird 204
-  unsigned char enemy[361];
 
   //ally data
   byte escapeChance = 15;
@@ -1061,6 +1059,8 @@ void loop4() {
   byte defHealMin = 5; //defense will lose turn
   byte attackDamage = 12;
   byte extraTurnChance = 0; //chance when attacking to do an additional turn, there is no limit to this
+  
+
 
   for (byte rs = 0; rs < 2; rs++) {
     if (runeSlots[rs] != "Empty") { //lbfa
@@ -1265,9 +1265,9 @@ void loop4() {
       display.endTransfer();
 
       //generate enemy sprite
-      //display.setX(45, 45 + (enemyType == 0? 19 - 1 : 17-1)); //draw enemy
-      //display.setY(20, 20 + (enemyType == 0? 19 - 1 : 12-1));
-      //display.startData();
+      display.setX(60, 60 + (enemyType == 0? 19 - 1 : 17-1)); //draw enemy
+      display.setY(25, 25 + (enemyType == 0? 19 - 1 : 12-1));
+      display.startData();
 
       //generate sprite from enemy def
       //TS_8b_Black
@@ -1279,45 +1279,46 @@ void loop4() {
       //TS_8b_Brown
       //TS_8b_Gray
 
+      //if ghost, 361, if bird 204
+      unsigned char enemy[enemyType == 0? 361 : 204];
 
-
-      //      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
-      //        //flappyBirdBitmap / ghost
-      //        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
-      //        //base color edit
-      //        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
-      //          switch (enemyColor) {
-      //            case 0:
-      //              enemy[i] = TS_8b_Black;
-      //              break;
-      //            case 1:
-      //              enemy[i] = TS_8b_White;
-      //              break;
-      //            case 2:
-      //              enemy[i] = TS_8b_Blue;
-      //              break;
-      //            case 3:
-      //              enemy[i] = TS_8b_Red;
-      //              break;
-      //            case 4:
-      //              enemy[i] = TS_8b_Yellow;
-      //              break;
-      //            case 5:
-      //              enemy[i] = TS_8b_Green;
-      //              break;
-      //            case 6:
-      //              enemy[i] = TS_8b_Brown;
-      //              break;
-      //            case 7:
-      //              enemy[i] = TS_8b_Gray;
-      //              break;
-      //          }
-      //        }
-      //      }
-
-
-      //display.writeBuffer(enemy, enemyType == 0? 361 : 204);
-      //display.endTransfer();
+      for (short i = 0; i < (enemyType == 0? 361 : 204); i++) {
+        //flappyBirdBitmap / ghost
+        enemy[i] = (enemyType == 0? ghost[i] : flappyBirdBitmap[i]);
+        //base color edit
+        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
+          switch (enemyColor) {
+            case 0:
+              enemy[i] = TS_8b_Black;
+              break;
+            case 1:
+              enemy[i] = TS_8b_White;
+              break;
+            case 2:
+              enemy[i] = TS_8b_Blue;
+              break;
+            case 3:
+              enemy[i] = TS_8b_Red;
+              break;
+            case 4:
+              enemy[i] = TS_8b_Yellow;
+              break;
+            case 5:
+              enemy[i] = TS_8b_Green;
+              break;
+            case 6:
+              enemy[i] = TS_8b_Brown;
+              break;
+            case 7:
+              enemy[i] = TS_8b_Gray;
+              break;
+          }
+        }
+      }
+      
+      //display.writeBuffer(enemyType == 0? ghost : flappyBirdBitmap, enemyType == 0? 361 : 204);
+      display.writeBuffer(enemy, enemyType == 0? 361 : 204);
+      display.endTransfer();
 
       display.setCursor(0, 50);
       display.print("Enemy HP:");
@@ -1416,7 +1417,15 @@ void loop4() {
         display.setCursor(0, 50);
         display.print("Stimmed! HP: ");
         display.print(hp);
-        delay(1000);
+
+        display.setCursor(50, 10); //print stim at right side
+        display.print("Stim:");
+        display.print(stims);
+
+        
+        delay(750);
+
+        
       }
 
 
@@ -1436,19 +1445,31 @@ void loop4() {
             display.print("Enemy Dodged");
           }
           else {
-            enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-            display.setCursor(0, 50);
+            if (enemyHealth < attackDamage) {
+              enemyHealth = 0;
+            }
+            else {
+              enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+            }
+                       
+            display.setCursor(0,50);
             display.print("Hit! HP:");
             display.print(enemyHealth);
           }
         }
         else {
-          enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-          display.setCursor(0, 50);
+          if (enemyHealth < attackDamage) {
+            enemyHealth = 0;
+          }
+          else {
+            enemyHealth -= attackDamage; //deal attackdamage to enemy hp
+          }
+          display.setCursor(0,50);
           display.print("Hit! HP:");
           display.print(enemyHealth);
+          display.print("      ");
         }
-        delay(2000);
+        delay(750);        
       }
 
       if (enemyHealth <= 0) {
