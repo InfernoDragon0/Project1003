@@ -285,6 +285,7 @@ void chkDead() {
     drawDef();
   }
 }
+//randomSeed();
 
 // Its all about the ticks
 uint32_t startLTime = 0;
