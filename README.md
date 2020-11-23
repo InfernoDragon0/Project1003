@@ -55,10 +55,10 @@
   - [ ] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
   - [ ] Stim: Pay 30 Gold to heal 20 health, can only use 1 times per fight
   - [ ] Block: Lose your turn but parries the next hit. Random roll of 10, if more than 5, heal for the roll
-  - [ ] Blood Rune: Increase Damage dealt to 14/18/25/40
-  - [ ] Luck Rune: Increase Escape chance to 25/35/55/100%
+  - [X] Blood Rune: Increase Damage dealt to 14/18/25/40
+  - [X] Luck Rune: Increase Escape chance to 25/35/55/100%
   - [ ] Agility Rune: You get an extra turn when attacking at a 7/16/30/66% chance (unlimited tries)
-  - [ ] Fortune Rune: You get additional 1/1/2/3 stims, your defenses heal you if the roll is more than 4/3/2/1 
+  - [X] Fortune Rune: You get additional 1/1/2/3 stims, your defenses heal you if the roll is more than 4/3/2/0
 
 ### TamaGOLD
   - [X] There are 21 spots on the ground to dig, use 10G*n (n is the holes digged in a row) to dig a spot.
