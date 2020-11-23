@@ -1596,10 +1596,6 @@ void loop4() {
   }
 }
 
-//char getRarity(byte rune) {
-//  return rarity[rune][0];
-//}
-
 // inventory stuff
 void loop5() {
   byte curLocation = 0;
@@ -1660,6 +1656,79 @@ void loop5() {
       else {
         if (inventory[0][1] == 'b') {
           drawHeart();
+          switch (inventory[0][0]) {
+            case 'c':
+              display.setCursor(0, 50);
+              display.print(F("Common"));
+              break;
+            case 'u':
+              display.setCursor(0, 50);
+              display.print(F("Uncommon"));
+              break;
+            case 'r':
+              display.setCursor(0, 50);
+              display.print(F("Rare"));
+            case 'm':
+              display.setCursor(0, 50);
+              display.print(F("Mythic"));
+          }
+        }
+        else if (inventory[0][1] == 'l') {
+          drawSeven();
+          switch (inventory[0][0]) {
+            case 'c':
+              display.setCursor(0, 50);
+              display.print(F("Common"));
+              break;
+            case 'u':
+              display.setCursor(0, 50);
+              display.print(F("Uncommon"));
+              break;
+            case 'r':
+              display.setCursor(0, 50);
+              display.print(F("Rare"));
+            case 'm':
+              display.setCursor(0, 50);
+              display.print(F("Mythic"));
+          }
+        }
+        else if (inventory[0][1] == 'f') {
+          drawMoney();
+          switch (inventory[0][0]) {
+            case 'c':
+              display.setCursor(0, 50);
+              display.print(F("Common"));
+              break;
+            case 'u':
+              display.setCursor(0, 50);
+              display.print(F("Uncommon"));
+              break;
+            case 'r':
+              display.setCursor(0, 50);
+              display.print(F("Rare"));
+            case 'm':
+              display.setCursor(0, 50);
+              display.print(F("Mythic"));
+          }
+        }
+        else if (inventory[0][1] == 'a') {
+          drawLightning();
+          switch (inventory[0][0]) {
+            case 'c':
+              display.setCursor(0, 50);
+              display.print(F("Common"));
+              break;
+            case 'u':
+              display.setCursor(0, 50);
+              display.print(F("Uncommon"));
+              break;
+            case 'r':
+              display.setCursor(0, 50);
+              display.print(F("Rare"));
+            case 'm':
+              display.setCursor(0, 50);
+              display.print(F("Mythic"));
+          }
         }
       }
     }
