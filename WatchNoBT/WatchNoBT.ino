@@ -65,11 +65,11 @@ void setup(void) {
   for (int i = 0; i < 20; i++) {
     pinMode(i, INPUT_PULLUP);
   }
-  setTime(18, 34, 10, 9, 11, 20); //h, m, s, d, m, y
+  setTime(22, 10, 10, 24, 11, 20); //h, m, s, d, m, y
   #elif defined(ARDUINO_ARCH_SAMD)
   RTCZ.begin();
-  RTCZ.setTime(18, 34, 10);//h,m,s
-  RTCZ.setDate(9, 11, 20);//d,m,y
+  RTCZ.setTime(23, 00, 00);//h,m,s
+  RTCZ.setDate(24, 11, 20);//d,m,y
   #endif
   // put your setup code here, to run once:
   Wire.begin();

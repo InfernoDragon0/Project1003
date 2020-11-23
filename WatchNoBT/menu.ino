@@ -64,7 +64,7 @@ const menu_info mainMenuInfo =
 static const char PROGMEM gameMenuStrings0[] = "Tamago!";
 static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";
 static const char PROGMEM gameMenuStrings2[] = "TamaBoom";   
-static const char PROGMEM gameMenuStrings3[] = "Tamago: Run";
+static const char PROGMEM gameMenuStrings3[] = "Tamago: Dungeons";
 static const char PROGMEM gameMenuStrings4[] = "Inventory";                      
 static const char* const PROGMEM gameMenuStrings[] =
 {
@@ -237,7 +237,7 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop3();
   }
-  if (selection == 3){ //Side Game: Run
+  if (selection == 3){ //Side Game: Dungeons
     display.clearWindow(0, 10, 96, 64);
     loop4();
   }
@@ -288,6 +288,7 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
+      display.clearWindow(0, 10, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;
