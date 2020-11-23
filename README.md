@@ -16,10 +16,10 @@
 - [X] Tamago sprite (ONE)
 - [X] Mini game for the sprites (Platformer + Gambler + Goldsweeper)
 - [X] Rune of Luck +1/2/3/4, Rune of Speed +1/2/3/4, Rune of Fortune +1/2/3/4, Rune of Agility +1/2/3/4
-- [ ] Luck rune increases TamaGOLD loot table, increases the gold spots in TamaBOOM, and increase gold spawn rate in RUN!
-- [ ] Blood rune increases your health (more lenient on dying)
-- [ ] Fortune rune increases TamaGOLD rates and your gold gain per RUN! coin obtained
-- [ ] Agility rune grants you a +10% per rarity, max 40% chance of dodging an obstacle in RUN!
+- [ ] Luck rune ..
+- [X] Blood rune increases your health
+- [ ] Fortune rune ..
+- [X] Agility rune increases your health regeneration per action
 - [X] Up to 10 Runes can be stored, but you can only have 2 equipped
 - [ ] RUN! is free to play: Mini game rewards gold, health loss per obstacle hit
 - [X] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
@@ -30,7 +30,10 @@
 ### RUN
   - [ ] just run and jump, dodge obstacles, don't fall in holes, collect coins. 
   - [ ] Every 5m run will give 2G
-  - [ ] 1 coin will give 2G, additional +1G per fortune
+  - [X] Blood Rune increases survival rate via health
+  - [ ] Fortune Rune increases gold gain per coin 2G +1G per rarity
+  - [ ] Agility Rune grants +10% chance of dodging an obstacle per rarity
+  - [ ] Luck Rune grants increased coin spawn rate by 10% per rarity
 ### TamaGOLD
   - [X] There are 21 spots on the ground to dig, use 10G*n (n is the holes digged in a row) to dig a spot.
   - [X] Randomizer will pick a type of reward to drop. When run, all item types have 1/7 (equal) chance of being selected, but have a % chance of item drop rate, (e.g. roll 1/7 on a common, 60% chance of it actually appearing as a drop, 40% rerolled)
