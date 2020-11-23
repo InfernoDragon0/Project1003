@@ -27,6 +27,7 @@
 - [X] Random Quotes / death quotes / eat quotes
 - [X] Sleep to regen health
 - [X] Eat gold to regen health
+- [X] Real-Time Penalty System
 
 ## Side Games
   
