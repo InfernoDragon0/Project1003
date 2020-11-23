@@ -510,7 +510,7 @@ void loop1() {
       display.clearWindow(40, 25, 12, 20);
       drawSlp();
       delay(1000);
-      for (uint8_t i = 0; i < 10; i++) {
+      for (byte i = 0; i < 10; i++) {
         delay(1000);
         display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
@@ -1008,11 +1008,31 @@ void loop4() {
 
 // inventory stuff
 void loop5() {
+  byte curLocation = 1;
+  display.setCursor(0, 10);
+  for (byte inv = 0; inv < 10; inv++) {
+    display.setCursor(0, 10 + (inv * 10));
+    display.println(inventory[inv]);
+  }
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
+    if (display.getButtons(TSButtonLowerRight)) {
+      if (curLocation < 11) {
+        curLocation += 1;
+      }
+    }
+    if (display.getButtons(TSButtonUpperRight)) {
+      if (curLocation > 1) {
+        curLocation -= 1;
+      }
+    }
+    if (display.getButtons(TSButtonLowerLeft)) {
+      //maybe
+    }
     //Put whatever game function you have here
+
   }
 }
