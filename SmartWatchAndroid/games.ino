@@ -510,7 +510,7 @@ void loop1() {
       display.clearWindow(40, 25, 12, 20);
       drawSlp();
       delay(1000);
-      for (byte i = 0; i < 10; i++) {
+      for (uint8_t i = 0; i < 10; i++) {
         delay(1000);
         display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
@@ -986,6 +986,15 @@ void obstacle() { //this only allows one obstacle rite now
 // Dungeons! You cannot exit until you die or escape successfully
 void loop4() {
 
+  if (hp <= 0) { //not allowed to enter without health
+    display.setCursor(0,30);
+    display.print("Revive first");
+
+    delay(1000);
+    retMenu();
+    return;
+  }
+
   //battle data
   byte currentTurn = 0; //1 for enemy, 2 for ally, 0 for out of combat
   byte isInBattle = 0; //1 for is in battle
@@ -995,6 +1004,7 @@ void loop4() {
   //enemy data
   byte enemyHealth = 0; //ghost: 40-60, bird: 55-95
   byte enemyDamage = 0;
+  byte enemyAttacks = 1; //2 with Quick
   byte enemyType = 0; //0 is ghost, 1 is bird
   byte enemyColor = 0; //0-15, random color, color doesnt matter
   byte enemyPrefix = 0; //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
@@ -1093,11 +1103,165 @@ void loop4() {
   
   while (1) {
     if (doRollEnemy == 1) {
+      display.clearWindow(0,10,96,64);
+      //generate enemy
+      enemyType = random(0,2); //0 is ghost, 1 is bird
+      enemyHealth = enemyType == 0 ? random(40,61) : random(55,96); //ghost: 40-60, bird: 55-95
+      enemyDamage = enemyType == 0 ? random(12,19) : random(8,13); //ghost: 12-18 dmg, bird: 8-12 dmg 
+      enemyColor = random(0,16); //0-15, random color, color doesnt matter
+      enemyPrefix = random(0,4); //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
+
+      switch (enemyPrefix) {
+        case 0:
+          enemyPrefixBuff = random(6,13);
+          enemyDamage += enemyPrefixBuff; //just immediately add the buff here
+          break;
+        case 1:
+          enemyPrefixBuff = random(10,21);
+          enemyHealth += enemyPrefixBuff; //just immediately add the buff here
+          break;
+        case 2:
+          enemyPrefixBuff = 1;
+          enemyAttacks = 2;
+          break;
+        case 3:
+          enemyPrefixBuff = 30; //evasion is calculated separately
+          break;
+      }
+      
+
+      //weighted suffix
+      enemySuffix = random(0,11); //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
+
+      //if you dare enter the dungeon, you will always get uncommon - mythic runes, no less
+      if (enemySuffix > 8) {
+        enemySuffix = 2; //BOSS
+        enemyHealth += 100; //no more rng here
+        enemyDamage += 20;
+        enemyGReward = random(100,251); //100-250 gold
+
+        enemyItemReward = "m" + lootPart[random(0,4)]; //mythic
+      }
+      else if (enemySuffix > 5) {
+        enemySuffix = 1; //SLAVE
+        enemyHealth += 25; //no more rng here
+        enemyDamage += 5;
+        enemyGReward = random(40,71); //40-70 gold
+        enemyItemReward = "r" + lootPart[random(0,4)]; //rare
+      }
+      else {
+        enemySuffix = 0; //MOB
+        enemyGReward = random(30,61); //30-60 gold
+        enemyItemReward = "u" + lootPart[random(0,4)]; //uncommon
+      }
+      
+       
+       
+
+      //warmup and show enemy name
+      display.setCursor(0,10);
+      display.print("You will Fight:");
+      display.setCursor(0,20);
+      switch(enemyPrefix) {
+        case 0:
+          display.print("Edge v");
+          break;
+        case 1:
+          display.print("Tank v");
+          break;
+        case 2:
+          display.print("Quick v");
+          break;
+        case 3:
+          display.print("Hide v");
+          break;
+      }
+      display.print(enemyColor); //just print the number
+      display.print("-");
+      display.print(enemyType == 0 ? "Ghost" : "Bird");
+//      switch(enemyType) {
+//        case 0:
+//          display.print("Ghost");
+//          break;
+//        case 1:
+//          display.print("Bird");
+//          break;
+//      }
+      display.setCursor(0,30);
+      switch(enemySuffix) {
+        case 0:
+          display.print("Mob");
+          break;
+        case 1:
+          display.print("Slave");
+          break;
+        case 2:
+          display.print("BOSS");
+          break;
+      }
+      
+      delay(2000);
+      currentTurn = 2;
+      updateHP(); //print hp at 0,10
+
+      display.setCursor(50, 10); //print stim at right side
+      display.print("Stim:");
+      display.print(stims);
+
+      //print tamago and enemy at around 10,20 and 45,20
+      display.setX(10, 10 + 12 - 1); //draw tamago
+      display.setY(20, 20 + 20 - 1);
+      display.startData();
+      display.writeBuffer(defchar, 12 * 20);
+      display.endTransfer();
+
+      //generate enemy sprite
+      display.setX(45, 45 + 12 - 1); //draw enemy
+      display.setY(20, 20 + 20 - 1);
+      display.startData();
+
+      //generate sprite from enemy def
+      
+      display.writeBuffer(defchar, 12 * 20); //placeholder
+      display.endTransfer();
+
       //do roll random enemy
-      //top is show HP: 100 Stim:1
-      //print the ally and enemy sprite on the middle
       //bottom is show Enemy HP: 100 on first round
       doRollEnemy = 0;
+    }
+
+    if (currentTurn == 1) {
+      //enemy turn!
+      display.setCursor(0,50);
+      if (willBlockEnemy) {
+        willBlockEnemy = 0; //no damage done
+        display.print("Blocked Enemy!");
+      }
+      else { //no rng here because too much rng already
+        hp -= (enemyAttacks == 2 ? enemyDamage*2 : enemyDamage); //Quicks will attack twice.. without rng
+        updateHP();
+        display.print("Taken ");
+        display.print(enemyAttacks == 2 ? enemyDamage*2 : enemyDamage);
+        display.print(" Dmg!");
+      }
+
+      if (hp <= 0) {
+        display.clearWindow(0,10,96,64);
+        display.setCursor(0,30);
+        display.print("You died.");
+
+        delay(2000);
+        retMenu();
+        break;
+      }
+
+      else {
+        currentTurn = 2;
+        delay(2000);
+      }
+      
+      
+      
     }
     
     if (display.getButtons(TSButtonUpperLeft)) { //escape
@@ -1163,7 +1327,7 @@ void loop4() {
       else if (hp > 0) { //if we are not dead
         if (enemyPrefix == 3) { //if the enemy has Hide prefix
           byte canDodge = random(0,100);
-          if (canDodge <= 30) { //fixed at 30% cos too much rng already
+          if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
             display.print("Enemy Dodged");
           }
           else {
@@ -1248,38 +1412,16 @@ void loop4() {
       
       
     }
-    //Put whatever game function you have here
-    runGhost();
   }
 }
 
 // inventory stuff
 void loop5() {
-  byte curLocation = 1;
-  display.setCursor(0, 10);
-  for (byte inv = 0; inv < 10; inv++) {
-    display.setCursor(0, 10 + (inv * 10));
-    display.println(inventory[inv]);
-  }
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
-    if (display.getButtons(TSButtonLowerRight)) {
-      if (curLocation < 11) {
-        curLocation += 1;
-      }
-    }
-    if (display.getButtons(TSButtonUpperRight)) {
-      if (curLocation > 1) {
-        curLocation -= 1;
-      }
-    }
-    if (display.getButtons(TSButtonLowerLeft)) {
-      //maybe
-    }
     //Put whatever game function you have here
-
   }
 }
