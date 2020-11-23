@@ -359,7 +359,7 @@ void loop1() {
     if (runeSlots[rs] != "Empty") { //lbfa
       if (runeSlots[rs].indexOf('b') > 0) { //blod rune
         drawHeart();
-        switch(getRuneRarity(rs)) {
+        switch(getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
           case 'c':
             maxHp = 115;
             break;
