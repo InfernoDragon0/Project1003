@@ -32,15 +32,14 @@
   
 ### Dungeon
   - [ ] Your tamago vs random colored Ghost or Birds
-  - [ ] Enemy Ghost have 40-60 health, 12-18 damage
-  - [ ] Enemy Bird have 55-95 health, 8-12 damage
-  - [ ] Randomized Prefixes (Edge: +6-12 Damage) (Tank: +10-20 hp) (Quick: +1 Attack per round) (Hide: 30% Chance dodge attack) 
-  - [ ] Randomized Suffix (Boss: +100hp, +20 Damage, +always mythic loot) (Slave: +25hp, +5 Damage, +always rare loot)
-  - [ ] e.g. [Edge R-Ghost Boss] [Tank G-Bird] [Quick B-Ghost] [Hide Y-Bird Boss]
-  - [ ] You get random common loot from non prefixed enemies + 10/20/30/40 gold from enemies
-  - [ ] You get random uncommon loot from prefixed enemies + 30/40/50/60 gold from enemies
-  - [ ] You get random rare loot from lootboxes + 40/50/60/70 gold
-  - [ ] You get random mythic from Boss suffixed enemies + 100/150/200/250 gold
+  - [X] Enemy Ghost have 40-60 health, 12-18 damage
+  - [X] Enemy Bird have 55-95 health, 8-12 damage
+  - [X] Randomized Prefixes (Edge: +6-12 Damage) (Tank: +10-20 hp) (Quick: +1 Attack per round) (Hide: 30% Chance dodge attack) 
+  - [X] Randomized Suffix (Boss: +100hp, +20 Damage, +always mythic loot) (Slave: +25hp, +5 Damage, +always rare loot)
+  - [X] e.g. [Edge R-Ghost Boss] [Tank G-Bird] [Quick B-Ghost] [Hide Y-Bird Boss]
+  - [X] You get random uncommon loot from prefixed enemies + 30-60 gold from enemies
+  - [X] You get random rare loot from Slave enemies + 40-70 gold
+  - [X] You get random mythic from Boss enemies + 100-250 gold
   - [X] Attack: Deal 12 Damage
   - [X] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
   - [X] Stim: Pay 40 Gold to heal 30 health, you get one per fight
