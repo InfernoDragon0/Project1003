@@ -1036,8 +1036,7 @@ void loop4() {
 
   //battle data
   byte currentTurn = 0; //1 for enemy, 2 for ally, 0 for out of combat
-  byte isInBattle = 0; //1 for is in battle
-  byte doRollEnemy = 0; //0 while the enemy still alive
+  byte doRollEnemy = 1; //0 while the enemy still alive
   byte willBlockEnemy = 0; //1 for defense
   
   //enemy data
@@ -1051,6 +1050,9 @@ void loop4() {
   byte enemySuffix = 0; //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
   byte enemyGReward = 0;
   String enemyItemReward = "Empty";
+
+  //if ghost, 361, if bird 204
+  unsigned char enemy[361];
 
   //ally data
   byte escapeChance = 15;
@@ -1143,6 +1145,8 @@ void loop4() {
   while (1) {
     if (doRollEnemy == 1) {
       display.clearWindow(0,10,96,64);
+      display.setCursor(0,20);
+      display.print("Rolling enemy..");
       //generate enemy
       enemyType = random(0,2); //0 is ghost, 1 is bird
       enemyHealth = enemyType == 0 ? random(40,61) : random(55,96); //ghost: 40-60, bird: 55-95
@@ -1198,6 +1202,9 @@ void loop4() {
        
 
       //warmup and show enemy name
+      delay(1000); //delay for the suspense
+      
+      display.clearWindow(0,10,96,64);
       display.setCursor(0,10);
       display.print("You will Fight:");
       display.setCursor(0,20);
@@ -1239,7 +1246,10 @@ void loop4() {
           break;
       }
       
-      delay(2000);
+      delay(3000);
+
+      display.clearWindow(0,10,96,64);
+      
       currentTurn = 2;
       updateHP(); //print hp at 0,10
 
@@ -1255,9 +1265,9 @@ void loop4() {
       display.endTransfer();
 
       //generate enemy sprite
-      display.setX(45, 45 + 12 - 1); //draw enemy
-      display.setY(20, 20 + 20 - 1);
-      display.startData();
+      //display.setX(45, 45 + (enemyType == 0? 19 - 1 : 17-1)); //draw enemy
+      //display.setY(20, 20 + (enemyType == 0? 19 - 1 : 12-1));
+      //display.startData();
 
       //generate sprite from enemy def
       //TS_8b_Black
@@ -1269,46 +1279,49 @@ void loop4() {
       //TS_8b_Brown
       //TS_8b_Gray
 
-      //if ghost, 361, if bird 204
-      unsigned char enemy[enemyType == 0? 361 : 204];
 
-      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
-        //flappyBirdBitmap / ghost
-        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
-        //base color edit
-        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
-          switch (enemyColor) {
-            case 0:
-              enemy[i] = TS_8b_Black;
-              break;
-            case 1:
-              enemy[i] = TS_8b_White;
-              break;
-            case 2:
-              enemy[i] = TS_8b_Blue;
-              break;
-            case 3:
-              enemy[i] = TS_8b_Red;
-              break;
-            case 4:
-              enemy[i] = TS_8b_Yellow;
-              break;
-            case 5:
-              enemy[i] = TS_8b_Green;
-              break;
-            case 6:
-              enemy[i] = TS_8b_Brown;
-              break;
-            case 7:
-              enemy[i] = TS_8b_Gray;
-              break;
-          }
-        }
-      }
+
+//      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
+//        //flappyBirdBitmap / ghost
+//        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
+//        //base color edit
+//        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
+//          switch (enemyColor) {
+//            case 0:
+//              enemy[i] = TS_8b_Black;
+//              break;
+//            case 1:
+//              enemy[i] = TS_8b_White;
+//              break;
+//            case 2:
+//              enemy[i] = TS_8b_Blue;
+//              break;
+//            case 3:
+//              enemy[i] = TS_8b_Red;
+//              break;
+//            case 4:
+//              enemy[i] = TS_8b_Yellow;
+//              break;
+//            case 5:
+//              enemy[i] = TS_8b_Green;
+//              break;
+//            case 6:
+//              enemy[i] = TS_8b_Brown;
+//              break;
+//            case 7:
+//              enemy[i] = TS_8b_Gray;
+//              break;
+//          }
+//        }
+//      }
 
       
-      display.writeBuffer(enemy, enemyType == 0? 361 : 204);
-      display.endTransfer();
+      //display.writeBuffer(enemy, enemyType == 0? 361 : 204);
+      //display.endTransfer();
+
+      display.setCursor(0, 50);
+      display.print("Enemy HP:");
+      display.print(enemyHealth);
 
       //do roll random enemy
       //bottom is show Enemy HP: 100 on first round
@@ -1317,14 +1330,16 @@ void loop4() {
 
     if (currentTurn == 1) {
       //enemy turn!
-      display.setCursor(0,50);
+      
       if (willBlockEnemy) {
         willBlockEnemy = 0; //no damage done
+        display.setCursor(0,50);
         display.print("Blocked Enemy!");
       }
       else { //no rng here because too much rng already
         hp -= (enemyAttacks == 2 ? enemyDamage*2 : enemyDamage); //Quicks will attack twice.. without rng
         updateHP();
+        display.setCursor(0,50);
         display.print("Taken ");
         display.print(enemyAttacks == 2 ? enemyDamage*2 : enemyDamage);
         display.print(" Dmg!");
@@ -1342,20 +1357,17 @@ void loop4() {
 
       else {
         currentTurn = 2;
-        delay(2000);
       }
-      
-      
-      
     }
     
     if (display.getButtons(TSButtonUpperLeft)) { //escape
-      display.setCursor(0,50);
-      if (currentTurn == 0 || isInBattle == 0) {
+      
+      if (currentTurn == 0) {
         retMenu();
         break;
       }
       else if (currentTurn != 2) {
+        display.setCursor(0,50);
         display.print("Not your Turn!");
       }
       else {
@@ -1371,6 +1383,7 @@ void loop4() {
         }
         else {
           currentTurn = 1;
+          display.setCursor(0,50);
           display.print("Escape Failed.");
           delay(1000);
         }
@@ -1379,24 +1392,29 @@ void loop4() {
     }
 
     if (display.getButtons(TSButtonUpperRight)) { //stim
-      display.setCursor(0,50);
+      
       if (currentTurn != 2) {
+        display.setCursor(0,50);
         display.print("Not your Turn!       ");
       }
       else if (hp >= maxHp) { //no need to stim
+        display.setCursor(0,50);
         display.print("At Max Health       ");
       }
       else if (stims == 0) {
+        display.setCursor(0,50);
         display.print("No more Stims       ");
       }
       else if (gold < stimPrice) {
+        display.setCursor(0,50);
         display.print("Not enough Gold     ");
       }
       else {
         stims--;
         hp+= 30;
         updateHP();
-        display.print("Healed, HP: ");
+        display.setCursor(0,50);
+        display.print("Stimmed! HP: ");
         display.print(hp);
         delay(1000);
       }
@@ -1405,25 +1423,29 @@ void loop4() {
       
     }
     if (display.getButtons(TSButtonLowerLeft)) { //attack
-      display.setCursor(0,50);
+      
       if (currentTurn != 2) {
+        display.setCursor(0,50);
         display.print("Not your Turn!       ");
       }
       else if (hp > 0) { //if we are not dead
         if (enemyPrefix == 3) { //if the enemy has Hide prefix
           byte canDodge = random(0,100);
           if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
+            display.setCursor(0,50);
             display.print("Enemy Dodged");
           }
           else {
             enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-            display.print("Enemy HP:");
+            display.setCursor(0,50);
+            display.print("Hit! HP:");
             display.print(enemyHealth);
           }
         }
         else {
           enemyHealth -= attackDamage; //deal attackdamage to enemy hp
-          display.print("Enemy HP:");
+          display.setCursor(0,50);
+          display.print("Hit! HP:");
           display.print(enemyHealth);
         }
         delay(2000);        
@@ -1473,8 +1495,9 @@ void loop4() {
       delay(2000);
     }
     if (display.getButtons(TSButtonLowerRight)) { //defend and heal
-      display.setCursor(0,50);
+      
       if (currentTurn != 2) {
+        display.setCursor(0,50);
         display.print("Not your Turn!     ");
       }
       else {
@@ -1484,10 +1507,12 @@ void loop4() {
         if (willHeal > defHealMin) {
           hp += willHeal;
           updateHP();
+          display.setCursor(0,50);
           display.print("Defend! HP:");
           display.print(hp);
         }
         else {
+          display.setCursor(0,50);
           display.print("Will Defend!     ");
         }
         
