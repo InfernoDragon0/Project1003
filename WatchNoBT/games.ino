@@ -1697,7 +1697,7 @@ void loop5() {
       }
     }
     if (display.getButtons(TSButtonUpperRight)) {
-      //maybe
+      // Eqp, Uneqp and trash function here
     }
     //Put whatever game function you have here
     display.setCursor(28, 11);
