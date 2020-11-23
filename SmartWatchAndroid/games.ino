@@ -170,11 +170,9 @@ void retMenu() {
 int16_t gold = 100;
 char gold_buffer[11];
 
-
 byte maxHp = 100; //modded by blood rune
 byte hp = 100;
 char hp_buffer[8];
-
 
 // Control HP
 void chkHP() {
@@ -223,7 +221,7 @@ const char * deathQuotes[] PROGMEM = { //Progmem all the things
   "Welcome Back!",
   "Fast Travel",
   "Rolled 1 in life",
-  "Guardian Angel!",
+  "Guardian Angel!"
 };
 char deathQ_buffer[17];
 
@@ -235,11 +233,9 @@ void chkDead() {
     gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
     display.setCursor(0, 52);
-    //display.print(F("You Lose. Reviving.."));
-    byte rnd = random(10);
+    byte rnd = random(11);
     strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
     display.println(deathQ_buffer);
-    
     delay(1500);
     display.clearWindow(0, 52, 96, 64);
     display.setCursor(0, 52);
@@ -312,6 +308,29 @@ void printQuote() {
   display.println(quote_buffer);
 }
 
+// Quotes to display when "eating"
+const char * eatQuotes[] PROGMEM = { //Progmem all the things
+  "Munch Munch~~",
+  "Yum yummm",
+  "Yummy!",
+  "Delicious!",
+  "Good Food!",
+  "Lamb SAAUCEE",
+  "Meal time!",
+  "I lub food!",
+  "Expensive meal!"
+};
+char equote_buffer[15];
+
+// Needs the buffer to prevent bombing memory
+void printeQuote() {
+  byte randnum = random(10);
+  display.clearWindow(0, 45, 96, 64);
+  display.setCursor(1, 52);
+  strcpy_P(equote_buffer, (char *)pgm_read_word(&(eatQuotes[randnum])));
+  display.println(equote_buffer);
+}
+
 //Inventory management
 String inventory[10] = { //note, m to find mythic may clash
   "Empty", "Empty",
@@ -376,8 +395,6 @@ byte goldGenRate = 1;
 void loop1() {
   byte hpRegenRate = 1;
   byte foodCost = 8;
-
-  
   chkDead();
   RTP();
   updateGold();
@@ -389,7 +406,7 @@ void loop1() {
     if (runeSlots[rs] != "Empty") { //lbfa
       if (runeSlots[rs].indexOf('b') > 0) { //blod rune
         drawHeart();
-        switch(getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
+        switch (getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
           case 'c':
             maxHp = 115;
             break;
@@ -403,11 +420,10 @@ void loop1() {
             maxHp = 210;
             break;
         }
-        
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         drawSeven();
-        switch(getRuneRarity(rs)) {
+        switch (getRuneRarity(rs)) {
           case 'c':
             goldGenRate = 2; //gold gen rate
             break;
@@ -419,12 +435,12 @@ void loop1() {
             break;
           case 'm':
             goldGenRate = 10;
-            break; 
+            break;
         }
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-        drawMoney(); 
-        switch(getRuneRarity(rs)) {
+        drawMoney();
+        switch (getRuneRarity(rs)) {
           case 'c':
             foodCost = 7; //food cost rate
             break;
@@ -436,12 +452,12 @@ void loop1() {
             break;
           case 'm':
             foodCost = 1;
-            break; 
+            break;
         }
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         drawLightning();
-        switch(getRuneRarity(rs)) {
+        switch (getRuneRarity(rs)) {
           case 'c':
             hpRegenRate = 2; //health regen rate change based on runes
             break;
@@ -479,8 +495,8 @@ void loop1() {
       else {
         display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
-        display.print(F("Munch Munch~~"));
-        hp += hpRegenRate*2;
+        printeQuote();
+        hp += hpRegenRate * 2;
         gold -= foodCost;
         updateHP();
         updateGold();
@@ -538,7 +554,6 @@ void loop2() { //lootbox game
   byte curDigged = 0;
   short jackpot = 1000;
   byte coinGain = 20;
-
   byte baseChances[7] = {10, 6, 3, 3, 1, 0, 1};
 
   //check runes
@@ -607,7 +622,6 @@ void loop2() { //lootbox game
         case 6: //jackpot!
           lootRandomizer[rd] = lootRarity[rType];
           break;
-
         case 1://common!
         case 2://uncommon!
         case 4://rare!
@@ -630,66 +644,60 @@ void loop2() { //lootbox game
       retMenu();
       break;
     }
-
     if (display.getButtons(TSButtonLowerLeft)) { //move next
       if (curLocation < 21) {
         display.setCursor(0, 10);
-        display.print("                          "); //clear display line
+        display.print(F("                          ")); //clear display line
         curLocation += 1;
         display.setCursor(0, 50);
-        display.print("                          "); //clear display line
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(10 * (digTime + 1));
-        display.print(" Gold to dig");
+        display.print(F(" Gold to dig"));
       }
-
     }
     if (display.getButtons(TSButtonUpperRight)) { //move previous
       if (curLocation > 1) {
         display.setCursor(0, 10);
-        display.print("                          "); //clear display line
+        display.print(F("                          ")); //clear display line
         curLocation -= 1;
         display.setCursor(0, 50);
-        display.print("                          "); //clear display line
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(10 * (digTime + 1));
-        display.print(" Gold to dig");
+        display.print(F(" Gold to dig"));
       }
     }
-
     if (display.getButtons(TSButtonLowerRight)) {
       //some way to save this thing
-
       display.setCursor(0, 50);
-      display.print("                          "); //clear display line
-
+      display.print(F("                          ")); //clear display line
       display.setCursor(0, 50);
-
       if (lootRandomizer[curLocation - 1] == "none") {
-        display.print("Nothing here");
+        display.print(F("Nothing here"));
       }
       else if (gold < 10 * (digTime + 1)) {
-        display.print("Not enough Gold.");
+        display.print(F("Not enough Gold."));
       }
       else {
         if (lootRandomizer[curLocation - 1] == "E") {
-          display.print("Oops! Empty here");
+          display.print(F("Oops! Empty here"));
           lootRandomizer[curLocation - 1] = "none";
           digTime++;
           gold -= 10 * digTime;
         }
         else if (lootRandomizer[curLocation - 1] == "G") {
-          display.print("+");
+          display.print(F("+"));
           display.print(coinGain);
-          display.print(" Gold");
+          display.print(F(" Gold"));
           lootRandomizer[curLocation - 1] = "none";
           digTime++;
           gold += coinGain;
         }
         else if (lootRandomizer[curLocation - 1] == "J") {
-          display.print("+");
+          display.print(F("+"));
           display.print(jackpot);
-          display.print(" Jackpot!");
+          display.print(F(" Jackpot!"));
           lootRandomizer[curLocation - 1] = "none";
           digTime++;
           gold += jackpot;
@@ -717,23 +725,20 @@ void loop2() { //lootbox game
             gold -= 10 * digTime;
           }
           else  {
-            display.print("Inventory Full!");
+            display.print(F("Inventory Full!"));
           }
         }
       }
     }
 
-
     display.setCursor(0, 10);
-    display.print("debug loot: ");
+    display.print(F("debug loot: "));
     display.print(curLocation);
-    display.print("..");
+    display.print(F(".."));
     display.print(lootRandomizer[curLocation - 1]);
-
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
       display.setCursor(0, 20 + (y * 10));
-
       for (byte x = y * 7; x < (y * 7) + 7; x++) {
         if (curLocation == (x + 1)) {
           display.print("O ");
@@ -749,12 +754,10 @@ void loop2() { //lootbox game
         }
       }
     }
-    //drawBitmap();
   }
 }
 
 String bombs[21];
-
 
 // Tamaboom here
 void loop3() {
@@ -762,7 +765,6 @@ void loop3() {
   byte curLocation = 1;
   byte sweeped = 0;
   byte all = 0;
-
   byte goldChance = 5;
   byte goldGain = 5;
   byte dodgeRate = 0;
@@ -770,7 +772,7 @@ void loop3() {
   for (byte rs = 0; rs < 2; rs++) {
     if (runeSlots[rs] != "Empty") { //lbfa
       if (runeSlots[rs].indexOf('b') > 0) { //blod rune
-        switch(getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
+        switch (getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
           case 'c':
             maxHp = 115;
             break;
@@ -787,7 +789,7 @@ void loop3() {
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         drawSeven();
-        switch(getRuneRarity(rs)) {
+        switch (getRuneRarity(rs)) {
           case 'c':
             goldChance = 6; //gold to bomb ratio
             break;
@@ -799,12 +801,12 @@ void loop3() {
             break;
           case 'm':
             goldChance = 10;
-            break; 
+            break;
         }
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-        drawMoney(); 
-        switch(getRuneRarity(rs)) {
+        drawMoney();
+        switch (getRuneRarity(rs)) {
           case 'c':
             goldGain = 6; //gold per dig rate
             break;
@@ -816,12 +818,12 @@ void loop3() {
             break;
           case 'm':
             goldGain = 15;
-            break; 
+            break;
         }
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         drawLightning();
-        switch(getRuneRarity(rs)) {
+        switch (getRuneRarity(rs)) {
           case 'c':
             dodgeRate = 8; //dodge rate
             break;
@@ -850,7 +852,7 @@ void loop3() {
 
   display.setCursor(0, 50);
   display.print(all);
-  display.print(" Gold spots!");
+  display.print(F(" Gold spots!"));
 
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
@@ -871,7 +873,6 @@ void loop3() {
     }
     if (display.getButtons(TSButtonLowerRight)) { //dig dig
       //some way to save this thing
-
       display.setCursor(0, 50);
       if (bombs[curLocation - 1] == "O") {
         display.print("+");
@@ -894,37 +895,31 @@ void loop3() {
           gold += 100;
           delay(2000);
           //end gamehere
-
           retMenu();
           break;
         }
-
       }
-
       else if (bombs[curLocation - 1] == "B") { //no longer loses on one bomb, but when out of health
         //agility rune
-        byte rollHit = random(0,100); //roll a hit, if higher than dodge rate, then get hit
+        byte rollHit = random(0, 100); //roll a hit, if higher than dodge rate, then get hit
         if (dodgeRate > rollHit) {
           display.setCursor(0, 50);
           bombs[curLocation - 1] = "X";
-          display.print("Dodged a bomb!   ");
+          display.print(F("Dodged a bomb!   "));
           display.print(hp);
         }
         else {
-           hp -= 20;
+          hp -= 20;
           updateHP();
-  
           if (hp <= 0) {
             display.clearWindow(0, 10, 96, 64);
             display.setCursor(0, 30);
-            display.print("Boom! you lose!");
+            display.print(F("Boom! you lose!"));
             delay(2000);
             //end gamehere
-  
             retMenu();
             break;
           }
-  
           display.setCursor(0, 50);
           bombs[curLocation - 1] = "X";
           display.print("Ow! HP Left: ");
@@ -934,13 +929,12 @@ void loop3() {
       else {
         display.print("Nothing here!");
       }
-
     }
 
     display.setCursor(0, 10);
-    display.print("Debug loot: ");
+    display.print(F("Debug loot: "));
     display.print(curLocation);
-    display.print("..");
+    display.print(F(".."));
     display.print(bombs[curLocation - 1]);
 
     display.setCursor(0, 20);
@@ -957,11 +951,8 @@ void loop3() {
           }
           else {
             display.print("X ");
-
-
           }
         }
-
       }
     }
   }
@@ -1009,15 +1000,11 @@ void loop4() {
       if (osGhostY > 20) {
         osGhostY -= 20;
       }
-
     }
     //Put whatever game function you have here
     runGhost();
   }
 }
-
-
-
 
 // inventory stuff
 void loop5() {
