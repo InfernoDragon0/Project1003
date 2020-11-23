@@ -212,6 +212,21 @@ void updateGold() {
   display.println(gold_buffer);
 }
 
+// Quotes to display when revive
+const char * deathQuotes[] PROGMEM = { //Progmem all the things
+  "YOU DIED", //you died
+  "U R finally awake", //you're finally awake
+  "Not Today!", //not today
+  "Deth's 4 poor ppl", //Death's for poor people
+  "Nothing is free!", //Nothing in life is free, even Death.
+  "Meet the New-U!", //Meet the new you! They're like the old you, but more alive!
+  "Welcome Back!",
+  "Fast Travel",
+  "Rolled 1 in life",
+  "Guardian Angel!",
+};
+char deathQ_buffer[17];
+
 // If dead then revive
 void chkDead() {
   if (hp <= 0) {
@@ -220,7 +235,11 @@ void chkDead() {
     gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
     display.setCursor(0, 52);
-    display.print(F("You Lose. Reviving.."));
+    //display.print(F("You Lose. Reviving.."));
+    byte rnd = random(10);
+    strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
+    display.println(deathQ_buffer);
+    
     delay(1500);
     display.clearWindow(0, 52, 96, 64);
     display.setCursor(0, 52);
@@ -353,10 +372,11 @@ char getRuneRarity(byte slot) {
   return runeSlots[slot][0];
 }
 
+byte goldGenRate = 1;
 void loop1() {
   byte hpRegenRate = 1;
   byte foodCost = 8;
-  byte goldGenRate = 1;
+
   
   chkDead();
   RTP();
