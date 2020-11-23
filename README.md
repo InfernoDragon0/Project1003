@@ -24,6 +24,9 @@
 - [ ] RUN! is free to play: Mini game rewards gold, health loss per obstacle hit
 - [X] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
 - [X] TamaBOOM is free to play: Health loss per bomb and gold gain per spot digged
+- [X] Random Quotes
+- [X] Sleep to regen health
+- [X] Eat to regen health
 
 ## Side Games
 
