@@ -5,7 +5,6 @@ typedef struct
   void (*selectionHandler)(uint8_t);
 } menu_info;
 
-
 uint8_t menuHistory[5];
 uint8_t menuHistoryIndex = 0;
 uint8_t currentMenu = 0;
@@ -13,7 +12,6 @@ uint8_t currentMenuLine = 0;
 uint8_t lastMenuLine = -1;
 uint8_t currentSelectionLine = 0;
 uint8_t lastSelectionLine = -1;
-
 
 void newMenu(int8_t newIndex) {
   currentMenuLine = 0;
@@ -237,7 +235,7 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop3();
   }
-  if (selection == 3){ //Side Game: Dungeons
+  if (selection == 3){ //Side Game: Run
     display.clearWindow(0, 10, 96, 64);
     loop4();
   }
@@ -288,7 +286,6 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
-      display.clearWindow(0, 10, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;

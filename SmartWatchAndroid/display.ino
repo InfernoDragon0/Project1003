@@ -18,7 +18,7 @@ const uint8_t clearButton = TSButtonLowerRight;
 void buttonPress(uint8_t buttons) {
   if (currentDisplayState == displayStateHome) {
     if (buttons == viewButton) {
-      menuHandler = viewNotifications;
+      //menuHandler = viewNotifications;
       menuHandler(0);
     } else if (buttons == menuButton) {
       menuHandler = viewMenu;
@@ -34,71 +34,6 @@ void buttonPress(uint8_t buttons) {
     }
   }
 }
-
-void viewNotifications(uint8_t button) {
-  if (!button) {
-    if (menu_debug_print)SerialMonitorInterface.println("viewNotificationsInit");
-    currentDisplayState = displayStateMenu;
-    display.clearWindow(0, 10, 96, 64);
-    display.setFont(font10pt);
-    display.fontColor(defaultFontColor, defaultFontBG);
-    if (amtNotifications) {
-      if (menu_debug_print)SerialMonitorInterface.println("amtNotifications=true");
-      //display.setCursor(0, menuTextY[1]);
-      //display.setCursor(0, 0);
-      //display.print(ANCSNotificationTitle());
-
-      int line = 0;
-      int totalMessageChars = strlen(notificationLine2);
-      int printedChars = 0;
-      while (printedChars < totalMessageChars && line < 3) {
-        char tempPrintBuff[40] = "";
-        int tempPrintBuffPos = 0;
-        while (display.getPrintWidth(tempPrintBuff) < 90 && printedChars < totalMessageChars) {
-          if (!(tempPrintBuffPos == 0 && notificationLine2[printedChars] == ' ')) {
-            tempPrintBuff[tempPrintBuffPos] = notificationLine2[printedChars];
-            tempPrintBuffPos++;
-          }
-          printedChars++;
-          tempPrintBuff[tempPrintBuffPos] = '\0';
-        }
-        display.setCursor(0, menuTextY[line]);
-        display.print((char*)tempPrintBuff);
-        line++;
-      }
-
-
-
-      display.setCursor(0, menuTextY[3]);
-      display.print(F("< "));
-      display.print("Clear");
-
-      char backStr[] = "Back >";
-      int Xpos = 95 - display.getPrintWidth(backStr);
-      display.setCursor(Xpos, menuTextY[3]);
-      display.print(backStr);
-    } else {
-      if (menu_debug_print)SerialMonitorInterface.println("amtNotifications=false");
-      display.setCursor(0, menuTextY[0]);
-      display.print(F("  No notifications."));
-      char backStr[] = "Back >";
-      int Xpos = 95 - display.getPrintWidth(backStr);
-      display.setCursor(Xpos, menuTextY[3]);
-      display.print(backStr);
-    }
-  } else {
-    if (button == clearButton) {//actually back?
-      currentDisplayState = displayStateHome;
-      initHomeScreen();
-    } else if (button == selectButton) { //do action
-      amtNotifications = 0;
-      //ANCSPerformNotificationNegativeAction();
-      currentDisplayState = displayStateHome;
-      initHomeScreen();
-    }
-  }
-}
-
 
 void initHomeScreen() {
   display.clearWindow(0, 10, 96, 64);
@@ -149,8 +84,6 @@ void updateDateDisplay() {
   display.print(RTCZ.getDay());
   display.print(F("  "));
 #endif
-  ble_connection_displayed_state = ~ble_connection_state;
-  updateBLEstatusDisplay();
 }
 
 void updateMainDisplay() {
@@ -159,28 +92,19 @@ void updateMainDisplay() {
     lastSetBrightness = brightness;
   }
   updateDateDisplay();
-  updateBLEstatusDisplay();
   displayBattery();
   if (currentDisplayState == displayStateHome) {
     updateTimeDisplay();
-    if (rewriteMenu || lastAmtNotificationsShown != amtNotifications) {
-      lastAmtNotificationsShown = amtNotifications;
-      display.setFont(font10pt);
-      display.clearWindow(0, menuTextY[2], 96, 13);
-      if (amtNotifications) {
-        int printPos = 48 - (display.getPrintWidth(notificationLine1) / 2);
-        if (printPos < 0)printPos = 0;
-        display.setCursor(printPos, menuTextY[2]);
-        display.print(notificationLine1);
-      }
-      display.setCursor(0, menuTextY[3]);
-      display.print(F("< Menu          "));
-      char viewStr[] = "View >";
-      int Xpos = 95 - display.getPrintWidth(viewStr);
-      display.setCursor(Xpos, menuTextY[3]);
-      display.print(viewStr);
-      rewriteMenu = false;
-    }
+    display.setFont(font10pt);
+    display.clearWindow(0, menuTextY[2], 96, 13);
+    display.setCursor(0, menuTextY[3]);
+    display.print(F("< Menu          "));
+//      char viewStr[] = "View >";
+//      int Xpos = 95 - display.getPrintWidth(viewStr);
+//      display.setCursor(Xpos, menuTextY[3]);
+//      display.print(viewStr);
+//      rewriteMenu = false;
+//    }
   }
   lastMainDisplayUpdate = millisOffset();
 }
@@ -256,23 +180,6 @@ void updateTimeDisplay() {
     display.print(lastSecondDisplayed);
   }
   rewriteTime = false;
-}
-
-void updateBLEstatusDisplay() {
-  if (ble_connection_state == ble_connection_displayed_state)
-    return;
-  ble_connection_displayed_state = ble_connection_state;
-  int x = 62;
-  int y = 6;
-  int s = 2;
-  uint8_t color = 0x03;
-  if (ble_connection_state)
-    color = 0xE0;
-  display.drawLine(x, y + s + s, x, y - s - s, color);
-  display.drawLine(x - s, y + s, x + s, y - s, color);
-  display.drawLine(x + s, y + s, x - s, y - s, color);
-  display.drawLine(x, y + s + s, x + s, y + s, color);
-  display.drawLine(x, y - s - s, x + s, y - s, color);
 }
 
 void displayBattery() {

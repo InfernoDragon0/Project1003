@@ -17,13 +17,9 @@
 
 #include <SPI.h>
 #include <TinyScreen.h>
-#include <STBLE.h>
 #include <Wire.h>
 
-#define BLE_DEBUG false
-#define menu_debug_print false
-uint32_t doVibrate = 0;
-uint8_t ble_can_sleep = false;
+#define menu_debug_print true
 
 #if defined (ARDUINO_ARCH_AVR)
 TinyScreen display = TinyScreen(TinyScreenDefault);
@@ -46,23 +42,7 @@ void wakeHandler() {
     sleepTime = 0;
   }
 }
-
-void RTCwakeHandler() {
-  //not used
-}
-
-void watchSleep() {
-  if (doVibrate || ble_can_sleep)
-    return;
-  sleepTime = RTCZ.getEpoch();
-  RTCZ.standbyMode();
-}
 #endif
-
-uint8_t ble_rx_buffer[21];
-uint8_t ble_rx_buffer_len = 0;
-uint8_t ble_connection_state = false;
-uint8_t ble_connection_displayed_state = true;
 
 uint8_t defaultFontColor = TS_8b_White;
 uint8_t defaultFontBG = TS_8b_Black;
@@ -86,24 +66,14 @@ uint8_t rewriteTime = true;
 uint8_t displayOn = 0;
 uint8_t buttonReleased = 1;
 uint8_t rewriteMenu = false;
-uint8_t amtNotifications = 0;
-uint8_t lastAmtNotificationsShown = -1;
 unsigned long mainDisplayUpdateInterval = 300;
 unsigned long lastMainDisplayUpdate = 0;
-char notificationLine1[20] = "";
-char notificationLine2[20] = "";
-
-uint8_t vibratePin = 6;
-uint8_t vibratePinActive = HIGH;
-uint8_t vibratePinInactive = LOW;
-
 
 int brightness = 5;
 uint8_t lastSetBrightness = 100;
 
 const FONT_INFO& font10pt = thinPixel7_10ptFontInfo;
 const FONT_INFO& font22pt = liberationSansNarrow_22ptFontInfo;
-
 
 void setup(void)
 {
@@ -112,7 +82,7 @@ void setup(void)
   for (int i = 0; i < 20; i++) {
     pinMode(i, INPUT_PULLUP);
   }
-  setTime(22, 10, 10, 19, 11, 20); //h, m, s, d, m, y
+  setTime(22, 10, 10, 24, 11, 20); //h, m, s, d, m, y
 #elif defined(ARDUINO_ARCH_SAMD)
  /* for (int i = 0; i < 27; i++) {
     pinMode(i, INPUT_PULLUP);
@@ -126,7 +96,7 @@ void setup(void)
   pinMode(2, INPUT);*/
   RTCZ.begin();
   RTCZ.setTime(22, 00, 00);//h,m,s
-  RTCZ.setDate(19, 11, 20);//d,m,y
+  RTCZ.setDate(24, 11, 20);//d,m,y
   //RTCZ.attachInterrupt(RTCwakeHandler);
   //RTCZ.enableAlarm(RTCZ.MATCH_HHMMSS);
   //RTCZ.setAlarmEpoch(RTCZ.getEpoch() + 1);
@@ -139,12 +109,9 @@ void setup(void)
   SerialMonitorInterface.begin(115200);
   display.begin();
   display.setFlip(true);
-  pinMode(vibratePin, OUTPUT);
-  digitalWrite(vibratePin, vibratePinInactive);
   initHomeScreen();
   requestScreenOn();
   delay(100);
-  BLEsetup();
 
 #if defined(ARDUINO_ARCH_SAMD)
   // https://github.com/arduino/ArduinoCore-samd/issues/142
@@ -166,69 +133,8 @@ uint32_t millisOffset() {
   return (millisOffsetCount * 1000ul) + millis();
 #endif
 }
-#define PIPE_UART_OVER_BTLE_UART_TX_TX 0 //for communication between nRF connect and serialmonitor
-void loop() {
-  aci_loop();//Process any ACI commands or events from the NRF8001- main BLE handler, must run often. Keep main loop short.
-  if (ble_rx_buffer_len) {
-    if (ble_rx_buffer[0] == 'D') {
-      //expect date/time string- example: D2015 03 05 11 48 42
-      lastReceivedTime = millisOffset();
-      updateTime(ble_rx_buffer + 1);
-      requestScreenOn();
-    }
-    if (ble_rx_buffer[0] == '1') {
-      memcpy(notificationLine1, ble_rx_buffer + 1, ble_rx_buffer_len - 1);
-      notificationLine1[ble_rx_buffer_len - 1] = '\0';
-      amtNotifications = 1;
-      requestScreenOn();
-    }
-    if (ble_rx_buffer[0] == '2') {
-      memcpy(notificationLine2, ble_rx_buffer + 1, ble_rx_buffer_len - 1);
-      notificationLine2[ble_rx_buffer_len - 1] = '\0';
-      amtNotifications = 1;
-      requestScreenOn();
-      rewriteMenu = true;
-      updateMainDisplay();
-      doVibrate = millisOffset();
-    }
-    SerialMonitorInterface.print(ble_rx_buffer_len); //for communication between nRF connect and serialmonitor
-    SerialMonitorInterface.print(" : "); //for communication between nRF connect and serialmonitor
-    SerialMonitorInterface.println((char*)ble_rx_buffer); //for communication between nRF connect and serialmonitor
-    ble_rx_buffer_len = 0; //for communication between nRF connect and serialmonitor
-  }
-  if (SerialMonitorInterface.available()) {//Check if serial input is available to send
-    delay(10);//should catch input
-    uint8_t sendBuffer[21]; //for communication between nRF connect and serialmonitor
-    uint8_t sendLength = 0; //for communication between nRF connect and serialmonitor
-    while (SerialMonitorInterface.available() && sendLength < 19) { //for communication between nRF connect and serialmonitor
-      sendBuffer[sendLength] = SerialMonitorInterface.read(); //for communication between nRF connect and serialmonitor
-      sendLength++; //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-    if (SerialMonitorInterface.available()) { //for communication between nRF connect and serialmonitor
-      SerialMonitorInterface.print(F("Input truncated, dropped: ")); //for communication between nRF connect and serialmonitor
-      if (SerialMonitorInterface.available()) { //for communication between nRF connect and serialmonitor
-        SerialMonitorInterface.write(SerialMonitorInterface.read()); //for communication between nRF connect and serialmonitor
-      } //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-    sendBuffer[sendLength] = '\0'; //Terminate string
-    sendLength++; //for communication between nRF connect and serialmonitor
-    if (!lib_aci_send_data(PIPE_UART_OVER_BTLE_UART_TX_TX, (uint8_t*)sendBuffer, sendLength)) //for communication between nRF connect and serialmonitor
-    { //for communication between nRF connect and serialmonitor
-      SerialMonitorInterface.println(F("TX dropped!")); //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-  } //for communication between nRF connect and serialmonitor
 
-  if (doVibrate) {
-    uint32_t td = millisOffset() - doVibrate;
-    if (td > 0 && td < 100) {
-      digitalWrite(vibratePin, vibratePinActive);
-    } else if (td > 200 && td < 300) {
-      digitalWrite(vibratePin, vibratePinActive);
-    } else {
-      digitalWrite(vibratePin, vibratePinInactive);
-      if (td > 300)doVibrate = 0;
-    }
-  }
+void loop() {
   if (displayOn && (millisOffset() > mainDisplayUpdateInterval + lastMainDisplayUpdate)) {
     updateMainDisplay();
   }
@@ -298,9 +204,10 @@ uint16_t penalty(){
   aendLTime = millis() + 1;
   atimeDiff = aendLTime - astartLTime;
   atimeElapsed += atimeDiff;
-  if(atimeElapsed >= 864000){
+  if(atimeElapsed >= 864000){ //864000
     atimeElapsed = 0;
     deduct += 1; // use this value for gold gen
+    //if (menu_debug_print)SerialMonitorInterface.println(deduct);
   }
   return deduct;
 }

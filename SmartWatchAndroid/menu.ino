@@ -5,7 +5,6 @@ typedef struct
   void (*selectionHandler)(uint8_t);
 } menu_info;
 
-
 uint8_t menuHistory[5];
 uint8_t menuHistoryIndex = 0;
 uint8_t currentMenu = 0;
@@ -13,7 +12,6 @@ uint8_t currentMenuLine = 0;
 uint8_t lastMenuLine = -1;
 uint8_t currentSelectionLine = 0;
 uint8_t lastSelectionLine = -1;
-
 
 void newMenu(int8_t newIndex) {
   currentMenuLine = 0;
@@ -64,7 +62,7 @@ const menu_info mainMenuInfo =
 static const char PROGMEM gameMenuStrings0[] = "Tamago!";
 static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";
 static const char PROGMEM gameMenuStrings2[] = "TamaBoom";   
-static const char PROGMEM gameMenuStrings3[] = "Tamago: Run";
+static const char PROGMEM gameMenuStrings3[] = "Tamago: Dungeons";
 static const char PROGMEM gameMenuStrings4[] = "Inventory";                      
 static const char* const PROGMEM gameMenuStrings[] =
 {
@@ -237,7 +235,7 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop3();
   }
-  if (selection == 3){ //Side Game: Run
+  if (selection == 3){ //Side Game: Dungeons
     display.clearWindow(0, 10, 96, 64);
     loop4();
   }
