@@ -1038,7 +1038,7 @@ void loop4() {
   byte currentTurn = 0; //1 for enemy, 2 for ally, 0 for out of combat
   byte doRollEnemy = 1; //0 while the enemy still alive
   byte willBlockEnemy = 0; //1 for defense
-
+  
   //enemy data
   byte enemyHealth = 0; //ghost: 40-60, bird: 55-95
   byte enemyDamage = 0;
@@ -1141,7 +1141,7 @@ void loop4() {
       }
     }
   }
-
+  
   while (1) {
     if (doRollEnemy == 1) {
       display.clearWindow(0,10,96,64);
@@ -1328,7 +1328,6 @@ void loop4() {
       doRollEnemy = 0;
     }
 
-<<<<<<< Updated upstream
     if (currentTurn == 1) {
       //enemy turn!
       
@@ -1364,11 +1363,6 @@ void loop4() {
     if (display.getButtons(TSButtonUpperLeft)) { //escape
       
       if (currentTurn == 0) {
-=======
-    if (display.getButtons(TSButtonUpperLeft)) { //escape
-      display.setCursor(0, 50);
-      if (currentTurn == 0 || isInBattle == 0) {
->>>>>>> Stashed changes
         retMenu();
         break;
       }
@@ -1379,8 +1373,8 @@ void loop4() {
       else {
         byte escapeRoll = random(0, 100);
         if (escapeChance > escapeRoll) {
-          display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0, 30);
+          display.clearWindow(0,10,96,64);
+          display.setCursor(0,30);
           display.print("Escaped!"); //random quotes?
 
           delay(2000);
@@ -1394,15 +1388,11 @@ void loop4() {
           delay(1000);
         }
       }
-
+      
     }
 
     if (display.getButtons(TSButtonUpperRight)) { //stim
-<<<<<<< Updated upstream
       
-=======
-      display.setCursor(0, 50);
->>>>>>> Stashed changes
       if (currentTurn != 2) {
         display.setCursor(0,50);
         display.print("Not your Turn!       ");
@@ -1421,7 +1411,7 @@ void loop4() {
       }
       else {
         stims--;
-        hp += 30;
+        hp+= 30;
         updateHP();
         display.setCursor(0,50);
         display.print("Stimmed! HP: ");
@@ -1429,29 +1419,20 @@ void loop4() {
         delay(1000);
       }
 
-
-
+      
+      
     }
     if (display.getButtons(TSButtonLowerLeft)) { //attack
-<<<<<<< Updated upstream
       
-=======
-      display.setCursor(0, 50);
->>>>>>> Stashed changes
       if (currentTurn != 2) {
         display.setCursor(0,50);
         display.print("Not your Turn!       ");
       }
       else if (hp > 0) { //if we are not dead
         if (enemyPrefix == 3) { //if the enemy has Hide prefix
-<<<<<<< Updated upstream
           byte canDodge = random(0,100);
           if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
             display.setCursor(0,50);
-=======
-          byte canDodge = random(0, 100);
-          if (canDodge <= 30) { //fixed at 30% cos too much rng already
->>>>>>> Stashed changes
             display.print("Enemy Dodged");
           }
           else {
@@ -1467,39 +1448,39 @@ void loop4() {
           display.print("Hit! HP:");
           display.print(enemyHealth);
         }
-        delay(2000);
+        delay(2000);        
       }
 
       if (enemyHealth <= 0) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(0, 20);
+        display.clearWindow(0,10,96,64);
+        display.setCursor(0,20);
         display.print("Enemy Defeated");
-
-        display.setCursor(0, 30);
-        if (receiveLoot(enemyItemReward) == 1) {
+        
+        display.setCursor(0,30);
+        if (receiveLoot(enemyItemReward) == 1) {         
           display.print("You got " + enemyItemReward);
         }
         else {
           display.print("No Inventory Space"); //no space for loot :c
         }
-
-
-        display.setCursor(0, 40);
+        
+        
+        display.setCursor(0,40);
         display.print("You earned ");
         display.print(enemyGReward);
         display.print(" Gold");
-
+        
         gold += enemyGReward;
-
+        
         delay(2000); //additional 2 seconds to view the loot
         doRollEnemy = 1;
       }
       else {
         if (extraTurnChance > 0) {
-          byte eChance = random(0, 100);
+          byte eChance = random(0,100);
           if (extraTurnChance > eChance) { //extra turn stuff
             currentTurn = 2;
-            display.setCursor(0, 50);
+            display.setCursor(0,50);
             display.print("Extra Turn!");
           }
           else {
@@ -1514,11 +1495,7 @@ void loop4() {
       delay(2000);
     }
     if (display.getButtons(TSButtonLowerRight)) { //defend and heal
-<<<<<<< Updated upstream
       
-=======
-      display.setCursor(0, 50);
->>>>>>> Stashed changes
       if (currentTurn != 2) {
         display.setCursor(0,50);
         display.print("Not your Turn!     ");
@@ -1526,7 +1503,7 @@ void loop4() {
       else {
         willBlockEnemy = 1; //block enemy next turn
         byte willHeal = random(11);
-
+  
         if (willHeal > defHealMin) {
           hp += willHeal;
           updateHP();
@@ -1538,86 +1515,23 @@ void loop4() {
           display.setCursor(0,50);
           display.print("Will Defend!     ");
         }
-
+        
         currentTurn = 1;
         delay(1000);
       }
-
-
+      
+      
     }
   }
 }
 
-//char getRarity(byte rune) {
-//  return rarity[rune][0];
-//}
-
 // inventory stuff
 void loop5() {
-<<<<<<< Updated upstream
-=======
-  byte curLocation = 0;
-  display.clearWindow(0, 10, 96, 64);
-  display.setCursor(32, 11);
-  display.print(curLocation+1);
-  display.print(F(" / 10"));
-  display.setCursor(90, 32);
-  display.print(F(">"));
->>>>>>> Stashed changes
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
       break;
     }
-<<<<<<< Updated upstream
     //Put whatever game function you have here
-=======
-    if (display.getButtons(TSButtonLowerRight)) {
-      if (curLocation < 9) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(32, 11);
-        display.print(curLocation+1);
-        display.print(F(" / 10"));
-        if (curLocation < 8) {
-          display.setCursor(90, 32);
-          display.print(F(">"));
-        }
-        display.setCursor(6, 32);
-        display.print(F("<"));
-        curLocation += 1;
-      }
-    }
-    if (display.getButtons(TSButtonLowerLeft)) {
-      if (curLocation > 0) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(32, 11);
-        display.print(curLocation);
-        display.print(F(" / 10"));
-        display.setCursor(90, 32);
-        display.print(F(">"));
-        if (curLocation > 1) {
-          display.setCursor(6, 32);
-          display.print(F("<"));
-        }
-        curLocation -= 1;
-      }
-    }
-    if (display.getButtons(TSButtonUpperRight)) {
-      //maybe
-    }
-    //Put whatever game function you have here
-    display.setCursor(32, 11);
-    display.print(curLocation+1);
-    display.print(F(" / 10"));
-    for (byte inv = 0; inv < 9; inv++) {
-      if (inventory[curLocation] == "Empty") {
-        display.setCursor(36, 32);
-        display.print(F("Empty"));
-      }
-      else{
-        
-      }
-    }
->>>>>>> Stashed changes
   }
 }
