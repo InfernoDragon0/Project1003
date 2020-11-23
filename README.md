@@ -54,7 +54,7 @@
   - [ ] Attack: Deal 12 Damage
   - [X] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
   - [X] Stim: Pay 40 Gold to heal 30 health, you get one per fight
-  - [ ] Block: Lose your turn but parries the next hit. Random roll of 10, if more than 5, heal for the roll
+  - [X] Block: Lose your turn but parries the next hit. Random roll of 10, if more than 5, heal for the roll
   - [X] Blood Rune: Increase Damage dealt to 14/18/25/40
   - [X] Luck Rune: Increase Escape chance to 25/35/55/100%
   - [X] Agility Rune: You get an extra turn when attacking at a 7/16/30/66% chance (unlimited tries)
