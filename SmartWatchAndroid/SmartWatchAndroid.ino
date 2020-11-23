@@ -166,7 +166,6 @@ uint32_t millisOffset() {
   return (millisOffsetCount * 1000ul) + millis();
 #endif
 }
-#define PIPE_UART_OVER_BTLE_UART_TX_TX 0 //for communication between nRF connect and serialmonitor
 void loop() {
   aci_loop();//Process any ACI commands or events from the NRF8001- main BLE handler, must run often. Keep main loop short.
   if (ble_rx_buffer_len) {
@@ -191,33 +190,7 @@ void loop() {
       updateMainDisplay();
       doVibrate = millisOffset();
     }
-    SerialMonitorInterface.print(ble_rx_buffer_len); //for communication between nRF connect and serialmonitor
-    SerialMonitorInterface.print(" : "); //for communication between nRF connect and serialmonitor
-    SerialMonitorInterface.println((char*)ble_rx_buffer); //for communication between nRF connect and serialmonitor
-    ble_rx_buffer_len = 0; //for communication between nRF connect and serialmonitor
   }
-  if (SerialMonitorInterface.available()) {//Check if serial input is available to send
-    delay(10);//should catch input
-    uint8_t sendBuffer[21]; //for communication between nRF connect and serialmonitor
-    uint8_t sendLength = 0; //for communication between nRF connect and serialmonitor
-    while (SerialMonitorInterface.available() && sendLength < 19) { //for communication between nRF connect and serialmonitor
-      sendBuffer[sendLength] = SerialMonitorInterface.read(); //for communication between nRF connect and serialmonitor
-      sendLength++; //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-    if (SerialMonitorInterface.available()) { //for communication between nRF connect and serialmonitor
-      SerialMonitorInterface.print(F("Input truncated, dropped: ")); //for communication between nRF connect and serialmonitor
-      if (SerialMonitorInterface.available()) { //for communication between nRF connect and serialmonitor
-        SerialMonitorInterface.write(SerialMonitorInterface.read()); //for communication between nRF connect and serialmonitor
-      } //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-    sendBuffer[sendLength] = '\0'; //Terminate string
-    sendLength++; //for communication between nRF connect and serialmonitor
-    if (!lib_aci_send_data(PIPE_UART_OVER_BTLE_UART_TX_TX, (uint8_t*)sendBuffer, sendLength)) //for communication between nRF connect and serialmonitor
-    { //for communication between nRF connect and serialmonitor
-      SerialMonitorInterface.println(F("TX dropped!")); //for communication between nRF connect and serialmonitor
-    } //for communication between nRF connect and serialmonitor
-  } //for communication between nRF connect and serialmonitor
-
   if (doVibrate) {
     uint32_t td = millisOffset() - doVibrate;
     if (td > 0 && td < 100) {
