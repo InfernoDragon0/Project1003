@@ -350,6 +350,7 @@ char getRuneRarity(byte slot) {
 void loop1() {
   byte hpRegenRate = 1;
   byte foodCost = 8;
+  byte goldGenRate = 1;
   
   chkDead();
   RTP();
@@ -380,36 +381,54 @@ void loop1() {
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         drawSeven();
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            goldGenRate = 2; //gold gen rate
+            break;
+          case 'u':
+            goldGenRate = 3;
+            break;
+          case 'r':
+            goldGenRate = 5;
+            break;
+          case 'm':
+            goldGenRate = 10;
+            break; 
+        }
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         drawMoney(); 
-        case 'c':
-          foodCost = 7; //health regen rate change based on runes
-          break;
-        case 'u':
-          foodCost = 6;
-          break;
-        case 'r':
-          foodCost = 4;
-          break;
-        case 'm':
-          foodCost = 1;
-          break; 
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            foodCost = 7; //food cost rate
+            break;
+          case 'u':
+            foodCost = 6;
+            break;
+          case 'r':
+            foodCost = 4;
+            break;
+          case 'm':
+            foodCost = 1;
+            break; 
+        }
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         drawLightning();
-        case 'c':
-          hpRegenRate = 2; //health regen rate change based on runes
-          break;
-        case 'u':
-          hpRegenRate = 3;
-          break;
-        case 'r':
-          hpRegenRate = 6;
-          break;
-        case 'm':
-          hpRegenRate = 15;
-          break;
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            hpRegenRate = 2; //health regen rate change based on runes
+            break;
+          case 'u':
+            hpRegenRate = 3;
+            break;
+          case 'r':
+            hpRegenRate = 6;
+            break;
+          case 'm':
+            hpRegenRate = 15;
+            break;
+        }
       }
     }
   }
