@@ -730,16 +730,92 @@ void loop2() { //lootbox game
 String bombs[21];
 
 
-// Tamaboom here NOTE: runes have not been added yet
+// Tamaboom here
 void loop3() {
 
   byte curLocation = 1;
   byte sweeped = 0;
   byte all = 0;
 
+  byte goldChance = 5;
+  byte goldGain = 5;
+  byte dodgeRate = 0;
+
+  for (byte rs = 0; rs < 2; rs++) {
+    if (runeSlots[rs] != "Empty") { //lbfa
+      if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+        switch(getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
+          case 'c':
+            maxHp = 115;
+            break;
+          case 'u':
+            maxHp = 135;
+            break;
+          case 'r':
+            maxHp = 170;
+            break;
+          case 'm':
+            maxHp = 210;
+            break;
+        }
+      }
+      if (runeSlots[rs].indexOf('l') > 0) { //luck rune
+        drawSeven();
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            goldChance = 6; //gold to bomb ratio
+            break;
+          case 'u':
+            goldChance = 7;
+            break;
+          case 'r':
+            goldChance = 8;
+            break;
+          case 'm':
+            goldChance = 10;
+            break; 
+        }
+      }
+      if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
+        drawMoney(); 
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            goldGain = 6; //gold per dig rate
+            break;
+          case 'u':
+            goldGain = 7;
+            break;
+          case 'r':
+            goldGain = 9;
+            break;
+          case 'm':
+            goldGain = 15;
+            break; 
+        }
+      }
+      if (runeSlots[rs].indexOf('a') > 0) { //agility rune
+        drawLightning();
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            dodgeRate = 8; //dodge rate
+            break;
+          case 'u':
+            dodgeRate = 17;
+            break;
+          case 'r':
+            dodgeRate = 29;
+            break;
+          case 'm':
+            dodgeRate = 55;
+            break;
+        }
+      }
+    }
+  }
+
   //try creating a random loot table bomb ratio 2:3
   for (byte i = 0; i < 21; i++) {
-    byte rnd = random(0, 5);
+    byte rnd = random(0, goldChance);
     bombs[i] = rnd >= 3 ? "O" : "B";
     if (rnd >= 3) {
       all++;
@@ -775,13 +851,13 @@ void loop3() {
         display.print("+");
         sweeped++;
         all--;
-        display.print(5 * sweeped);
+        display.print(goldGain * sweeped);
         display.print(" Gold, ");
         display.print(all);
         display.print(" left");
         bombs[curLocation - 1] = "X";
 
-        gold += 5 * sweeped;
+        gold += goldGain * sweeped;
 
         if (all == 0) {
           display.clearWindow(0, 10, 96, 64);
@@ -800,25 +876,34 @@ void loop3() {
       }
 
       else if (bombs[curLocation - 1] == "B") { //no longer loses on one bomb, but when out of health
-        hp -= 20;
-        updateHP();
-
-        if (hp <= 0) {
-          display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0, 30);
-          display.print("Boom! you lose!");
-          delay(2000);
-          //end gamehere
-
-          retMenu();
-          break;
+        //agility rune
+        byte rollHit = random(0,100); //roll a hit, if higher than dodge rate, then get hit
+        if (dodgeRate > rollHit) {
+          display.setCursor(0, 50);
+          bombs[curLocation - 1] = "X";
+          display.print("Dodged a bomb!   ");
+          display.print(hp);
         }
-
-        display.setCursor(0, 50);
-        bombs[curLocation - 1] = "X";
-        display.print("Ow! HP Left: ");
-        display.print(hp);
-
+        else {
+           hp -= 20;
+          updateHP();
+  
+          if (hp <= 0) {
+            display.clearWindow(0, 10, 96, 64);
+            display.setCursor(0, 30);
+            display.print("Boom! you lose!");
+            delay(2000);
+            //end gamehere
+  
+            retMenu();
+            break;
+          }
+  
+          display.setCursor(0, 50);
+          bombs[curLocation - 1] = "X";
+          display.print("Ow! HP Left: ");
+          display.print(hp);
+        }
       }
       else {
         display.print("Nothing here!");
