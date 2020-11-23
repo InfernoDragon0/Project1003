@@ -250,19 +250,57 @@ void updateGold() {
 }
 
 // Quotes to display when revive
-const char * deathQuotes[] PROGMEM = { //Progmem all the things
-  "YOU DIED", //you died
-  "U R finally awake", //you're finally awake
-  "Not Today!", //not today
-  "Deth's 4 poor ppl", //Death's for poor people
-  "Nothing is free!", //Nothing in life is free, even Death.
-  "Meet the New-U!", //Meet the new you! They're like the old you, but more alive!
-  "Welcome Back!",
-  "Fast Travel",
-  "Rolled 1 in life",
-  "Guardian Angel!"
-};
-char deathQ_buffer[17];
+//const char * deathQuotes[] PROGMEM = { //Progmem all the things
+//  "YOU DIED", //you died
+//  "U R finally awake", //you're finally awake
+//  "Not Today!", //not today
+//  "Deth's 4 poor ppl", //Death's for poor people
+//  "Nothing is free!", //Nothing in life is free, even Death.
+//  "Meet the New-U!", //Meet the new you! They're like the old you, but more alive!
+//  "Welcome Back!",
+//  "Fast Travel",
+//  "Rolled 1 in life",
+//  "Guardian Angel!"
+//};
+//char deathQ_buffer[17];
+
+void printdQuotes() {
+  byte randnum = random(10);
+  display.clearWindow(0, 45, 96, 64);
+  display.setCursor(1, 52);
+  switch (randnum) {
+    case 0:
+      display.print(F("YOU DIED"));
+      break;
+    case 1:
+      display.print(F("U R finally awake"));
+      break;
+    case 2:
+      display.print(F("Not Today!"));
+      break;
+    case 3:
+      display.print(F("Deth's 4 poor ppl"));
+      break;
+    case 4:
+      display.print(F("Nothing is free!"));
+      break;
+    case 5:
+      display.print(F("Meet the New-U!"));
+      break;
+    case 6:
+      display.print(F("Welcome Back!"));
+      break;
+    case 7:
+      display.print(F("Fast Travel"));
+      break;
+    case 8:
+      display.print(F("Rolled 1 in life"));
+      break;
+    case 9:
+      display.print(F("Guardian Angel!"));
+      break;
+  }
+}
 
 // If dead then revive
 void chkDead() {
@@ -272,9 +310,10 @@ void chkDead() {
     gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
     display.setCursor(0, 52);
-    byte rnd = random(10);
-    strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
-    display.println(deathQ_buffer);
+    //byte rnd = random(10);
+    //strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
+    //display.println(deathQ_buffer);
+    void printdQuotes();
     delay(1500);
     display.clearWindow(0, 52, 96, 64);
     display.setCursor(0, 52);
@@ -345,7 +384,7 @@ void printQuote() {
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
   //strcpy_P(quote_buffer, (char *)pgm_read_word(&(quotes[randnum])));
-  switch(randnum) {
+  switch (randnum) {
     case 0:
       display.print(F("Visit me often!"));
       break;
@@ -383,35 +422,62 @@ void printQuote() {
       display.print(F("Take care!"));
       break;
   }
-  
 }
 
 // Quotes to display when "eating"
-const char * eatQuotes[] PROGMEM = { //Progmem all the things
-  "Munch Munch~~",
-  "Yum yummm",
-  "Yummy!",
-  "Delicious!",
-  "Good Food!",
-  "Lamb SAAUCEE",
-  "Meal time!",
-  "I lub food!",
-  "Expensive meal!"
-};
-char equote_buffer[15];
+//const char * eatQuotes[] PROGMEM = { //Progmem all the things
+//  "Munch Munch~~",
+//  "Yum yummm",
+//  "Yummy!",
+//  "Delicious!",
+//  "Good Food!",
+//  "Lamb SAAUCEE",
+//  "Meal time!",
+//  "I lub food!",
+//  "Expensive meal!"
+//};
+//char equote_buffer[15];
 
 // Needs the buffer to prevent bombing memory
 void printeQuote() {
   byte randnum = random(9);
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
-  strcpy_P(equote_buffer, (char *)pgm_read_word(&(eatQuotes[randnum])));
-  display.println(equote_buffer);
+  //strcpy_P(equote_buffer, (char *)pgm_read_word(&(eatQuotes[randnum])));
+  switch (randnum) {
+    case 0:
+      display.print(F("Munch Munch~~"));
+      break;
+    case 1:
+      display.print(F("Yum yummm"));
+      break;
+    case 2:
+      display.print(F("Yummy!"));
+      break;
+    case 3:
+      display.print(F("Delicious!"));
+      break;
+    case 4:
+      display.print(F("Good Food!"));
+      break;
+    case 5:
+      display.print(F("Lamb SAAUCEE"));
+      break;
+    case 6:
+      display.print(F("Meal time!"));
+      break;
+    case 7:
+      display.print(F("I lub food!"));
+      break;
+    case 8:
+      display.print(F("Expensive meal!"));
+      break;
+  }
 }
 
 //Inventory management
 String inventory[10] = { //note, m to find mythic may clash
-  "Empty", "Empty",
+  "cb", "mc",
   "Empty", "Empty",
   "Empty", "Empty",
   "Empty", "Empty",
@@ -615,7 +681,6 @@ void loop1() {
 }
 
 // Tamagold here
-
 String lootRarity[7] = {"E", "c", "u", "G", "r", "m", "J"}; //empty, common, uncommon, Gold, rare, mythic, Jackpot
 String lootPart[4] = {"l", "b", "f", "a"}; //luck, blood, fortune, agility
 //emptyChance = 10;
@@ -657,7 +722,6 @@ void loop2() { //lootbox game
             baseChances[6] = baseChances[6] + 1;
             break;
         }
-
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         jackpot += 200;
@@ -808,7 +872,6 @@ void loop2() { //lootbox game
         }
       }
     }
-
     display.setCursor(0, 10);
     display.print(F("debug loot: "));
     display.print(curLocation);
@@ -835,9 +898,8 @@ void loop2() { //lootbox game
   }
 }
 
-String bombs[21];
-
 // Tamaboom here
+String bombs[21];
 void loop3() {
 
   byte curLocation = 1;
@@ -918,7 +980,6 @@ void loop3() {
       }
     }
   }
-
   //try creating a random loot table bomb ratio 2:3
   for (byte i = 0; i < 21; i++) {
     byte rnd = random(0, goldChance);
@@ -927,7 +988,6 @@ void loop3() {
       all++;
     }
   }
-
   display.setCursor(0, 50);
   display.print(all);
   display.print(F(" Gold spots!"));
@@ -942,7 +1002,6 @@ void loop3() {
       if (curLocation < 21) {
         curLocation += 1;
       }
-
     }
     if (display.getButtons(TSButtonUpperRight)) { //select location previous
       if (curLocation > 1) {
@@ -1008,13 +1067,11 @@ void loop3() {
         display.print("Nothing here!");
       }
     }
-
     display.setCursor(0, 10);
     display.print(F("Debug loot: "));
     display.print(curLocation);
     display.print(F(".."));
     display.print(bombs[curLocation - 1]);
-
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
       display.setCursor(0, 20 + (y * 10));
@@ -1040,7 +1097,6 @@ byte osGhostY = 20;
 void runGhost() {
   //clear previous ghost
   display.clearWindow(0, osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
-
   display.setX(10, 10 + 12 - 1);
   display.setY(osGhostY, osGhostY + 20 - 1);
   display.startData();
@@ -1053,7 +1109,6 @@ byte osObstacleY = 20; //20 or 40
 void obstacle() { //this only allows one obstacle rite now
   //clear previous obstacle
   display.clearWindow(osObstacleX, osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
-
   display.setX(10, 10 + 12 - 1);
   display.setY(osGhostY, osGhostY + 20 - 1);
   display.startData();
@@ -1076,7 +1131,6 @@ void loop4() {
   if (hp <= 0) { //not allowed to enter without health
     display.setCursor(0, 30);
     display.print("Revive first");
-
     delay(1000);
     retMenu();
     return;
@@ -1099,7 +1153,6 @@ void loop4() {
   byte enemyGReward = 0;
   String enemyItemReward = "Empty";
 
-
   //ally data
   byte escapeChance = 15;
   byte stimPrice = 40; //stim is always more expensive than passive healing as it is a dungeon
@@ -1107,8 +1160,6 @@ void loop4() {
   byte defHealMin = 5; //defense will lose turn
   byte attackDamage = 12;
   byte extraTurnChance = 0; //chance when attacking to do an additional turn, there is no limit to this
-  
-
 
   for (byte rs = 0; rs < 2; rs++) {
     if (runeSlots[rs] != "Empty") { //lbfa
@@ -1220,7 +1271,6 @@ void loop4() {
           break;
       }
 
-
       //weighted suffix
       enemySuffix = random(0, 11); //0: none, 1: slave +25hp +5dmg +alwaysRare, 2: boss +100hp +20dmg +alwaysMythic
 
@@ -1246,12 +1296,8 @@ void loop4() {
         enemyItemReward = "u" + lootPart[random(0, 4)]; //uncommon
       }
 
-
-
-
       //warmup and show enemy name
       delay(1000); //delay for the suspense
-
       display.clearWindow(0, 10, 96, 64);
       display.setCursor(0, 10);
       display.print("You will Fight:");
@@ -1295,16 +1341,13 @@ void loop4() {
       }
 
       delay(3000);
-
       display.clearWindow(0, 10, 96, 64);
-
       currentTurn = 2;
       updateHP(); //print hp at 0,10
-
       display.setCursor(50, 10); //print stim at right side
       display.print("Stim:");
       display.print(stims);
-
+      
       //print tamago and enemy at around 10,20 and 45,20
       display.setX(10, 10 + 12 - 1); //draw tamago
       display.setY(20, 20 + 20 - 1);
@@ -1313,8 +1356,8 @@ void loop4() {
       display.endTransfer();
 
       //generate enemy sprite
-      display.setX(60, 60 + (enemyType == 0? 19 - 1 : 17-1)); //draw enemy
-      display.setY(25, 25 + (enemyType == 0? 19 - 1 : 12-1));
+      display.setX(60, 60 + (enemyType == 0 ? 19 - 1 : 17 - 1)); //draw enemy
+      display.setY(25, 25 + (enemyType == 0 ? 19 - 1 : 12 - 1));
       display.startData();
 
       //generate sprite from enemy def
@@ -1328,13 +1371,13 @@ void loop4() {
       //TS_8b_Gray
 
       //if ghost, 361, if bird 204
-      unsigned char enemy[enemyType == 0? 361 : 204];
+      unsigned char enemy[enemyType == 0 ? 361 : 204];
 
-      for (short i = 0; i < (enemyType == 0? 361 : 204); i++) {
+      for (short i = 0; i < (enemyType == 0 ? 361 : 204); i++) {
         //flappyBirdBitmap / ghost
-        enemy[i] = (enemyType == 0? ghost[i] : flappyBirdBitmap[i]);
+        enemy[i] = (enemyType == 0 ? ghost[i] : flappyBirdBitmap[i]);
         //base color edit
-        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
+        if (enemy[i] == (enemyType == 0 ? TS_8b_Red : TS_8b_Yellow)) {
           switch (enemyColor) {
             case 0:
               enemy[i] = TS_8b_Black;
@@ -1363,9 +1406,9 @@ void loop4() {
           }
         }
       }
-      
+
       //display.writeBuffer(enemyType == 0? ghost : flappyBirdBitmap, enemyType == 0? 361 : 204);
-      display.writeBuffer(enemy, enemyType == 0? 361 : 204);
+      display.writeBuffer(enemy, enemyType == 0 ? 361 : 204);
       display.endTransfer();
 
       display.setCursor(0, 50);
@@ -1403,7 +1446,6 @@ void loop4() {
         retMenu();
         break;
       }
-
       else {
         currentTurn = 2;
       }
@@ -1437,7 +1479,6 @@ void loop4() {
           delay(1000);
         }
       }
-
     }
 
     if (display.getButtons(TSButtonUpperRight)) { //stim
@@ -1465,21 +1506,13 @@ void loop4() {
         display.setCursor(0, 50);
         display.print("Stimmed! HP: ");
         display.print(hp);
-
         display.setCursor(50, 10); //print stim at right side
         display.print("Stim:");
         display.print(stims);
-
-        
         delay(750);
-
         display.setCursor(0, 50);
         display.print("Continue Attack!");
-        
       }
-
-
-
     }
     if (display.getButtons(TSButtonLowerLeft)) { //attack
 
@@ -1501,8 +1534,7 @@ void loop4() {
             else {
               enemyHealth -= attackDamage; //deal attackdamage to enemy hp
             }
-                       
-            display.setCursor(0,50);
+            display.setCursor(0, 50);
             display.print("Hit! HP:");
             display.print(enemyHealth);
           }
@@ -1514,19 +1546,18 @@ void loop4() {
           else {
             enemyHealth -= attackDamage; //deal attackdamage to enemy hp
           }
-          display.setCursor(0,50);
+          display.setCursor(0, 50);
           display.print("Hit! HP:");
           display.print(enemyHealth);
           display.print("      ");
         }
-        delay(750);        
+        delay(750);
       }
 
       if (enemyHealth <= 0) {
         display.clearWindow(0, 10, 96, 64);
         display.setCursor(0, 20);
         display.print("Enemy Defeated");
-
         display.setCursor(0, 30);
         if (receiveLoot(enemyItemReward) == 1) {
           display.print("You got " + enemyItemReward);
@@ -1534,8 +1565,6 @@ void loop4() {
         else {
           display.print("No Inventory Space"); //no space for loot :c
         }
-
-
         display.setCursor(0, 40);
         display.print("You earned ");
         display.print(enemyGReward);
@@ -1561,7 +1590,6 @@ void loop4() {
         else {
           currentTurn = 1;
         }
-
       }
       delay(750);
     }
@@ -1586,14 +1614,40 @@ void loop4() {
           display.setCursor(0, 50);
           display.print("Will Defend!     ");
         }
-
         currentTurn = 1;
         delay(1000);
       }
-
-
     }
   }
+}
+
+void drawCenterHeart() { //blood rune
+  display.setX(43, 43 + 5 - 1);
+  display.setY(36, 36 + 8 - 1);
+  display.startData();
+  display.writeBuffer(heart, 5 * 8);
+  display.endTransfer();
+}
+void drawCenterLightning() { //agility rune
+  display.setX(43, 43 + 5 - 1);
+  display.setY(36, 36 + 8 - 1);
+  display.startData();
+  display.writeBuffer(lightning, 5 * 8);
+  display.endTransfer();
+}
+void drawCenterSeven() { //luck rune
+  display.setX(43, 43 + 5 - 1);
+  display.setY(36, 36 + 8 - 1);
+  display.startData();
+  display.writeBuffer(seven, 5 * 8);
+  display.endTransfer();
+}
+void drawCenterMoney() { //fortune rune
+  display.setX(43, 43 + 5 - 1);
+  display.setY(36, 36 + 8 - 1);
+  display.startData();
+  display.writeBuffer(money, 5 * 8);
+  display.endTransfer();
 }
 
 // inventory stuff
@@ -1655,78 +1709,78 @@ void loop5() {
       }
       else {
         if (inventory[0][1] == 'b') {
-          drawHeart();
+          drawCenterHeart();
           switch (inventory[0][0]) {
             case 'c':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Common"));
               break;
             case 'u':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Uncommon"));
               break;
             case 'r':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Rare"));
             case 'm':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Mythic"));
           }
         }
         else if (inventory[0][1] == 'l') {
-          drawSeven();
+          drawCenterSeven();
           switch (inventory[0][0]) {
             case 'c':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Common"));
               break;
             case 'u':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Uncommon"));
               break;
             case 'r':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Rare"));
             case 'm':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Mythic"));
           }
         }
         else if (inventory[0][1] == 'f') {
-          drawMoney();
+          drawCenterMoney();
           switch (inventory[0][0]) {
             case 'c':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Common"));
               break;
             case 'u':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Uncommon"));
               break;
             case 'r':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Rare"));
             case 'm':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Mythic"));
           }
         }
         else if (inventory[0][1] == 'a') {
-          drawLightning();
+          drawCenterLightning();
           switch (inventory[0][0]) {
             case 'c':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Common"));
               break;
             case 'u':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Uncommon"));
               break;
             case 'r':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Rare"));
             case 'm':
-              display.setCursor(0, 50);
+              display.setCursor(40, 50);
               display.print(F("Mythic"));
           }
         }
