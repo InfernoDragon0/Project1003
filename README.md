@@ -52,12 +52,12 @@
   - [ ] You get random rare loot from lootboxes + 40/50/60/70 gold
   - [ ] You get random mythic from Boss suffixed enemies + 100/150/200/250 gold
   - [ ] Attack: Deal 12 Damage
-  - [ ] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
-  - [ ] Stim: Pay 30 Gold to heal 20 health, can only use 1 times per fight
+  - [X] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
+  - [X] Stim: Pay 40 Gold to heal 30 health, you get one per fight
   - [ ] Block: Lose your turn but parries the next hit. Random roll of 10, if more than 5, heal for the roll
   - [X] Blood Rune: Increase Damage dealt to 14/18/25/40
   - [X] Luck Rune: Increase Escape chance to 25/35/55/100%
-  - [ ] Agility Rune: You get an extra turn when attacking at a 7/16/30/66% chance (unlimited tries)
+  - [X] Agility Rune: You get an extra turn when attacking at a 7/16/30/66% chance (unlimited tries)
   - [X] Fortune Rune: You get additional 1/1/2/3 stims, your defenses heal you if the roll is more than 4/3/2/0
 
 ### TamaGOLD
