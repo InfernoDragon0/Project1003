@@ -21,7 +21,6 @@
 - [X] Fortune rune .. decreases food cost to 7/6/4/1
 - [X] Agility rune increases your health regeneration to 2/3/6/15
 - [X] Up to 10 Runes can be stored, but you can only have 2 equipped
-- [ ] RUN! is free to play: Mini game rewards gold, health loss per obstacle hit
 - [ ] Dungeons: Pay 50G Entry fee, you can fight endlessly until you die / escape
 - [X] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
 - [X] TamaBOOM is free to play: Health loss per bomb and gold gain per spot digged
@@ -30,14 +29,6 @@
 - [X] Eat gold to regen health
 
 ## Side Games
-
-### RUN (either this or dungeon)
-  - [ ] just run and jump, dodge obstacles, don't fall in holes, collect coins. 
-  - [ ] Every 5m run will give 2G
-  - [X] Blood Rune increases survival rate via health
-  - [ ] Fortune Rune increases gold gain per coin 2G +1G per rarity
-  - [ ] Agility Rune grants +10% chance of dodging an obstacle per rarity
-  - [ ] Luck Rune grants increased coin spawn rate by 10% per rarity
   
 ### Dungeon
   - [ ] Your tamago vs random colored Ghost or Birds
@@ -50,7 +41,7 @@
   - [ ] You get random uncommon loot from prefixed enemies + 30/40/50/60 gold from enemies
   - [ ] You get random rare loot from lootboxes + 40/50/60/70 gold
   - [ ] You get random mythic from Boss suffixed enemies + 100/150/200/250 gold
-  - [ ] Attack: Deal 12 Damage
+  - [X] Attack: Deal 12 Damage
   - [X] Escape: Chance of escaping the entire dungeon at 15%, failure leads to loss of turn
   - [X] Stim: Pay 40 Gold to heal 30 health, you get one per fight
   - [X] Block: Lose your turn but parries the next hit. Random roll of 10, if more than 5, heal for the roll
