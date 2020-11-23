@@ -62,17 +62,21 @@ const menu_info mainMenuInfo =
 };
 
 static const char PROGMEM gameMenuStrings0[] = "Tamago!";
-static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";  
-static const char PROGMEM gameMenuStrings2[] = "Tamago: Run";                        
+static const char PROGMEM gameMenuStrings1[] = "TamaGold Mine";
+static const char PROGMEM gameMenuStrings2[] = "TamaBoom";   
+static const char PROGMEM gameMenuStrings3[] = "Tamago: Run";
+static const char PROGMEM gameMenuStrings4[] = "Inventory";                      
 static const char* const PROGMEM gameMenuStrings[] =
 {
   gameMenuStrings0,
   gameMenuStrings1,
   gameMenuStrings2,
+  gameMenuStrings3,
+  gameMenuStrings4,
 };
 const menu_info gameMenuInfo =
 {
-  3,
+  5,
   gameMenuStrings,
   gameMenu,
 };
@@ -128,17 +132,17 @@ uint8_t editInt(uint8_t button, int *inVal, char *intName, void (*cb)()) {
     digits[1] = currentVal % 10; currentVal /= 10;
     digits[0] = currentVal % 10;
     currentVal = *originalVal;
-    display.clearWindow(0, 12, 96, 64);
+    display.clearWindow(0, 10, 96, 64);
     display.setFont(font10pt);
     display.fontColor(defaultFontColor, defaultFontBG);
     display.setCursor(0, menuTextY[0]);
-    display.print(F("< Back/Undo"));
+    display.print(F("< back/undo"));
     display.setCursor(90, menuTextY[0]);
     display.print('^');
     display.setCursor(10, menuTextY[1]);
     display.print(intName);
     display.setCursor(0, menuTextY[3]);
-    display.print(F("< Next/Save"));
+    display.print(F("< next/save"));
     display.setCursor(90, menuTextY[3]);
     display.print('v');
   } else if (button == upButton) {
@@ -225,12 +229,21 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop1();
   }
-  if (selection == 1){ //Side Game: Tamago: Run
+  if (selection == 1){ //Side Game: TamaGold Mine
     display.clearWindow(0, 10, 96, 64);
     loop2();
   }
-  if (selection == 2){ //Side Game: Tamago: Dungeons
+  if (selection == 2){ //Side Game: TamaBoom
     display.clearWindow(0, 10, 96, 64);
+    loop3();
+  }
+  if (selection == 3){ //Side Game: Run
+    display.clearWindow(0, 10, 96, 64);
+    loop4();
+  }
+  if (selection == 4) { // Inventory
+    display.clearWindow(0, 10, 96, 64);
+    loop5();
   }
 }
 
@@ -275,7 +288,6 @@ void viewMenu(uint8_t button) {
       if (menu_debug_print)SerialMonitorInterface.println(currentMenuLine + currentSelectionLine);
       menuList[currentMenu].selectionHandler(currentMenuLine + currentSelectionLine);
     } else if (button == backButton) {
-      display.clearWindow(0, 10, 96, 64);
       newMenu(-1);
       if (!menuHistoryIndex)
         return;

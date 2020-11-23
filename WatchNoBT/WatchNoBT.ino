@@ -131,3 +131,22 @@ void checkButtons() {
     buttonReleased = 1;
   }
 }
+
+// Real-Time tracking BETA
+uint32_t astartLTime = 0;
+uint32_t aendLTime = 0;
+uint8_t deduct = 0;
+uint16_t atimeDiff = 0;
+uint32_t atimeElapsed = 0;
+
+uint16_t penalty(){
+  astartLTime = millis();
+  aendLTime = millis() + 1;
+  atimeDiff = aendLTime - astartLTime;
+  atimeElapsed += atimeDiff;
+  if(atimeElapsed >= 864000){
+    atimeElapsed = 0;
+    deduct += 1; // use this value for gold gen
+  }
+  return deduct;
+}
