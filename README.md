@@ -50,6 +50,6 @@
 - [X] 21 spots to dig, Ratio of bombs to gold is 3:2, randomized. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
 - [X] You win an additional 100 gold if you manage to dig every spot filled with gold
 - [ ] Luck rune increases the ratio of bomb:gold to 3:3, 3:4, 3:5, 3:6 depending on rarity
-- [ ] Blood rune increases survival rate via health
+- [X] Blood rune increases survival rate via health
 - [ ] Fortune rune increases gold gain to 5+(1 per rarity)*n
 - [ ] Agility rune increases chance to dodge a bomb, if you get hit by a bomb, by 5% per rarity
