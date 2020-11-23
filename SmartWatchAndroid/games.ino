@@ -65,6 +65,45 @@ unsigned char deadchar[240] PROGMEM = {
   TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Blue, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
+
+//bird again not in progmem for now
+unsigned char flappyBirdBitmap[204]={  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Yellow,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,  
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Yellow,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black, 
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black 
+};
+
+//ghost haunting you again
+unsigned char ghost[361] = {
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Black,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_White,TS_8b_White,TS_8b_White,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black,
+  TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Black,TS_8b_Red,TS_8b_Red,TS_8b_Red,TS_8b_Black
+};
+
 // Modifier icons
 unsigned char heart[40]PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
@@ -1108,7 +1147,7 @@ void loop4() {
       enemyType = random(0,2); //0 is ghost, 1 is bird
       enemyHealth = enemyType == 0 ? random(40,61) : random(55,96); //ghost: 40-60, bird: 55-95
       enemyDamage = enemyType == 0 ? random(12,19) : random(8,13); //ghost: 12-18 dmg, bird: 8-12 dmg 
-      enemyColor = random(0,16); //0-15, random color, color doesnt matter
+      enemyColor = random(0,8); //0-8, random color, color doesnt matter
       enemyPrefix = random(0,4); //0: Edge +6-12Dmg, 1: Tank +10-20Hp, 2: Quick +1 AttackTurn, 3: Hide +30% dodge chance
 
       switch (enemyPrefix) {
@@ -1221,8 +1260,54 @@ void loop4() {
       display.startData();
 
       //generate sprite from enemy def
+      //TS_8b_Black
+      //TS_8b_White
+      //TS_8b_Blue
+      //TS_8b_Red
+      //TS_8b_Yellow
+      //TS_8b_Green
+      //TS_8b_Brown
+      //TS_8b_Gray
+
+      //if ghost, 361, if bird 204
+      unsigned char enemy[enemyType == 0? 361 : 204];
+
+      for (short i = 0; i < enemyType == 0? 361 : 204; i++) {
+        //flappyBirdBitmap / ghost
+        enemy[i] = enemyType == 0? ghost[i] : flappyBirdBitmap[i];
+        //base color edit
+        if (enemy[i] == (enemyType == 0? TS_8b_Red : TS_8b_Yellow)) {
+          switch (enemyColor) {
+            case 0:
+              enemy[i] = TS_8b_Black;
+              break;
+            case 1:
+              enemy[i] = TS_8b_White;
+              break;
+            case 2:
+              enemy[i] = TS_8b_Blue;
+              break;
+            case 3:
+              enemy[i] = TS_8b_Red;
+              break;
+            case 4:
+              enemy[i] = TS_8b_Yellow;
+              break;
+            case 5:
+              enemy[i] = TS_8b_Green;
+              break;
+            case 6:
+              enemy[i] = TS_8b_Brown;
+              break;
+            case 7:
+              enemy[i] = TS_8b_Gray;
+              break;
+          }
+        }
+      }
+
       
-      display.writeBuffer(defchar, 12 * 20); //placeholder
+      display.writeBuffer(enemy, enemyType == 0? 361 : 204);
       display.endTransfer();
 
       //do roll random enemy
