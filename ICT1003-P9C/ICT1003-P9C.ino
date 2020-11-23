@@ -101,6 +101,7 @@ void loop() {
     }
   }
   checkButtons();
+  penalty();
   displayBattery();
 }
 

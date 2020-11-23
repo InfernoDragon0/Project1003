@@ -235,7 +235,7 @@ void gameMenu(uint8_t selection) { //game menu function
     display.clearWindow(0, 10, 96, 64);
     loop3();
   }
-  if (selection == 3){ //Side Game: Run
+  if (selection == 3){ //Side Game: Dungeons
     display.clearWindow(0, 10, 96, 64);
     loop4();
   }
