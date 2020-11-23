@@ -167,26 +167,20 @@ void retMenu() {
 }
 
 // Modifiers variables
-bool modHP = false;
 
 int16_t gold = 100;
 char gold_buffer[11];
 
+
+byte maxHp = 100; //modded by blood rune
 byte hp = 100;
 char hp_buffer[8];
 
+
 // Control HP
 void chkHP() {
-  if (modHP == true) {
-    if (hp >= 150) {
-      hp = 150;
-    }
-    else if (hp <= 0) {
-      hp = 0;
-    }
-  }
-  else if (hp >= 100) {
-    hp = 100;
+  if (hp >= maxHp) {
+    hp = maxHp;
   }
   else if (hp <= 0) {
     hp = 0;
@@ -365,6 +359,21 @@ void loop1() {
     if (runeSlots[rs] != "Empty") { //lbfa
       if (runeSlots[rs].indexOf('b') > 0) { //blod rune
         drawHeart();
+        switch(getRuneRarity(rs)) {
+          case 'c':
+            maxHp = 115;
+            break;
+          case 'u':
+            maxHp = 135;
+            break;
+          case 'r':
+            maxHp = 170;
+            break;
+          case 'm':
+            maxHp = 210;
+            break;
+        }
+        
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         drawSeven();
