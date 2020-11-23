@@ -321,30 +321,68 @@ void penaltyHP() {
   }
 }
 
-// Quotes to display when "playing"
-const char * quotes[] PROGMEM = { //Progmem all the things
-  "Visit me often!",
-  "I might be hungry",
-  "Let's play games!",
-  "I could do a nap!",
-  "I lub you!",
-  "Gib food~~~",
-  "Bananaaaaaa",
-  "Food for thoughts",
-  "Don't neglect me",
-  "Study hard!",
-  "Medicines bad",
-  "Take care!"
-};
-char quote_buffer[17];
+//// Quotes to display when "playing"
+//const char * quotes[] PROGMEM = { //Progmem all the things
+//  "Visit me often!",
+//  "I might be hungry",
+//  "Let's play games!",
+//  "I could do a nap!",
+//  "I lub you!",
+//  "Gib food~~~",
+//  "Bananaaaaaa",
+//  "Food for thoughts",
+//  "Don't neglect me",
+//  "Study hard!",
+//  "Medicines bad",
+//  "Take care!"
+//};
+//char quote_buffer[17];
 
 // Needs the buffer to prevent bombing memory
 void printQuote() {
   byte randnum = random(12);
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
-  strcpy_P(quote_buffer, (char *)pgm_read_word(&(quotes[randnum])));
-  display.println(quote_buffer);
+  //strcpy_P(quote_buffer, (char *)pgm_read_word(&(quotes[randnum])));
+  switch(randnum) {
+    case 0:
+      display.print(F("Visit me often!"));
+      break;
+    case 1:
+      display.print(F("I might be hungry"));
+      break;
+    case 2:
+      display.print(F("Let's play games!"));
+      break;
+    case 3:
+      display.print(F("I could do a nap!"));
+      break;
+    case 4:
+      display.print(F("I lub you!"));
+      break;
+    case 5:
+      display.print(F("Gib food~~~"));
+      break;
+    case 6:
+      display.print(F("Bananaaaaaa"));
+      break;
+    case 7:
+      display.print(F("Food for thoughts"));
+      break;
+    case 8:
+      display.print(F("Don't neglect me"));
+      break;
+    case 9:
+      display.print(F("Study hard!"));
+      break;
+    case 10:
+      display.print(F("Medicines bad"));
+      break;
+    case 11:
+      display.print(F("Take care!"));
+      break;
+  }
+  
 }
 
 // Quotes to display when "eating"
