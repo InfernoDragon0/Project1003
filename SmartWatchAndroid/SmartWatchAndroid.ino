@@ -286,7 +286,7 @@ void checkButtons() {
   }
 }
 
-// Real-Time Penalty BETA
+// Real-Time tracking BETA
 uint32_t astartLTime = 0;
 uint32_t aendLTime = 0;
 uint8_t deduct = 0;
@@ -300,7 +300,7 @@ uint16_t penalty(){
   atimeElapsed += atimeDiff;
   if(atimeElapsed >= 864000){
     atimeElapsed = 0;
-    deduct += 1;
+    deduct += 1; // use this value for gold gen
   }
   return deduct;
 }

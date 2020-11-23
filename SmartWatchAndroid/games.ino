@@ -161,12 +161,11 @@ void drawMoney() { //fortune rune
   display.endTransfer();
 }
 
+// exit to game menu
 void retMenu() {
   display.clearWindow(0, 10, 96, 64);
   mainMenu(0);
 }
-
-// Modifiers variables
 
 int16_t gold = 100;
 char gold_buffer[11];
@@ -239,6 +238,7 @@ uint32_t endLTime = 0;
 uint16_t timeDiff = 0;
 uint16_t timeElapsed = 0;
 
+// Tracking time passed in the game itself
 void timePassed() {
   startLTime = millis();
   endLTime = millis() + 1;
@@ -246,19 +246,24 @@ void timePassed() {
   timeElapsed += timeDiff;
 }
 
+// RTP system to track time passed when not in game and apply parameters for penalty
 void RTP() {
   hp -= deduct;
+  gold += deduct;
   deduct = 0;
   atimeElapsed = 0;
   updateHP();
+  updateGold();
 }
 
-// Health penalty when idle
+// Health penalty when idle, plus gold generation
 void penaltyHP() {
   if (timeElapsed >= 16200) {
     hp -= 1;
+    gold += 1;
     timeElapsed = 0;
     updateHP();
+    updateGold();
   }
 }
 
@@ -279,6 +284,7 @@ const char * quotes[] PROGMEM = { //Progmem all the things
 };
 char quote_buffer[17];
 
+// Needs the buffer to prevent bombing memory
 void printQuote() {
   byte randnum = random(13);
   display.clearWindow(0, 45, 96, 64);
@@ -460,8 +466,6 @@ void loop1() {
         updateGold();
         delay(1000);
       }
-      
-      
     }
     if (display.getButtons(TSButtonLowerRight)) { //Sleep
       display.clearWindow(0, 52, 96, 64);
@@ -477,7 +481,9 @@ void loop1() {
         delay(1000);
         display.print(F("Zzzzzzzzzzzzz...."));
         hp += hpRegenRate;
+        gold -= 1; // We charge rent!
         updateHP();
+        updateGold();
       }
       display.clearWindow(0, 52, 96, 64);
       display.setCursor(0, 52);
