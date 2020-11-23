@@ -67,7 +67,7 @@ unsigned char deadchar[240] PROGMEM = {
 };
 
 //bird again not in progmem for now
-unsigned char flappyBirdBitmap[204] = {
+unsigned char flappyBirdBitmap[204] PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Yellow, TS_8b_Yellow, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
@@ -83,7 +83,7 @@ unsigned char flappyBirdBitmap[204] = {
 };
 
 //ghost haunting you again
-unsigned char ghost[361] = {
+unsigned char ghost[361] PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Red, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
@@ -1022,6 +1022,15 @@ void obstacle() { //this only allows one obstacle rite now
   display.endTransfer();
 }
 
+void takeDamage(byte hpLoss) {
+  if (hp < hpLoss) {
+    hp = 0;
+  }
+  else {
+    hp -= hpLoss;
+  }
+}
+
 // Dungeons! You cannot exit until you die or escape successfully
 void loop4() {
 
@@ -1338,7 +1347,7 @@ void loop4() {
         display.print("Blocked Enemy!");
       }
       else { //no rng here because too much rng already
-        hp -= (enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage); //Quicks will attack twice.. without rng
+        takeDamage(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage); //Quicks will attack twice.. without rng
         updateHP();
         display.setCursor(0, 50);
         display.print("Taken ");
@@ -1425,6 +1434,8 @@ void loop4() {
         
         delay(750);
 
+        display.setCursor(0, 50);
+        display.print("Continue Attack!");
         
       }
 
@@ -1513,7 +1524,7 @@ void loop4() {
         }
 
       }
-      delay(2000);
+      delay(750);
     }
     if (display.getButtons(TSButtonLowerRight)) { //defend and heal
 
@@ -1608,7 +1619,7 @@ void loop5() {
         display.print(F("Empty"));
       }
       else {
-        if (inventory[0][1] == "b") {
+        if (inventory[0][1] == 'b') {
           drawHeart();
         }
       }
