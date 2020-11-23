@@ -16,9 +16,9 @@
 - [X] Tamago sprite (ONE)
 - [X] Mini game for the sprites (Platformer + Gambler + Goldsweeper)
 - [X] Rune of Luck +1/2/3/4, Rune of Speed +1/2/3/4, Rune of Fortune +1/2/3/4, Rune of Agility +1/2/3/4
-- [ ] Luck rune ..
+- [X] Luck rune .. increases gold gen passively
 - [X] Blood rune increases your health
-- [ ] Fortune rune ..
+- [X] Fortune rune .. decreases food cost
 - [X] Agility rune increases your health regeneration per action
 - [X] Up to 10 Runes can be stored, but you can only have 2 equipped
 - [ ] RUN! is free to play: Mini game rewards gold, health loss per obstacle hit
@@ -26,7 +26,7 @@
 - [X] TamaBOOM is free to play: Health loss per bomb and gold gain per spot digged
 - [X] Random Quotes
 - [X] Sleep to regen health
-- [X] Eat to regen health
+- [X] Eat gold to regen health
 
 ## Side Games
 
