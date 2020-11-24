@@ -485,7 +485,7 @@ String inventory[10] = { //note, m to find mythic may clash
   "Empty", "Empty"
 };
 
-String runeSlots[2] = {"Empty", "Empty"}; //edit here to cheat in runes like mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
+String runeSlots[2] = {"mb", "mf"}; //edit here to cheat in runes like mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
 
 byte invSpace() {
   byte space = 0;
@@ -498,7 +498,7 @@ byte invSpace() {
 }
 
 byte receiveLoot(String item) {
-  for (byte x = 0; x < 10; x++) {
+  for (byte x = 0; x < 9; x++) {
     if (inventory[x] == "Empty") {  //is there std::find?
       inventory[x] = item;
       return 1; //success
@@ -1153,7 +1153,7 @@ void loop4() {
   String enemyItemReward = "Empty";
 
   //ally data
-  byte escapeChance = 15;
+  byte escapeChance = 25; //15 base too low
   byte stimPrice = 40; //stim is always more expensive than passive healing as it is a dungeon
   byte stims = 1; //stim wont lose turns
   byte defHealMin = 5; //defense will lose turn
@@ -1186,13 +1186,13 @@ void loop4() {
         drawSeven();
         switch (getRuneRarity(rs)) {
           case 'c':
-            escapeChance = 25; //easier escape per rarity
+            escapeChance = 35; //easier escape per rarity
             break;
           case 'u':
-            escapeChance = 35;
+            escapeChance = 45;
             break;
           case 'r':
-            escapeChance = 55;
+            escapeChance = 60;
             break;
           case 'm':
             escapeChance = 100; //100% chance of escaping
@@ -1503,9 +1503,9 @@ void loop4() {
         hp += 30;
         updateHP();
         display.setCursor(0, 50);
-        display.print(F("Stimmed! HP: "));
+        display.print("Healed! HP: ");
         display.print(hp);
-        display.setCursor(50, 10); //print stim at right side
+        display.setCursor(50, 10); //print health packs at right side
         display.print("Stim:");
         display.print(stims);
         delay(750);
@@ -1570,6 +1570,9 @@ void loop4() {
         display.print(F(" Gold"));
 
         gold += enemyGReward;
+        if (stims < 5) {
+          stims += 1; //free healthpack after victory
+        }
 
         delay(2000); //additional 2 seconds to view the loot
         doRollEnemy = 1;
