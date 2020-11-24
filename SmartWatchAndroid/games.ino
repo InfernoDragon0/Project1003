@@ -214,6 +214,8 @@ byte maxHp = 100; //modded by blood rune
 byte hp = 100;
 char hp_buffer[8];
 
+byte goldGenRate = 1;
+
 // Control HP
 void chkHP() {
   if (hp >= maxHp) {
@@ -344,7 +346,7 @@ void timePassed() {
 // RTP system to track time passed when not in game and apply parameters for penalty
 void RTP() {
   hp -= deduct;
-  gold += deduct;
+  gold += deduct * goldGenRate;
   deduct = 0;
   atimeElapsed = 0;
   updateHP();
@@ -355,7 +357,7 @@ void RTP() {
 void penaltyHP() {
   if (timeElapsed >= 16200) {
     hp -= 1;
-    gold += 1;
+    gold += goldGenRate;
     timeElapsed = 0;
     updateHP();
     updateGold();
@@ -539,7 +541,6 @@ char getRuneRarity(byte slot) {
   return runeSlots[slot][0];
 }
 
-byte goldGenRate = 1;
 void loop1() {
   byte hpRegenRate = 1;
   byte foodCost = 8;
