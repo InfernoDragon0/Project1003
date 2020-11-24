@@ -1686,7 +1686,7 @@ void loop5() {
           display.setCursor(4, 32);
           display.print(F("<"));
           curLocation += 1;
-          delay(100);
+          delay(200);
         }
       }
     }
@@ -1714,7 +1714,7 @@ void loop5() {
             display.print(F("<"));
           }
           curLocation -= 1;
-          delay(100);
+          delay(200);
         }
       }
     }
