@@ -516,6 +516,9 @@ byte equipRune(byte index, byte slot) {
   if (inventory[index] == "Empty") {
     return 0; //equipping failed
   }
+  if (inventory[index][1] == runeSlots[0][1] || inventory[index][1] == runeSlots[1][1]) {
+    return 0; //cannot equip same type of rune
+  }
   runeSlots[slot] = inventory[index]; //equip to rune slot
   inventory[index] = tempRune; //replace item in inventory to previous rune or empty
   return 1;
