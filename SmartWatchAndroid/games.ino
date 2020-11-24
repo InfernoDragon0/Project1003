@@ -149,6 +149,7 @@ unsigned char money[40] PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Yellow, TS_8b_Black, TS_8b_Black
 };
 
+// Drawing sprites
 void drawDef() {
   display.setX(40, 40 + 12 - 1);
   display.setY(25, 25 + 20 - 1);
@@ -268,7 +269,7 @@ void printdQuotes() {
   byte randnum = random(10);
   display.clearWindow(0, 45, 96, 64);
   display.setCursor(1, 52);
-  switch (randnum) {
+  switch (randnum) { // Switched to switch statement to prevent corruption in case of full mem
     case 0:
       display.print(F("YOU DIED"));
       break;
@@ -548,7 +549,7 @@ void loop1() {
   display.print(F("MeoWelcome Back~!"));
   for (byte rs = 0; rs < 2; rs++) {
     if (runeSlots[rs] != "Empty") { //lbfa
-      if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+      if (runeSlots[rs].indexOf('b') > 0) { //blood rune
         drawHeart();
         switch (getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
           case 'c':
@@ -654,14 +655,14 @@ void loop1() {
       display.clearWindow(40, 25, 12, 20);
       drawSlp();
       delay(1000);
-      for (uint8_t i = 0; i < 10; i++) {
+      for (byte i = 0; i < 10; i++) {
         delay(1000);
         display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         delay(1000);
         display.print(F("Zzzzzzzzzzzzz...."));
         hp += hpRegenRate;
-        gold -= 1; // We charge rent!
+        gold -= 5; // We charge rent!
         updateHP();
         updateGold();
       }
@@ -751,7 +752,6 @@ void loop2() { //lootbox game
     byte rType = random(0, 7);
     byte rChance = random(0, 11);
     byte lType = random(0, 4);
-
 
     if (baseChances[rType] == 0) { //skip, do not increment
       continue;
@@ -891,7 +891,6 @@ void loop2() { //lootbox game
           else {
             display.print("X ");
           }
-
         }
       }
     }
@@ -1651,12 +1650,12 @@ void drawCenterMoney() { //fortune rune
   display.endTransfer();
 }
 
-// inventory stuff
+// Inventory Menu
 void loop5() {
   byte curLocation = 0;
   display.clearWindow(0, 10, 96, 64);
   display.setCursor(28, 11);
-  display.print(curLocation + 1);
+  display.print(curLocation + 1); // for pagination
   display.print(F(" / 10"));
   display.setCursor(85, 32);
   display.print(F(">"));
@@ -1665,7 +1664,7 @@ void loop5() {
       retMenu();
       break;
     }
-    //Put whatever game function you have here
+    // next
     if (display.getButtons(TSButtonLowerRight)) {
       if (curLocation < 9) {
         display.clearWindow(0, 10, 96, 64);
@@ -1681,6 +1680,7 @@ void loop5() {
         curLocation += 1;
       }
     }
+    // back
     if (display.getButtons(TSButtonLowerLeft)) {
       if (curLocation > 0) {
         display.clearWindow(0, 10, 96, 64);
@@ -1703,12 +1703,14 @@ void loop5() {
     display.setCursor(28, 11);
     display.print(curLocation + 1);
     display.print(F(" / 10"));
+    // Traversing the array
     for (byte inv = 0; inv < 9; inv++) {
       if (inventory[curLocation] == "Empty") {
         display.setCursor(34, 32);
         display.print(F("Empty"));
       }
       else {
+        // Detecting rune type and rarity
         if (inventory[curLocation].indexOf('b') > 0) {
           drawCenterHeart();
           switch (inventory[curLocation][0]) {
