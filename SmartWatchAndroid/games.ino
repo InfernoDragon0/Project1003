@@ -312,11 +312,11 @@ void chkDead() {
     drawDead();
     gold -= 200; //revival will require gold, but can be in debt
     hp += 100;
-    display.setCursor(0, 52);
+    //display.setCursor(0, 52);
     //byte rnd = random(10);
     //strcpy_P(deathQ_buffer, (char *)pgm_read_word(&(deathQuotes[rnd])));
     //display.println(deathQ_buffer);
-    void printdQuotes();
+    printdQuotes();
     delay(1500);
     display.clearWindow(0, 52, 96, 64);
     display.setCursor(0, 52);
@@ -1058,7 +1058,6 @@ void loop3() {
         }
         else {
           hp -= 20;
-          updateHP();
           if (hp <= 0) {
             display.clearWindow(0, 10, 96, 64);
             display.setCursor(0, 30);
