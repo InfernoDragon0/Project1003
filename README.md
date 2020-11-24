@@ -1,8 +1,12 @@
 # Project1003
+1003- A C++ arduino based tiny circuit game, all features are complete
+Play with your tamagochi, earn loot and gold from various games, fight randomly generated monsters and bosses and receive greater loot. Reach Mythic-level equipments to dominate the dungeons!
 
-*NOTE: This repo will be private until submission date, from then on it will be public.
-
-1003- A C++ arduino based tiny circuit game, 4 days to completion
+## Requirements
+Libraries
+  - Tinyscreen
+  - RTCZero
+Run by uploading SmartWatchAndroid to your tinycircuit
 
 ## Features
 - Front Watch View
@@ -11,17 +15,18 @@
 - Health
 - Gold
 - Inventory [10 slots]
+- Rune Slots [2 slots]
 
 ## Main Game Loop
 - [X] Tamago sprite (ONE)
-- [X] Mini game for the sprites (Platformer + Gambler + Goldsweeper)
+- [X] Mini game for the sprites
 - [X] Rune of Luck/Blood/Fortune/Agility +1/2/3/4
 - [X] Luck rune .. gold gen increases to 2/3/5/10
 - [X] Blood rune increases your health to 115/135/170/210
 - [X] Fortune rune .. decreases food cost to 7/6/4/1
 - [X] Agility rune increases your health regeneration to 2/3/6/15
 - [X] Up to 10 Runes can be stored, but you can only have 2 equipped
-- [ ] Dungeons: Pay 50G Entry fee, you can fight endlessly until you die / escape
+- [X] Dungeons: Free to play, you can fight endlessly until you die / escape
 - [X] TamaGOLD uses gold each round and rewards Runes/Gold/Jackpot Gold/Nothing
 - [X] TamaBOOM is free to play: Health loss per bomb and gold gain per spot digged
 - [X] Random Quotes / death quotes / eat quotes
@@ -32,7 +37,7 @@
 ## Side Games
   
 ### Dungeon
-  - [ ] Your tamago vs random colored Ghost or Birds
+  - [X] Your tamago vs random colored Ghost or Birds (8 diff colors each)
   - [X] Enemy Ghost have 40-60 health, 12-18 damage
   - [X] Enemy Bird have 55-95 health, 8-12 damage
   - [X] Randomized Prefixes (Edge: +6-12 Damage) (Tank: +10-20 hp) (Quick: +1 Attack per round) (Hide: 30% Chance dodge attack) 
@@ -61,9 +66,7 @@
   - [X] mythic Rune (0% drop rate) !must equip at least luck 3 rune to spawn one
   - [X] 1000-1800G (10% drop rate) !per fortune increase 200
   - [X] Luck rune increases decreases NOTHING by 10% per rarity, +1 = +10% uncommon, +2 = +10% rare, +3 = +10% mythic, +4 = +10% jackpot
-  - [ ] Blood rune .. regardless of rarity, pays half of the price using health
   - [X] Fortune rune increases jackpot gain by 200/400/600/800 depending on rarity
-  - [ ] Agility rune .. when digging out nothing, reduce gold loss by 10% per rarity
   
 ### Tamaboom
 - [X] 21 spots to dig, Ratio of bombs to gold is 3:2, randomized. If you get bombed you lose 20 Health, you lose when you run out of health. For every spot digged you will get 5G*n (n is the number of spot digged)
