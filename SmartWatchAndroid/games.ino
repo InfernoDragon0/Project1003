@@ -1183,7 +1183,7 @@ void loop4() {
         }
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
-        drawSeven();
+        //drawSeven();
         switch (getRuneRarity(rs)) {
           case 'c':
             escapeChance = 35; //easier escape per rarity
@@ -1200,7 +1200,7 @@ void loop4() {
         }
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-        drawMoney();
+        //drawMoney();
         switch (getRuneRarity(rs)) {
           case 'c':
             defHealMin = 4; //defensive healing minimum requirement lowered
@@ -1221,7 +1221,7 @@ void loop4() {
         }
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
-        drawLightning();
+        //drawLightning();
         switch (getRuneRarity(rs)) {
           case 'c':
             extraTurnChance = 7; //dodge rate
