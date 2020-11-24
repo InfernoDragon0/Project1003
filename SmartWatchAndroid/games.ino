@@ -619,7 +619,7 @@ void loop1() {
       }
     }
   }
-  delay(1000);
+  delay(750);
   while (1) { // Void loop simulation
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -987,10 +987,10 @@ void loop3() {
       all++;
     }
   }
+  delay(750);
   display.setCursor(0, 50);
   display.print(all);
   display.print(F(" Gold spots!"));
-  delay(750);
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -1673,6 +1673,7 @@ void loop5() {
           display.setCursor(4, 32);
           display.print(F("<"));
           curLocation += 1;
+          delay(100);
         }
       }
     }
@@ -1683,7 +1684,6 @@ void loop5() {
         display.setCursor(0, 30);
         destroyLoot(curLocation);
         display.print("Destroyed Rune!");
-
         delay(1000);
         loop5(); //may cause stack overflow? break works after the end of the next loop5
         break;
@@ -1701,6 +1701,7 @@ void loop5() {
             display.print(F("<"));
           }
           curLocation -= 1;
+          delay(100);
         }
       }
     }
