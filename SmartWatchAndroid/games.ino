@@ -478,10 +478,10 @@ void printeQuote() {
 
 //Inventory management
 String inventory[10] = { //note, m to find mythic may clash
-  "cb", "ub",
-  "rb", "mb",
-  "ml", "mf",
-  "ma", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty",
+  "Empty", "Empty",
   "Empty", "Empty"
 };
 
@@ -489,7 +489,7 @@ String runeSlots[2] = {"Empty", "Empty"}; //edit here to cheat in runes like mf,
 
 byte invSpace() {
   byte space = 0;
-  for (byte x = 0; x < 9; x++) { //is there std::find?
+  for (byte x = 0; x < 10; x++) { //is there std::find?
     if (inventory[x] == "Empty") {
       space++;
     }
@@ -1653,6 +1653,7 @@ void drawCenterMoney() { //fortune rune
 // Inventory Menu
 void loop5() {
   byte curLocation = 0;
+  byte sel = 0;
   display.clearWindow(0, 10, 96, 64);
   display.setCursor(28, 11);
   display.print(curLocation + 1); // for pagination
@@ -1666,136 +1667,199 @@ void loop5() {
     }
     // next
     if (display.getButtons(TSButtonLowerRight)) {
-      if (curLocation < 9) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(28, 11);
-        display.print(curLocation + 1);
-        display.print(F(" / 10"));
-        if (curLocation < 8) {
-          display.setCursor(85, 32);
-          display.print(F(">"));
+      if (sel == 1) { //equip to slot 2
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0,30);
+          if (equipRune(curLocation, 1) == 1) {
+            display.print("Slot 2 Equipped!");
+          }
+          else {
+            display.print("Cannot Equip.");
+          }
+          
+          delay(1000);
+          loop5(); //may cause stack overflow? break works after the end of the next loop5
+          break;
         }
-        display.setCursor(4, 32);
-        display.print(F("<"));
-        curLocation += 1;
-      }
+        else {
+          if (curLocation < 9) {
+            display.clearWindow(0, 10, 96, 64);
+            display.setCursor(28, 11);
+            display.print(curLocation + 1);
+            display.print(F(" / 10"));
+            if (curLocation < 8) {
+              display.setCursor(85, 32);
+              display.print(F(">"));
+            }
+            display.setCursor(4, 32);
+            display.print(F("<"));
+            curLocation += 1;
+          }
+        }
+      
     }
     // back
     if (display.getButtons(TSButtonLowerLeft)) {
-      if (curLocation > 0) {
-        display.clearWindow(0, 10, 96, 64);
-        display.setCursor(28, 11);
-        display.print(curLocation);
-        display.print(F(" / 10"));
-        display.setCursor(85, 32);
-        display.print(F(">"));
-        if (curLocation > 1) {
-          display.setCursor(4, 32);
-          display.print(F("<"));
+      if (sel == 1) { //destroy equipment
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0,30);
+          destroyLoot(curLocation);
+          display.print("Destroyed Rune!");
+          
+          delay(1000);
+          loop5(); //may cause stack overflow? break works after the end of the next loop5
+          break;
         }
-        curLocation -= 1;
-      }
+        else {
+          if (curLocation > 0) {
+            display.clearWindow(0, 10, 96, 64);
+            display.setCursor(28, 11);
+            display.print(curLocation);
+            display.print(F(" / 10"));
+            display.setCursor(85, 32);
+            display.print(F(">"));
+            if (curLocation > 1) {
+              display.setCursor(4, 32);
+              display.print(F("<"));
+            }
+            curLocation -= 1;
+          }
+        }
+      
     }
     if (display.getButtons(TSButtonUpperRight)) {
       // Eqp, Uneqp and trash function here
-    }
-    //Put whatever game function you have here
-    display.setCursor(28, 11);
-    display.print(curLocation + 1);
-    display.print(F(" / 10"));
-    // Traversing the array
-    for (byte inv = 0; inv < 9; inv++) {
+      String curItem = inventory[curLocation];
       if (inventory[curLocation] == "Empty") {
-        display.setCursor(34, 32);
-        display.print(F("Empty"));
+        //do nothing
       }
       else {
-        // Detecting rune type and rarity
-        if (inventory[curLocation].indexOf('b') > 0) {
-          drawCenterHeart();
-          switch (inventory[curLocation][0]) {
-            case 'c':
-              display.setCursor(29, 50);
-              display.print(F("Common"));
-              break;
-            case 'u':
-              display.setCursor(25, 50);
-              display.print(F("Uncommon"));
-              break;
-            case 'r':
-              display.setCursor(34, 50);
-              display.print(F("Rare"));
-              break;
-            case 'm':
-              display.setCursor(31, 50);
-              display.print(F("Mythic"));
-              break;
-          }
+        if (sel == 0) {
+          sel = 1;
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0,30);
+          display.print("Equip Rune?");
+          delay(2000);
         }
-        else if (inventory[curLocation].indexOf('l') > 0) {
-          drawCenterSeven();
-          switch (inventory[curLocation][0]) {
-            case 'c':
-              display.setCursor(29, 50);
-              display.print(F("Common"));
-              break;
-            case 'u':
-              display.setCursor(25, 50);
-              display.print(F("Uncommon"));
-              break;
-            case 'r':
-              display.setCursor(34, 50);
-              display.print(F("Rare"));
-              break;
-            case 'm':
-              display.setCursor(31, 50);
-              display.print(F("Mythic"));
-              break;
+        else if (sel == 1) { //equip to slot 1
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0,30);
+          if (equipRune(curLocation, 0) == 1) {
+            display.print("Slot 1 Equipped!");
           }
-        }
-        else if (inventory[curLocation].indexOf('f') > 0) {
-          drawCenterMoney();
-          switch (inventory[curLocation][0]) {
-            case 'c':
-              display.setCursor(29, 50);
-              display.print(F("Common"));
-              break;
-            case 'u':
-              display.setCursor(25, 50);
-              display.print(F("Uncommon"));
-              break;
-            case 'r':
-              display.setCursor(34, 50);
-              display.print(F("Rare"));
-              break;
-            case 'm':
-              display.setCursor(31, 50);
-              display.print(F("Mythic"));
-              break;
+          else {
+            display.print("Cannot Equip.");
           }
+          
+          
+          delay(1000);
+          loop5(); //may cause stack overflow? break works after the end of the next loop5
+          break;
         }
-        else if (inventory[curLocation].indexOf('a') > 0) {
-          drawCenterLightning();
-          switch (inventory[curLocation][0]) {
-            case 'c':
-              display.setCursor(29, 50);
-              display.print(F("Common"));
-              break;
-            case 'u':
-              display.setCursor(25, 50);
-              display.print(F("Uncommon"));
-              break;
-            case 'r':
-              display.setCursor(34, 50);
-              display.print(F("Rare"));
-              break;
-            case 'm':
-              display.setCursor(31, 50);
-              display.print(F("Mythic"));
-              break;
+        
+      }
+      
+    }
+    if (sel == 0) {
+      display.setCursor(28, 11);
+      display.print(curLocation + 1);
+      display.print(F(" / 10"));
+      // Traversing the array
+      for (byte inv = 0; inv < 9; inv++) {
+        if (inventory[curLocation] == "Empty") {
+          display.setCursor(34, 32);
+          display.print(F("Empty"));
+        }
+        else {
+          // Detecting rune type and rarity
+          if (inventory[curLocation].indexOf('b') > 0) {
+            drawCenterHeart();
+            switch (inventory[curLocation][0]) {
+              case 'c':
+                display.setCursor(29, 50);
+                display.print(F("Common"));
+                break;
+              case 'u':
+                display.setCursor(25, 50);
+                display.print(F("Uncommon"));
+                break;
+              case 'r':
+                display.setCursor(34, 50);
+                display.print(F("Rare"));
+                break;
+              case 'm':
+                display.setCursor(31, 50);
+                display.print(F("Mythic"));
+                break;
+            }
+          }
+          else if (inventory[curLocation].indexOf('l') > 0) {
+            drawCenterSeven();
+            switch (inventory[curLocation][0]) {
+              case 'c':
+                display.setCursor(29, 50);
+                display.print(F("Common"));
+                break;
+              case 'u':
+                display.setCursor(25, 50);
+                display.print(F("Uncommon"));
+                break;
+              case 'r':
+                display.setCursor(34, 50);
+                display.print(F("Rare"));
+                break;
+              case 'm':
+                display.setCursor(31, 50);
+                display.print(F("Mythic"));
+                break;
+            }
+          }
+          else if (inventory[curLocation].indexOf('f') > 0) {
+            drawCenterMoney();
+            switch (inventory[curLocation][0]) {
+              case 'c':
+                display.setCursor(29, 50);
+                display.print(F("Common"));
+                break;
+              case 'u':
+                display.setCursor(25, 50);
+                display.print(F("Uncommon"));
+                break;
+              case 'r':
+                display.setCursor(34, 50);
+                display.print(F("Rare"));
+                break;
+              case 'm':
+                display.setCursor(31, 50);
+                display.print(F("Mythic"));
+                break;
+            }
+          }
+          else if (inventory[curLocation].indexOf('a') > 0) {
+            drawCenterLightning();
+            switch (inventory[curLocation][0]) {
+              case 'c':
+                display.setCursor(29, 50);
+                display.print(F("Common"));
+                break;
+              case 'u':
+                display.setCursor(25, 50);
+                display.print(F("Uncommon"));
+                break;
+              case 'r':
+                display.setCursor(34, 50);
+                display.print(F("Rare"));
+                break;
+              case 'm':
+                display.setCursor(31, 50);
+                display.print(F("Mythic"));
+                break;
+            }
           }
         }
       }
     }
+    //Put whatever game function you have here
+    
   }
 }
