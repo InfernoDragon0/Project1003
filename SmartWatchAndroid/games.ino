@@ -638,10 +638,8 @@ void loop1() {
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       if (gold < foodCost) {
-        display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         display.print(F("Not enough Gold"));
-        delay(1000);
       }
       else {
         display.clearWindow(0, 52, 96, 64);
@@ -879,10 +877,10 @@ void loop2() { //lootbox game
       }
     }
     display.setCursor(0, 10);
-    display.print(F("debug loot: "));
+    display.print(F("Current Loc: "));
     display.print(curLocation);
-    display.print(F(".."));
-    display.print(lootRandomizer[curLocation - 1]);
+    //display.print(F(".."));
+    //display.print(lootRandomizer[curLocation - 1]);
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
       display.setCursor(0, 20 + (y * 10));
@@ -1073,10 +1071,10 @@ void loop3() {
       }
     }
     display.setCursor(0, 10);
-    display.print(F("Debug loot: "));
+    display.print(F("Current Loc: "));
     display.print(curLocation);
-    display.print(F(".."));
-    display.print(bombs[curLocation - 1]);
+    //display.print(F(".."));
+    //display.print(bombs[curLocation - 1]);
     display.setCursor(0, 20);
     for (byte y = 0; y < 3; y++) { //weird loop for 3 rows..?
       display.setCursor(0, 20 + (y * 10));
