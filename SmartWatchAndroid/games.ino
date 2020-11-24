@@ -699,6 +699,7 @@ String lootPart[4] = {"l", "b", "f", "a"}; //luck, blood, fortune, agility
 //jackpot = 1;
 
 void loop2() { //lootbox game
+  display.clearWindow(0, 10, 96, 64);
   String lootRandomizer[21];
   byte curLocation = 1;
   byte curDigged = 0;
@@ -906,7 +907,7 @@ void loop2() { //lootbox game
 // Tamaboom here
 String bombs[21];
 void loop3() {
-
+  display.clearWindow(0, 10, 96, 64);
   if (hp <= 0) { //not allowed to enter without health
     display.setCursor(0, 30);
     display.print(F("Revive first"));
@@ -924,7 +925,7 @@ void loop3() {
 
   for (byte rs = 0; rs < 2; rs++) {
     if (runeSlots[rs] != "Empty") { //lbfa
-      if (runeSlots[rs].indexOf('b') > 0) { //blod rune
+      if (runeSlots[rs].indexOf('b') > 0) { //blood rune
         switch (getRuneRarity(rs)) { //your health will not increase from equipping a rune.. cos that is cheating (unequip > equip repeat)
           case 'c':
             maxHp = 115;
@@ -941,7 +942,7 @@ void loop3() {
         }
       }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
-        drawSeven();
+        //drawSeven();
         switch (getRuneRarity(rs)) {
           case 'c':
             goldChance = 6; //gold to bomb ratio
@@ -958,7 +959,7 @@ void loop3() {
         }
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
-        drawMoney();
+        //drawMoney();
         switch (getRuneRarity(rs)) {
           case 'c':
             goldGain = 6; //gold per dig rate
@@ -975,7 +976,7 @@ void loop3() {
         }
       }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
-        drawLightning();
+        //drawLightning();
         switch (getRuneRarity(rs)) {
           case 'c':
             dodgeRate = 8; //dodge rate
@@ -1002,6 +1003,7 @@ void loop3() {
     }
   }
   delay(750);
+  display.clearWindow(0, 10, 96, 64);
   display.setCursor(0, 50);
   display.print(F("                          ")); //clear display line
   display.setCursor(0, 50);
