@@ -907,6 +907,14 @@ void loop2() { //lootbox game
 String bombs[21];
 void loop3() {
 
+  if (hp <= 0) { //not allowed to enter without health
+    display.setCursor(0, 30);
+    display.print(F("Revive first"));
+    delay(1000);
+    retMenu();
+    return;
+  }
+  
   byte curLocation = 1;
   byte sweeped = 0;
   byte all = 0;
@@ -1415,11 +1423,15 @@ void loop4() {
       if (willBlockEnemy) {
         willBlockEnemy = 0; //no damage done
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print(F("Blocked Enemy!"));
       }
       else { //no rng here because too much rng already
         takeDamage(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage); //Quicks will attack twice.. without rng
         updateHP();
+        display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(F("Taken "));
         display.print(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage);
@@ -1430,8 +1442,8 @@ void loop4() {
         display.clearWindow(0, 10, 96, 64);
         display.setCursor(0, 30);
         display.print(F("You died."));
-
         delay(2000);
+
         retMenu();
         break;
       }
@@ -1447,6 +1459,8 @@ void loop4() {
         break;
       }
       else if (currentTurn != 2) {
+        display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(F("Not your Turn!"));
       }
@@ -1464,6 +1478,8 @@ void loop4() {
         else {
           currentTurn = 1;
           display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+          display.setCursor(0, 50);
           display.print(F("Escape Failed."));
           delay(1000);
         }
@@ -1474,17 +1490,25 @@ void loop4() {
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print(F("Not your Turn!       "));
       }
       else if (hp >= maxHp) { //no need to stim
+        display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(F("At Max Health       "));
       }
       else if (stims == 0) {
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print(F("No more Stims       "));
       }
       else if (gold < stimPrice) {
+        display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(F("Not enough Gold     "));
       }
@@ -1493,12 +1517,16 @@ void loop4() {
         hp += 30;
         updateHP();
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print("Healed! HP: ");
         display.print(hp);
         display.setCursor(50, 10); //print health packs at right side
         display.print("Stim:");
         display.print(stims);
         delay(750);
+        display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
         display.setCursor(0, 50);
         display.print(F("Continue Attack!"));
       }
@@ -1507,12 +1535,16 @@ void loop4() {
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print(F("Not your Turn!       "));
       }
       else if (hp > 0) { //if we are not dead
         if (enemyPrefix == 3) { //if the enemy has Hide prefix
           byte canDodge = random(0, 100);
           if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
+            display.setCursor(0, 50);
+            display.print(F("                          ")); //clear display line
             display.setCursor(0, 50);
             display.print(F("Enemy Dodged"));
           }
@@ -1523,6 +1555,8 @@ void loop4() {
             else {
               enemyHealth -= attackDamage; //deal attackdamage to enemy hp
             }
+            display.setCursor(0, 50);
+            display.print(F("                          ")); //clear display line
             display.setCursor(0, 50);
             display.print(F("Hit! HP:"));
             display.print(enemyHealth);
@@ -1535,6 +1569,8 @@ void loop4() {
           else {
             enemyHealth -= attackDamage; //deal attackdamage to enemy hp
           }
+          display.setCursor(0, 50);
+          display.print(F("                          ")); //clear display line
           display.setCursor(0, 50);
           display.print(F("Hit! HP:"));
           display.print(enemyHealth);
@@ -1573,6 +1609,8 @@ void loop4() {
           if (extraTurnChance > eChance) { //extra turn stuff
             currentTurn = 2;
             display.setCursor(0, 50);
+            display.print(F("                          ")); //clear display line
+            display.setCursor(0, 50);
             display.print(F("Extra Turn!"));
           }
           else {
@@ -1589,6 +1627,8 @@ void loop4() {
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
+        display.print(F("                          ")); //clear display line
+        display.setCursor(0, 50);
         display.print(F("Not your Turn!     "));
       }
       else {
@@ -1599,10 +1639,14 @@ void loop4() {
           hp += willHeal;
           updateHP();
           display.setCursor(0, 50);
+          display.print(F("                          ")); //clear display line
+          display.setCursor(0, 50);
           display.print(F("Defend! HP:"));
           display.print(hp);
         }
         else {
+          display.setCursor(0, 50);
+          display.print(F("                          ")); //clear display line
           display.setCursor(0, 50);
           display.print(F("Will Defend!     "));
         }
@@ -1686,7 +1730,7 @@ void loop5() {
           display.setCursor(4, 32);
           display.print(F("<"));
           curLocation += 1;
-          delay(200);
+          delay(100);
         }
       }
     }
@@ -1714,7 +1758,7 @@ void loop5() {
             display.print(F("<"));
           }
           curLocation -= 1;
-          delay(200);
+          delay(100);
         }
       }
     }
