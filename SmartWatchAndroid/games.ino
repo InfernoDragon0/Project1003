@@ -485,7 +485,7 @@ String inventory[10] = { //note, m to find mythic may clash
   "Empty", "Empty"
 };
 
-String runeSlots[2] = {"mb", "mf"}; //edit here to cheat in runes like mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
+String runeSlots[2] = {"Empty", "Empty"}; //edit here to cheat in runes like ma,mb, mf, ml for mythic fortune and mythic luck (required to drop mythic items in goldmine)
 
 byte invSpace() {
   byte space = 0;
