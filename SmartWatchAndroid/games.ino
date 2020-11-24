@@ -637,8 +637,10 @@ void loop1() {
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       if (gold < foodCost) {
+        display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         display.print(F("Not enough Gold"));
+        delay(1000);
       }
       else {
         display.clearWindow(0, 52, 96, 64);
