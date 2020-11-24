@@ -1714,6 +1714,12 @@ void loop5() {
         if (sel == 0) {
           sel = 1;
           display.clearWindow(0, 10, 96, 64);
+          display.setCursor(0, 48);
+          display.print(F("< Trash"));
+          display.setCursor(75, 16);
+          display.print(F("S1 >"));
+          display.setCursor(75, 48);
+          display.print(F("S2 >"));
           display.setCursor(0, 30);
           display.print("Equip Rune?");
           delay(2000);
