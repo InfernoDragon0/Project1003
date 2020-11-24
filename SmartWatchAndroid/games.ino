@@ -498,7 +498,7 @@ byte invSpace() {
 }
 
 byte receiveLoot(String item) {
-  for (byte x = 0; x < 9; x++) {
+  for (byte x = 0; x < 10; x++) {
     if (inventory[x] == "Empty") {  //is there std::find?
       inventory[x] = item;
       return 1; //success
