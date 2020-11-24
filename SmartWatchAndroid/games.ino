@@ -882,14 +882,14 @@ void loop2() { //lootbox game
       display.setCursor(0, 20 + (y * 10));
       for (byte x = y * 7; x < (y * 7) + 7; x++) {
         if (curLocation == (x + 1)) {
-          display.print("O ");
+          display.print(F("O "));
         }
         else {
           if (lootRandomizer[x] == "none") {
-            display.print("- ");
+            display.print(F("- "));
           }
           else {
-            display.print("X ");
+            display.print(F("X "));
           }
         }
       }
@@ -1011,13 +1011,13 @@ void loop3() {
       //some way to save this thing
       display.setCursor(0, 50);
       if (bombs[curLocation - 1] == "O") {
-        display.print("+");
+        display.print(F("+"));
         sweeped++;
         all--;
         display.print(goldGain * sweeped);
-        display.print(" Gold, ");
+        display.print(F(" Gold, "));
         display.print(all);
-        display.print(" left");
+        display.print(F(" left"));
         bombs[curLocation - 1] = "X";
 
         gold += goldGain * sweeped;
@@ -1025,9 +1025,9 @@ void loop3() {
         if (all == 0) {
           display.clearWindow(0, 10, 96, 64);
           display.setCursor(0, 30);
-          display.print("Yay! you win!");
+          display.print(F("Yay! you win!"));
           display.setCursor(0, 40);
-          display.print("+100 Gold Extra!");
+          display.print(F("+100 Gold Extra!"));
           gold += 100;
           delay(2000);
           //end gamehere
@@ -1058,12 +1058,12 @@ void loop3() {
           }
           display.setCursor(0, 50);
           bombs[curLocation - 1] = "X";
-          display.print("Ow! HP Left: ");
+          display.print(F("Ow! HP Left: "));
           display.print(hp);
         }
       }
       else {
-        display.print("Nothing here!");
+        display.print(F("Nothing here!"));
       }
     }
     display.setCursor(0, 10);
@@ -1077,14 +1077,14 @@ void loop3() {
 
       for (byte x = y * 7; x < (y * 7) + 7; x++) {
         if (curLocation == (x + 1)) {
-          display.print("O ");
+          display.print(F("O "));
         }
         else {
           if (bombs[x] == "X") {
-            display.print("- ");
+            display.print(F("- "));
           }
           else {
-            display.print("X ");
+            display.print(F("X "));
           }
         }
       }
@@ -1129,7 +1129,7 @@ void loop4() {
 
   if (hp <= 0) { //not allowed to enter without health
     display.setCursor(0, 30);
-    display.print("Revive first");
+    display.print(F("Revive first"));
     delay(1000);
     retMenu();
     return;
@@ -1244,7 +1244,7 @@ void loop4() {
     if (doRollEnemy == 1) {
       display.clearWindow(0, 10, 96, 64);
       display.setCursor(0, 20);
-      display.print("Rolling enemy..");
+      display.print(F("Rolling enemy.."));
       //generate enemy
       enemyType = random(0, 2); //0 is ghost, 1 is bird
       enemyHealth = enemyType == 0 ? random(40, 61) : random(55, 96); //ghost: 40-60, bird: 55-95
@@ -1299,20 +1299,20 @@ void loop4() {
       delay(1000); //delay for the suspense
       display.clearWindow(0, 10, 96, 64);
       display.setCursor(0, 10);
-      display.print("You will Fight:");
+      display.print(F("You will Fight:"));
       display.setCursor(0, 20);
       switch (enemyPrefix) {
         case 0:
-          display.print("Edge v");
+          display.print(F("Edge v"));
           break;
         case 1:
-          display.print("Tank v");
+          display.print(F("Tank v"));
           break;
         case 2:
-          display.print("Quick v");
+          display.print(F("Quick v"));
           break;
         case 3:
-          display.print("Hide v");
+          display.print(F("Hide v"));
           break;
       }
       display.print(enemyColor); //just print the number
@@ -1329,13 +1329,13 @@ void loop4() {
       display.setCursor(0, 30);
       switch (enemySuffix) {
         case 0:
-          display.print("Mob");
+          display.print(F("Mob"));
           break;
         case 1:
-          display.print("Slave");
+          display.print(F("Slave"));
           break;
         case 2:
-          display.print("BOSS");
+          display.print(F("BOSS"));
           break;
       }
 
@@ -1344,7 +1344,7 @@ void loop4() {
       currentTurn = 2;
       updateHP(); //print hp at 0,10
       display.setCursor(50, 10); //print stim at right side
-      display.print("Stim:");
+      display.print(F("Stim:"));
       display.print(stims);
       
       //print tamago and enemy at around 10,20 and 45,20
@@ -1411,7 +1411,7 @@ void loop4() {
       display.endTransfer();
 
       display.setCursor(0, 50);
-      display.print("Enemy HP:");
+      display.print(F("Enemy HP:"));
       display.print(enemyHealth);
 
       //do roll random enemy
@@ -1425,21 +1425,21 @@ void loop4() {
       if (willBlockEnemy) {
         willBlockEnemy = 0; //no damage done
         display.setCursor(0, 50);
-        display.print("Blocked Enemy!");
+        display.print(F("Blocked Enemy!"));
       }
       else { //no rng here because too much rng already
         takeDamage(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage); //Quicks will attack twice.. without rng
         updateHP();
         display.setCursor(0, 50);
-        display.print("Taken ");
+        display.print(F("Taken "));
         display.print(enemyAttacks == 2 ? enemyDamage * 2 : enemyDamage);
-        display.print(" Dmg!");
+        display.print(F(" Dmg!"));
       }
 
       if (hp <= 0) {
         display.clearWindow(0, 10, 96, 64);
         display.setCursor(0, 30);
-        display.print("You died.");
+        display.print(F("You died."));
 
         delay(2000);
         retMenu();
@@ -1458,14 +1458,14 @@ void loop4() {
       }
       else if (currentTurn != 2) {
         display.setCursor(0, 50);
-        display.print("Not your Turn!");
+        display.print(F("Not your Turn!"));
       }
       else {
         byte escapeRoll = random(0, 100);
         if (escapeChance > escapeRoll) {
           display.clearWindow(0, 10, 96, 64);
           display.setCursor(0, 30);
-          display.print("Escaped!"); //random quotes?
+          display.print(F("Escaped!")); //random quotes?
 
           delay(2000);
           retMenu();
@@ -1474,7 +1474,7 @@ void loop4() {
         else {
           currentTurn = 1;
           display.setCursor(0, 50);
-          display.print("Escape Failed.");
+          display.print(F("Escape Failed."));
           delay(1000);
         }
       }
@@ -1484,47 +1484,47 @@ void loop4() {
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
-        display.print("Not your Turn!       ");
+        display.print(F("Not your Turn!       "));
       }
       else if (hp >= maxHp) { //no need to stim
         display.setCursor(0, 50);
-        display.print("At Max Health       ");
+        display.print(F("At Max Health       "));
       }
       else if (stims == 0) {
         display.setCursor(0, 50);
-        display.print("No more Stims       ");
+        display.print(F("No more Stims       "));
       }
       else if (gold < stimPrice) {
         display.setCursor(0, 50);
-        display.print("Not enough Gold     ");
+        display.print(F("Not enough Gold     "));
       }
       else {
         stims--;
         hp += 30;
         updateHP();
         display.setCursor(0, 50);
-        display.print("Stimmed! HP: ");
+        display.print(F("Stimmed! HP: "));
         display.print(hp);
         display.setCursor(50, 10); //print stim at right side
         display.print("Stim:");
         display.print(stims);
         delay(750);
         display.setCursor(0, 50);
-        display.print("Continue Attack!");
+        display.print(F("Continue Attack!"));
       }
     }
     if (display.getButtons(TSButtonLowerLeft)) { //attack
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
-        display.print("Not your Turn!       ");
+        display.print(F("Not your Turn!       "));
       }
       else if (hp > 0) { //if we are not dead
         if (enemyPrefix == 3) { //if the enemy has Hide prefix
           byte canDodge = random(0, 100);
           if (canDodge <= enemyPrefixBuff) { //fixed at 30% cos too much rng already
             display.setCursor(0, 50);
-            display.print("Enemy Dodged");
+            display.print(F("Enemy Dodged"));
           }
           else {
             if (enemyHealth < attackDamage) {
@@ -1534,7 +1534,7 @@ void loop4() {
               enemyHealth -= attackDamage; //deal attackdamage to enemy hp
             }
             display.setCursor(0, 50);
-            display.print("Hit! HP:");
+            display.print(F("Hit! HP:"));
             display.print(enemyHealth);
           }
         }
@@ -1546,9 +1546,9 @@ void loop4() {
             enemyHealth -= attackDamage; //deal attackdamage to enemy hp
           }
           display.setCursor(0, 50);
-          display.print("Hit! HP:");
+          display.print(F("Hit! HP:"));
           display.print(enemyHealth);
-          display.print("      ");
+          display.print(F("      "));
         }
         delay(750);
       }
@@ -1556,18 +1556,18 @@ void loop4() {
       if (enemyHealth <= 0) {
         display.clearWindow(0, 10, 96, 64);
         display.setCursor(0, 20);
-        display.print("Enemy Defeated");
+        display.print(F("Enemy Defeated"));
         display.setCursor(0, 30);
         if (receiveLoot(enemyItemReward) == 1) {
           display.print("You got " + enemyItemReward);
         }
         else {
-          display.print("No Inventory Space"); //no space for loot :c
+          display.print(F("No Inventory Space")); //no space for loot :c
         }
         display.setCursor(0, 40);
-        display.print("You earned ");
+        display.print(F("You earned "));
         display.print(enemyGReward);
-        display.print(" Gold");
+        display.print(F(" Gold"));
 
         gold += enemyGReward;
 
@@ -1580,7 +1580,7 @@ void loop4() {
           if (extraTurnChance > eChance) { //extra turn stuff
             currentTurn = 2;
             display.setCursor(0, 50);
-            display.print("Extra Turn!");
+            display.print(F("Extra Turn!"));
           }
           else {
             currentTurn = 1;
@@ -1596,7 +1596,7 @@ void loop4() {
 
       if (currentTurn != 2) {
         display.setCursor(0, 50);
-        display.print("Not your Turn!     ");
+        display.print(F("Not your Turn!     "));
       }
       else {
         willBlockEnemy = 1; //block enemy next turn
@@ -1606,12 +1606,12 @@ void loop4() {
           hp += willHeal;
           updateHP();
           display.setCursor(0, 50);
-          display.print("Defend! HP:");
+          display.print(F("Defend! HP:"));
           display.print(hp);
         }
         else {
           display.setCursor(0, 50);
-          display.print("Will Defend!     ");
+          display.print(F("Will Defend!     "));
         }
         currentTurn = 1;
         delay(1000);
@@ -1668,64 +1668,61 @@ void loop5() {
     // next
     if (display.getButtons(TSButtonLowerRight)) {
       if (sel == 1) { //equip to slot 2
-          display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0,30);
-          if (equipRune(curLocation, 1) == 1) {
-            display.print("Slot 2 Equipped!");
-          }
-          else {
-            display.print("Cannot Equip.");
-          }
-          
-          delay(1000);
-          loop5(); //may cause stack overflow? break works after the end of the next loop5
-          break;
+        display.clearWindow(0, 10, 96, 64);
+        display.setCursor(0, 30);
+        if (equipRune(curLocation, 1) == 1) {
+          display.print("Slot 2 Equipped!");
         }
         else {
-          if (curLocation < 9) {
-            display.clearWindow(0, 10, 96, 64);
-            display.setCursor(28, 11);
-            display.print(curLocation + 1);
-            display.print(F(" / 10"));
-            if (curLocation < 8) {
-              display.setCursor(85, 32);
-              display.print(F(">"));
-            }
-            display.setCursor(4, 32);
-            display.print(F("<"));
-            curLocation += 1;
-          }
+          display.print("Cannot Equip.");
         }
-      
+        delay(1000);
+        loop5(); //may cause stack overflow? break works after the end of the next loop5
+        break;
+      }
+      else {
+        if (curLocation < 9) {
+          display.clearWindow(0, 10, 96, 64);
+          display.setCursor(28, 11);
+          display.print(curLocation + 1);
+          display.print(F(" / 10"));
+          if (curLocation < 8) {
+            display.setCursor(85, 32);
+            display.print(F(">"));
+          }
+          display.setCursor(4, 32);
+          display.print(F("<"));
+          curLocation += 1;
+        }
+      }
     }
     // back
     if (display.getButtons(TSButtonLowerLeft)) {
       if (sel == 1) { //destroy equipment
+        display.clearWindow(0, 10, 96, 64);
+        display.setCursor(0, 30);
+        destroyLoot(curLocation);
+        display.print("Destroyed Rune!");
+
+        delay(1000);
+        loop5(); //may cause stack overflow? break works after the end of the next loop5
+        break;
+      }
+      else {
+        if (curLocation > 0) {
           display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0,30);
-          destroyLoot(curLocation);
-          display.print("Destroyed Rune!");
-          
-          delay(1000);
-          loop5(); //may cause stack overflow? break works after the end of the next loop5
-          break;
-        }
-        else {
-          if (curLocation > 0) {
-            display.clearWindow(0, 10, 96, 64);
-            display.setCursor(28, 11);
-            display.print(curLocation);
-            display.print(F(" / 10"));
-            display.setCursor(85, 32);
-            display.print(F(">"));
-            if (curLocation > 1) {
-              display.setCursor(4, 32);
-              display.print(F("<"));
-            }
-            curLocation -= 1;
+          display.setCursor(28, 11);
+          display.print(curLocation);
+          display.print(F(" / 10"));
+          display.setCursor(85, 32);
+          display.print(F(">"));
+          if (curLocation > 1) {
+            display.setCursor(4, 32);
+            display.print(F("<"));
           }
+          curLocation -= 1;
         }
-      
+      }
     }
     if (display.getButtons(TSButtonUpperRight)) {
       // Eqp, Uneqp and trash function here
@@ -1737,28 +1734,24 @@ void loop5() {
         if (sel == 0) {
           sel = 1;
           display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0,30);
+          display.setCursor(0, 30);
           display.print("Equip Rune?");
           delay(2000);
         }
         else if (sel == 1) { //equip to slot 1
           display.clearWindow(0, 10, 96, 64);
-          display.setCursor(0,30);
+          display.setCursor(0, 30);
           if (equipRune(curLocation, 0) == 1) {
             display.print("Slot 1 Equipped!");
           }
           else {
             display.print("Cannot Equip.");
           }
-          
-          
           delay(1000);
           loop5(); //may cause stack overflow? break works after the end of the next loop5
           break;
         }
-        
       }
-      
     }
     if (sel == 0) {
       display.setCursor(28, 11);
@@ -1781,15 +1774,21 @@ void loop5() {
                 break;
               case 'u':
                 display.setCursor(25, 50);
+                display.fontColor(TS_8b_Green, TS_8b_Black);
                 display.print(F("Uncommon"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'r':
                 display.setCursor(34, 50);
+                display.fontColor(TS_8b_Yellow, TS_8b_Black);
                 display.print(F("Rare"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'm':
                 display.setCursor(31, 50);
+                display.fontColor(TS_8b_Blue, TS_8b_Black);
                 display.print(F("Mythic"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
             }
           }
@@ -1802,15 +1801,21 @@ void loop5() {
                 break;
               case 'u':
                 display.setCursor(25, 50);
+                display.fontColor(TS_8b_Green, TS_8b_Black);
                 display.print(F("Uncommon"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'r':
                 display.setCursor(34, 50);
+                display.fontColor(TS_8b_Yellow, TS_8b_Black);
                 display.print(F("Rare"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'm':
                 display.setCursor(31, 50);
+                display.fontColor(TS_8b_Blue, TS_8b_Black);
                 display.print(F("Mythic"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
             }
           }
@@ -1823,15 +1828,21 @@ void loop5() {
                 break;
               case 'u':
                 display.setCursor(25, 50);
+                display.fontColor(TS_8b_Green, TS_8b_Black);
                 display.print(F("Uncommon"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'r':
                 display.setCursor(34, 50);
+                display.fontColor(TS_8b_Yellow, TS_8b_Black);
                 display.print(F("Rare"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'm':
                 display.setCursor(31, 50);
+                display.fontColor(TS_8b_Blue, TS_8b_Black);
                 display.print(F("Mythic"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
             }
           }
@@ -1844,15 +1855,21 @@ void loop5() {
                 break;
               case 'u':
                 display.setCursor(25, 50);
+                display.fontColor(TS_8b_Green, TS_8b_Black);
                 display.print(F("Uncommon"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'r':
                 display.setCursor(34, 50);
+                display.fontColor(TS_8b_Yellow, TS_8b_Black);
                 display.print(F("Rare"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
               case 'm':
                 display.setCursor(31, 50);
+                display.fontColor(TS_8b_Blue, TS_8b_Black);
                 display.print(F("Mythic"));
+                display.fontColor(defaultFontColor, defaultFontBG);
                 break;
             }
           }
@@ -1860,6 +1877,5 @@ void loop5() {
       }
     }
     //Put whatever game function you have here
-    
   }
 }
