@@ -498,7 +498,7 @@ byte invSpace() {
 }
 
 byte receiveLoot(String item) {
-  for (byte x = 0; x < 9; x++) {
+  for (byte x = 0; x < 10; x++) {
     if (inventory[x] == "Empty") {  //is there std::find?
       inventory[x] = item;
       return 1; //success
@@ -780,7 +780,7 @@ void loop2() { //lootbox game
     //Serial.print("rd");
     //Serial.print(lootRandomizer[rd]);
   }
-
+  delay(750);
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -990,7 +990,7 @@ void loop3() {
   display.setCursor(0, 50);
   display.print(all);
   display.print(F(" Gold spots!"));
-
+  delay(750);
   while (1) {
     if (display.getButtons(TSButtonUpperLeft)) { //This is the "condition" to break out of this infinite loop.
       retMenu();
@@ -1092,30 +1092,7 @@ void loop3() {
   }
 }
 
-byte osGhostY = 20;
-void runGhost() {
-  //clear previous ghost
-  display.clearWindow(0, osGhostY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
-  display.setX(10, 10 + 12 - 1);
-  display.setY(osGhostY, osGhostY + 20 - 1);
-  display.startData();
-  display.writeBuffer(defchar, 12 * 20);
-  display.endTransfer();
-}
-
-byte osObstacleX = 60; //60, 40, 20, 0
-byte osObstacleY = 20; //20 or 40
-void obstacle() { //this only allows one obstacle rite now
-  //clear previous obstacle
-  display.clearWindow(osObstacleX, osObstacleY == 20 ? 40 : 20, (osGhostY == 20 ? 40 : 20) + 20 - 1, 20 - 1);
-  display.setX(10, 10 + 12 - 1);
-  display.setY(osGhostY, osGhostY + 20 - 1);
-  display.startData();
-  display.writeBuffer(defchar, 12 * 20);
-  display.endTransfer();
-}
-
-void takeDamage(byte hpLoss) {
+void takeDamage(byte hpLoss) { //if hp loss is too much then set hp to 0
   if (hp < hpLoss) {
     hp = 0;
   }
@@ -1761,123 +1738,54 @@ void loop5() {
       display.print(curLocation + 1);
       display.print(F(" / 10"));
       // Traversing the array
-      for (byte inv = 0; inv < 9; inv++) {
+      //for (byte inv = 0; inv < 10; inv++) {
         if (inventory[curLocation] == "Empty") {
           display.setCursor(34, 32);
           display.print(F("Empty"));
         }
         else {
           // Detecting rune type and rarity
-          if (inventory[curLocation].indexOf('b') > 0) {
-            drawCenterHeart();
-            switch (inventory[curLocation][0]) {
-              case 'c':
-                display.setCursor(29, 50);
-                display.print(F("Common"));
-                break;
-              case 'u':
-                display.setCursor(25, 50);
-                display.fontColor(TS_8b_Green, TS_8b_Black);
-                display.print(F("Uncommon"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'r':
-                display.setCursor(34, 50);
-                display.fontColor(TS_8b_Yellow, TS_8b_Black);
-                display.print(F("Rare"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'm':
-                display.setCursor(31, 50);
-                display.fontColor(TS_8b_Blue, TS_8b_Black);
-                display.print(F("Mythic"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-            }
+          switch (inventory[curLocation][0]) { //setting rarity
+            case 'c':
+              display.setCursor(29, 50);
+              display.print(F("Common"));
+              break;
+            case 'u':
+              display.setCursor(25, 50);
+              display.fontColor(TS_8b_Green, TS_8b_Black);
+              display.print(F("Uncommon"));
+              display.fontColor(defaultFontColor, defaultFontBG);
+              break;
+            case 'r':
+              display.setCursor(34, 50);
+              display.fontColor(TS_8b_Blue, TS_8b_Black);
+              display.print(F("Rare"));
+              display.fontColor(defaultFontColor, defaultFontBG);
+              break;
+            case 'm':
+              display.setCursor(31, 50);
+              display.fontColor(TS_8b_Yellow, TS_8b_Black);
+              display.print(F("Mythic"));
+              display.fontColor(defaultFontColor, defaultFontBG);
+              break;
           }
-          else if (inventory[curLocation].indexOf('l') > 0) {
-            drawCenterSeven();
-            switch (inventory[curLocation][0]) {
-              case 'c':
-                display.setCursor(29, 50);
-                display.print(F("Common"));
-                break;
-              case 'u':
-                display.setCursor(25, 50);
-                display.fontColor(TS_8b_Green, TS_8b_Black);
-                display.print(F("Uncommon"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'r':
-                display.setCursor(34, 50);
-                display.fontColor(TS_8b_Yellow, TS_8b_Black);
-                display.print(F("Rare"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'm':
-                display.setCursor(31, 50);
-                display.fontColor(TS_8b_Blue, TS_8b_Black);
-                display.print(F("Mythic"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-            }
-          }
-          else if (inventory[curLocation].indexOf('f') > 0) {
-            drawCenterMoney();
-            switch (inventory[curLocation][0]) {
-              case 'c':
-                display.setCursor(29, 50);
-                display.print(F("Common"));
-                break;
-              case 'u':
-                display.setCursor(25, 50);
-                display.fontColor(TS_8b_Green, TS_8b_Black);
-                display.print(F("Uncommon"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'r':
-                display.setCursor(34, 50);
-                display.fontColor(TS_8b_Yellow, TS_8b_Black);
-                display.print(F("Rare"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'm':
-                display.setCursor(31, 50);
-                display.fontColor(TS_8b_Blue, TS_8b_Black);
-                display.print(F("Mythic"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-            }
-          }
-          else if (inventory[curLocation].indexOf('a') > 0) {
-            drawCenterLightning();
-            switch (inventory[curLocation][0]) {
-              case 'c':
-                display.setCursor(29, 50);
-                display.print(F("Common"));
-                break;
-              case 'u':
-                display.setCursor(25, 50);
-                display.fontColor(TS_8b_Green, TS_8b_Black);
-                display.print(F("Uncommon"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'r':
-                display.setCursor(34, 50);
-                display.fontColor(TS_8b_Yellow, TS_8b_Black);
-                display.print(F("Rare"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-              case 'm':
-                display.setCursor(31, 50);
-                display.fontColor(TS_8b_Blue, TS_8b_Black);
-                display.print(F("Mythic"));
-                display.fontColor(defaultFontColor, defaultFontBG);
-                break;
-            }
+
+          switch (inventory[curLocation][1]) {
+            case 'b':
+              drawCenterHeart();
+              break;
+            case 'l':
+              drawCenterSeven();
+              break;
+            case 'f':
+              drawCenterMoney();
+              break;
+            case 'a':
+              drawCenterLightning();
+              break;
           }
         }
-      }
+      //}
     }
     //Put whatever game function you have here
   }
