@@ -3,6 +3,8 @@
 
 Play with your tamagochi, earn loot and gold from various games, fight randomly generated monsters and bosses and receive greater loot. Reach Mythic-level equipments to dominate the dungeons!
 
+**download the SmartWatchAndroid folder
+
 ## Requirements
 Libraries
   - Tinyscreen
