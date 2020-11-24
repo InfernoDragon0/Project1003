@@ -1,11 +1,13 @@
 # Project1003
 1003- A C++ arduino based tiny circuit game, all features are complete
+
 Play with your tamagochi, earn loot and gold from various games, fight randomly generated monsters and bosses and receive greater loot. Reach Mythic-level equipments to dominate the dungeons!
 
 ## Requirements
 Libraries
   - Tinyscreen
   - RTCZero
+
 Run by uploading SmartWatchAndroid to your tinycircuit
 
 ## Features
