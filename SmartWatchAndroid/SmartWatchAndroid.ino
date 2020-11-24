@@ -1,19 +1,23 @@
 //-------------------------------------------------------------------------------
-//  TinyCircuits TinyScreen/ST BLE Smartwatch Example Sketch
-//  Last Updated 26 October 2017
+//  SIT-ICT1003 Project for the TinyZero
+//  Last Updated 24 November 2020
 //
-//  This demo sets up the ST BLE for Nordic's BLE virtual UART connection, then
-//  accepts a date setting string with the format "Dyyyy MM dd k m s" or a
-//  notification string starting with a 1 or 2(for line 1 or 2) followed by the
-//  short text string to display. Time, date, notifications are displayed, and a
-//  simple sleep mode is implemented to save some power. TinyScreen+ compatible.
+//  This project uses the TinyScreen SmartWatch as a starting base point.
+//  The components that is needed to use this project is:
+//  TinyZero, TinyScreen and an optional Battery.
+//  Features the Watch feature and a couple of fun games with global 
+//  mechanics that connects with each other. Great for casual gaming on the go.
 //
-//  2.0.0 26 Oct 2017 Initial update release
+//  This project is released to the public under GNU GPLv3,
+//  Please kindly acknowledge/credit the authors.
 //
-//  Written by Ben Rose, TinyCircuits http://TinyCircuits.com
+//  Acknowledgements & Credits:
+//  
+//  1) SmartWatch base: Ben Rose, TinyCircuits http://TinyCircuits.com
+//  2) Main Developer: InfernoDragon0, https://github.com/InfernoDragon0
+//  3) Co-Developer: bonitodashi, https://github.com/bonitodashi
 //
 //-------------------------------------------------------------------------------
-
 
 #include <SPI.h>
 #include <TinyScreen.h>
