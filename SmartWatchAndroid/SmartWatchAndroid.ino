@@ -19,7 +19,7 @@
 #include <TinyScreen.h>
 #include <Wire.h>
 
-#define menu_debug_print true
+#define menu_debug_print false
 
 #if defined (ARDUINO_ARCH_AVR)
 TinyScreen display = TinyScreen(TinyScreenDefault);

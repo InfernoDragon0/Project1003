@@ -66,7 +66,7 @@ unsigned char deadchar[240] PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black
 };
 
-//bird again not in progmem for now
+//bird again in progmem
 unsigned char flappyBirdBitmap[204] PROGMEM = {
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
   TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_White, TS_8b_White, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black, TS_8b_Black,
