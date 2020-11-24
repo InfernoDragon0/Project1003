@@ -995,6 +995,8 @@ void loop3() {
   }
   delay(750);
   display.setCursor(0, 50);
+  display.print(F("                          ")); //clear display line
+  display.setCursor(0, 50);
   display.print(all);
   display.print(F(" Gold spots!"));
   while (1) {
@@ -1015,6 +1017,8 @@ void loop3() {
     }
     if (display.getButtons(TSButtonLowerRight)) { //dig dig
       //some way to save this thing
+      display.setCursor(0, 50);
+      display.print(F("                          ")); //clear display line
       display.setCursor(0, 50);
       if (bombs[curLocation - 1] == "O") {
         display.print(F("+"));
@@ -1046,7 +1050,9 @@ void loop3() {
         byte rollHit = random(0, 100); //roll a hit, if higher than dodge rate, then get hit
         if (dodgeRate > rollHit) {
           display.setCursor(0, 50);
+          display.print(F("                          ")); //clear display line
           bombs[curLocation - 1] = "X";
+          display.setCursor(0, 50);
           display.print(F("Dodged a bomb!   "));
           display.print(hp);
         }
@@ -1063,7 +1069,9 @@ void loop3() {
             break;
           }
           display.setCursor(0, 50);
+          display.print(F("                          ")); //clear display line
           bombs[curLocation - 1] = "X";
+          display.setCursor(0, 50);
           display.print(F("Ow! HP Left: "));
           display.print(hp);
         }
