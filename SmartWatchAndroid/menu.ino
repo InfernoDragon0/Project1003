@@ -225,22 +225,27 @@ void gameMenu(uint8_t selection) { //game menu function
   if (menu_debug_print)SerialMonitorInterface.println(selection);
   if (selection == 0) { //Main Game: Tamago
     display.clearWindow(0, 10, 96, 64);
+    randomSeed(RTCZ.getMinutes() + RTCZ.getSeconds());
     loop1();
   }
   if (selection == 1){ //Side Game: TamaGold Mine
     display.clearWindow(0, 10, 96, 64);
+    randomSeed(RTCZ.getMinutes() + RTCZ.getSeconds());
     loop2();
   }
   if (selection == 2){ //Side Game: TamaBoom
     display.clearWindow(0, 10, 96, 64);
+    randomSeed(RTCZ.getMinutes() + RTCZ.getSeconds());
     loop3();
   }
   if (selection == 3){ //Side Game: Dungeons
     display.clearWindow(0, 10, 96, 64);
+    randomSeed(RTCZ.getMinutes() + RTCZ.getSeconds());
     loop4();
   }
   if (selection == 4) { // Inventory
     display.clearWindow(0, 10, 96, 64);
+    randomSeed(RTCZ.getMinutes() + RTCZ.getSeconds());
     loop5();
   }
 }
