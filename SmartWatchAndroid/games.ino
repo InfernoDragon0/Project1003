@@ -207,7 +207,7 @@ void retMenu() {
   mainMenu(0);
 }
 
-int16_t gold = 100;
+int16_t gold = 250;
 char gold_buffer[11];
 
 byte maxHp = 100; //modded by blood rune
