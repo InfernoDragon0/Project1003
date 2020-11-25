@@ -330,8 +330,8 @@ void chkDead() {
 //randomSeed();
 
 // Its all about the ticks
-uint32_t startLTime = 0;
-uint32_t endLTime = 0;
+unsigned long startLTime = 0;
+unsigned long endLTime = 0;
 uint16_t timeDiff = 0;
 uint16_t timeElapsed = 0;
 

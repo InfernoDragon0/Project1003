@@ -1,6 +1,6 @@
 //-------------------------------------------------------------------------------
 //  SIT-ICT1003 Project for the TinyZero
-//  Last Updated 24 November 2020
+//  Last Updated 25 November 2020
 //
 //  This project uses the TinyScreen SmartWatch as a starting base point.
 //  The components that is needed to use this project is:
@@ -86,7 +86,7 @@ void setup(void)
   for (int i = 0; i < 20; i++) {
     pinMode(i, INPUT_PULLUP);
   }
-  setTime(22, 10, 10, 24, 11, 20); //h, m, s, d, m, y
+  setTime(22, 10, 10, 26, 11, 20); //h, m, s, d, m, y
 #elif defined(ARDUINO_ARCH_SAMD)
  /* for (int i = 0; i < 27; i++) {
     pinMode(i, INPUT_PULLUP);
@@ -100,7 +100,7 @@ void setup(void)
   pinMode(2, INPUT);*/
   RTCZ.begin();
   RTCZ.setTime(22, 00, 00);//h,m,s
-  RTCZ.setDate(24, 11, 20);//d,m,y
+  RTCZ.setDate(26, 11, 20);//d,m,y
   //RTCZ.attachInterrupt(RTCwakeHandler);
   //RTCZ.enableAlarm(RTCZ.MATCH_HHMMSS);
   //RTCZ.setAlarmEpoch(RTCZ.getEpoch() + 1);
@@ -197,8 +197,8 @@ void checkButtons() {
 }
 
 // Real-Time tracking BETA
-uint32_t astartLTime = 0;
-uint32_t aendLTime = 0;
+unsigned long astartLTime = 0;
+unsigned long aendLTime = 0;
 uint8_t deduct = 0;
 uint16_t atimeDiff = 0;
 uint32_t atimeElapsed = 0;
