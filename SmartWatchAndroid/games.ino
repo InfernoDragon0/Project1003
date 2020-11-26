@@ -1773,6 +1773,7 @@ void loop5() {
       else {
         if (sel == 0) {
           sel = 1;
+          delay(500);
           display.clearWindow(0, 10, 96, 64);
           display.setCursor(0, 48);
           display.print(F("< Trash"));
@@ -1782,7 +1783,6 @@ void loop5() {
           display.print(F("S2 >"));
           display.setCursor(0, 30);
           display.print("Equip Rune?");
-          delay(2000);
         }
         else if (sel == 1) { //equip to slot 1
           display.clearWindow(0, 10, 96, 64);
