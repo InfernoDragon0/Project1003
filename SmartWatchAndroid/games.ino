@@ -570,6 +570,10 @@ void loop1() {
             break;
         }
       }
+      else {
+        maxHp = 100;
+        updateHP();
+      }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         drawSeven();
         switch (getRuneRarity(rs)) {
@@ -586,6 +590,9 @@ void loop1() {
             goldGenRate = 10;
             break;
         }
+      }
+      else {
+        goldGenRate = 1;
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         drawMoney();
@@ -604,6 +611,9 @@ void loop1() {
             break;
         }
       }
+      else {
+        foodCost = 8;
+      }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         drawLightning();
         switch (getRuneRarity(rs)) {
@@ -620,6 +630,9 @@ void loop1() {
             hpRegenRate = 15;
             break;
         }
+      }
+      else {
+        hpRegenRate = 1;
       }
     }
   }
@@ -638,7 +651,7 @@ void loop1() {
     }
     if (display.getButtons(TSButtonUpperRight)) { //Feed
       if (gold < foodCost) {
-        display.clearWindow(0,52,96,64);
+        display.clearWindow(0, 52, 96, 64);
         display.setCursor(0, 52);
         display.print(F("Not enough Gold"));
         delay(1000);
@@ -731,6 +744,15 @@ void loop2() { //lootbox game
             break;
         }
       }
+      else {
+        baseChances[0] = 10;
+        baseChances[1] = 6;
+        baseChances[2] = 3;
+        baseChances[3] = 3;
+        baseChances[4] = 1;
+        baseChances[5] = 0;
+        baseChances[6] = 1;
+      }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         jackpot += 200;
         coinGain += 10;
@@ -748,6 +770,10 @@ void loop2() { //lootbox game
             coinGain += 30;
             break;
         }
+      }
+      else {
+        short jackpot = 1000;
+        byte coinGain = 20;
       }
     }
   }
@@ -915,7 +941,7 @@ void loop3() {
     retMenu();
     return;
   }
-  
+
   byte curLocation = 1;
   byte sweeped = 0;
   byte all = 0;
@@ -941,6 +967,10 @@ void loop3() {
             break;
         }
       }
+      else {
+        maxHp = 100;
+        chkHP();
+      }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         //drawSeven();
         switch (getRuneRarity(rs)) {
@@ -957,6 +987,9 @@ void loop3() {
             goldChance = 10;
             break;
         }
+      }
+      else {
+        goldChance = 5;
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         //drawMoney();
@@ -975,6 +1008,9 @@ void loop3() {
             break;
         }
       }
+      else {
+        goldGain = 5;
+      }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         //drawLightning();
         switch (getRuneRarity(rs)) {
@@ -991,6 +1027,9 @@ void loop3() {
             dodgeRate = 55;
             break;
         }
+      }
+      else {
+        dodgeRate = 0;
       }
     }
   }
@@ -1182,6 +1221,11 @@ void loop4() {
             break;
         }
       }
+      else {
+        maxHp = 100;
+        updateHP();
+        attackDamage = 12;
+      }
       if (runeSlots[rs].indexOf('l') > 0) { //luck rune
         //drawSeven();
         switch (getRuneRarity(rs)) {
@@ -1198,6 +1242,9 @@ void loop4() {
             escapeChance = 100; //100% chance of escaping
             break;
         }
+      }
+      else {
+        escapeChance = 25;
       }
       if (runeSlots[rs].indexOf('f') > 0) { //fortune rune
         //drawMoney();
@@ -1220,6 +1267,9 @@ void loop4() {
             break;
         }
       }
+      else {
+        stims = 1;
+      }
       if (runeSlots[rs].indexOf('a') > 0) { //agility rune
         //drawLightning();
         switch (getRuneRarity(rs)) {
@@ -1236,6 +1286,9 @@ void loop4() {
             extraTurnChance = 66;
             break;
         }
+      }
+      else {
+        extraTurnChance = 0;
       }
     }
   }
@@ -1346,7 +1399,7 @@ void loop4() {
       display.setCursor(50, 10); //print stim at right side
       display.print(F("Stim:"));
       display.print(stims);
-      
+
       //print tamago and enemy at around 10,20 and 45,20
       display.setX(10, 10 + 12 - 1); //draw tamago
       display.setY(20, 20 + 20 - 1);
@@ -1480,7 +1533,7 @@ void loop4() {
         else {
           currentTurn = 1;
           display.setCursor(0, 50);
-        display.print(F("                          ")); //clear display line
+          display.print(F("                          ")); //clear display line
           display.setCursor(0, 50);
           display.print(F("Escape Failed."));
           delay(1000);
@@ -1732,7 +1785,7 @@ void loop5() {
           display.setCursor(4, 32);
           display.print(F("<"));
           curLocation += 1;
-          delay(100);
+          delay(150);
         }
       }
     }
@@ -1760,7 +1813,7 @@ void loop5() {
             display.print(F("<"));
           }
           curLocation -= 1;
-          delay(100);
+          delay(150);
         }
       }
     }
@@ -1805,52 +1858,52 @@ void loop5() {
       display.print(F(" / 10"));
       // Traversing the array
       //for (byte inv = 0; inv < 10; inv++) {
-        if (inventory[curLocation] == "Empty") {
-          display.setCursor(34, 32);
-          display.print(F("Empty"));
+      if (inventory[curLocation] == "Empty") {
+        display.setCursor(34, 32);
+        display.print(F("Empty"));
+      }
+      else {
+        // Detecting rune type and rarity
+        switch (inventory[curLocation][0]) { //setting rarity
+          case 'c':
+            display.setCursor(29, 50);
+            display.print(F("Common"));
+            break;
+          case 'u':
+            display.setCursor(25, 50);
+            display.fontColor(TS_8b_Green, TS_8b_Black);
+            display.print(F("Uncommon"));
+            display.fontColor(defaultFontColor, defaultFontBG);
+            break;
+          case 'r':
+            display.setCursor(34, 50);
+            display.fontColor(TS_8b_Blue, TS_8b_Black);
+            display.print(F("Rare"));
+            display.fontColor(defaultFontColor, defaultFontBG);
+            break;
+          case 'm':
+            display.setCursor(31, 50);
+            display.fontColor(TS_8b_Yellow, TS_8b_Black);
+            display.print(F("Mythic"));
+            display.fontColor(defaultFontColor, defaultFontBG);
+            break;
         }
-        else {
-          // Detecting rune type and rarity
-          switch (inventory[curLocation][0]) { //setting rarity
-            case 'c':
-              display.setCursor(29, 50);
-              display.print(F("Common"));
-              break;
-            case 'u':
-              display.setCursor(25, 50);
-              display.fontColor(TS_8b_Green, TS_8b_Black);
-              display.print(F("Uncommon"));
-              display.fontColor(defaultFontColor, defaultFontBG);
-              break;
-            case 'r':
-              display.setCursor(34, 50);
-              display.fontColor(TS_8b_Blue, TS_8b_Black);
-              display.print(F("Rare"));
-              display.fontColor(defaultFontColor, defaultFontBG);
-              break;
-            case 'm':
-              display.setCursor(31, 50);
-              display.fontColor(TS_8b_Yellow, TS_8b_Black);
-              display.print(F("Mythic"));
-              display.fontColor(defaultFontColor, defaultFontBG);
-              break;
-          }
 
-          switch (inventory[curLocation][1]) {
-            case 'b':
-              drawCenterHeart();
-              break;
-            case 'l':
-              drawCenterSeven();
-              break;
-            case 'f':
-              drawCenterMoney();
-              break;
-            case 'a':
-              drawCenterLightning();
-              break;
-          }
+        switch (inventory[curLocation][1]) {
+          case 'b':
+            drawCenterHeart();
+            break;
+          case 'l':
+            drawCenterSeven();
+            break;
+          case 'f':
+            drawCenterMoney();
+            break;
+          case 'a':
+            drawCenterLightning();
+            break;
         }
+      }
       //}
     }
     //Put whatever game function you have here
